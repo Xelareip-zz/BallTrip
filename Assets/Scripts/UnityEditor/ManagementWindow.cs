@@ -61,7 +61,7 @@ public class ManagementWindow : EditorWindow
 		screenshotName = GUILayout.TextField(screenshotName);
 		if (GUILayout.Button("Screenshot"))
 		{
-			Application.CaptureScreenshot(screenshotName);
+			ScreenCapture.CaptureScreenshot(screenshotName);
 		}
 		if (GUILayout.Button("Start game"))
 		{
