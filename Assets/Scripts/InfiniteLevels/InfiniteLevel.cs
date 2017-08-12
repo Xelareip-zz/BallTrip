@@ -83,7 +83,7 @@ public class InfiniteLevel : MonoBehaviour
 			newChildren.AddRange(nextChildren);
 		}
 
-		levelBounds = Utils.GetBounds(children);
+		levelBounds = XUtils.GetBounds(children);
 	}
 
 	public void GoalPassed(InfiniteLevelGoal goal)

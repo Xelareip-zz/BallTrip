@@ -73,7 +73,7 @@ public class CameraDrag : MonoBehaviour
 			return;
 		}
 
-		Vector3 drag = (dragOrigin - currentDrag) * Utils.ScreenCamRatio();
+		Vector3 drag = (dragOrigin - currentDrag) * XUtils.ScreenCamRatio();
 
 		transform.position += drag;
 

@@ -69,7 +69,7 @@ public class LaunchManager : MonoBehaviour
 			return;
 		}
 
-		Vector3 drag = (dragOrigin - currentDrag) * Utils.ScreenCamRatio();
+		Vector3 drag = (dragOrigin - currentDrag) * XUtils.ScreenCamRatio();
 		Ball.Instance.launchDirection = drag.normalized;
 
 		if (shouldLaunch)

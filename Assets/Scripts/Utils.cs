@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Utils
+public class XUtils
 {
 	public static float ScreenCamRatio()
 	{
