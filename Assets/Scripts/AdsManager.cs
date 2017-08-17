@@ -37,10 +37,14 @@ public class AdsManager : MonoBehaviour
 		AdRequest request = new AdRequest.Builder()
 			.AddTestDevice(AdRequest.TestDeviceSimulator)
 			.AddTestDevice("F40B4C8F5DBC58BCA4BBFEAA0A43CEAE")
+			.AddTestDevice("418E9BE656ADE8B73BEE91EA639E3AD2")
 			.Build();
 		// Load the banner with the request.
 		bannerView.LoadAd(request);
 
-		adsHeight = AdSize.Banner.Height / (float)Screen.height * 2;
+		Debug.Log("Ad : " + AdSize.Banner.Height);
+		Debug.Log("Screen : " + Screen.height);
+		adsHeight = Screen.dpi * AdSize.Banner.Height / (Screen.height * 160);
+		Debug.Log("Result : " + adsHeight);
 	}
 }

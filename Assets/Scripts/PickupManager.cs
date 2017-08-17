@@ -13,7 +13,7 @@ public class PickupManager : MonoBehaviour
 		}
 	}
 
-	public List<GameObject> possiblePickups;
+	public List<PickupBase> possiblePickups;
 
 	void Awake ()
 	{
@@ -22,9 +22,26 @@ public class PickupManager : MonoBehaviour
 
 	public GameObject GetRandomPickup()
 	{
-		if (Random.Range(0, 100) > 70)
+		float totalWeights = 0;
+
+		for (int pickupIdx = 0; pickupIdx < possiblePickups.Count; ++pickupIdx)
 		{
-			return possiblePickups[Random.Range(0, possiblePickups.Count)];
+			totalWeights += possiblePickups[pickupIdx].GetDropWeight();
+		}
+
+		float randWeight = Random.Range(0, totalWeights);
+
+		for (int pickupIdx = 0; pickupIdx < possiblePickups.Count; ++pickupIdx)
+		{
+			randWeight -= possiblePickups[pickupIdx].GetDropWeight();
+			if (randWeight <= 0)
+			{
+				if (possiblePickups[pickupIdx] is PickupNone)
+				{
+					return null;
+				}
+				return possiblePickups[pickupIdx].gameObject;
+            }
 		}
 		return null;
 	}

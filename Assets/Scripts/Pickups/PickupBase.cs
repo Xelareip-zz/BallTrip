@@ -2,15 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickupBase : MonoBehaviour {
+public abstract class PickupBase : MonoBehaviour
+{
+	public bool active;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public abstract float GetDropWeight();
 }

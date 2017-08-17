@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class InfiniteLevel : MonoBehaviour
 {
@@ -21,6 +21,7 @@ public class InfiniteLevel : MonoBehaviour
 	public int reward;
 
 	public List<Vector3> pickupSpots;
+	public List<Text> levelTexts;
 
 	public int levelNumber;
 	public float spawnChances = 0;
@@ -45,6 +46,14 @@ public class InfiniteLevel : MonoBehaviour
 				newInstance.transform.localPosition = pickupSpot;
 			}
         }
+	}
+
+	void Start()
+	{
+		for (int textIdx = 0; textIdx < levelTexts.Count; ++textIdx)
+		{
+			levelTexts[textIdx].text = levelNumber.ToString();
+		}
 	}
 
 	public bool CanSpawn()

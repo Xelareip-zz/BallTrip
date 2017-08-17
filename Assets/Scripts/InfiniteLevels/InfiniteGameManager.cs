@@ -42,6 +42,7 @@ public class InfiniteGameManager : MonoBehaviour
 	public int freeLaunchGaugeMax;
 	public int freeLaunchGaugeValue;
 
+	public GameObject uiCoinWon;
 
 	private int score;
 
@@ -104,9 +105,11 @@ public class InfiniteGameManager : MonoBehaviour
 
 	public void AddScore(int scoreToAdd)
 	{
-		Player.Instance.AddCoins(scoreToAdd);
-		score += scoreToAdd;
-		SetScoreText();
+		GameObject newUI = Instantiate<GameObject>(uiCoinWon);
+		newUI.transform.SetParent(Camera.main.transform);
+		newUI.transform.position = Ball.Instance.transform.position;
+		newUI.GetComponent<GoTo>().finished += () => AddCoinsApply(scoreToAdd);
+		newUI.SetActive(true);
 	}
 
 	private void SetScoreText()
@@ -162,5 +165,12 @@ public class InfiniteGameManager : MonoBehaviour
 	private void FreeLaunchIncreaseApply()
 	{
 		++freeLaunchGaugeValue;
+	}
+
+	private void AddCoinsApply(int coins)
+	{
+		Player.Instance.AddCoins(coins);
+		score += coins;
+		SetScoreText();
 	}
 }

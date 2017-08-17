@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class BossShield : BossBase
@@ -28,7 +29,7 @@ public class BossShield : BossBase
 
 	public void LevelPassed(InfiniteLevelGoal goal)
 	{
-		Player.Instance.SetLevelBeaten(bossType.ToString());
+		Player.Instance.SetLevelBeaten(bossType);
 	}
 
 	void OnCollisionEnter(Collision coll)
@@ -36,7 +37,7 @@ public class BossShield : BossBase
 		if (coll.gameObject == Ball.Instance.gameObject)
 		{
 			shaker.stressLevel += 0.5f;
-			Ball.Instance.currentCollisionCount += 2;
+			StartCoroutine(FreeCollisions(2));
 			--hp;
 			hp = Mathf.Max(hp, 0);
 			if (hp == 0)
@@ -44,6 +45,15 @@ public class BossShield : BossBase
 				Destroy(endLevelDoor);
 				Destroy(gameObject);
 			}
+		}
+	}
+
+	private IEnumerator FreeCollisions(int number)
+	{
+		for (int idx = 0; idx < number; ++idx)
+		{
+			Ball.Instance.FreeCollisionsIncrease();
+			yield return new WaitForEndOfFrame();
 		}
 	}
 }

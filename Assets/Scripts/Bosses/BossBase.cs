@@ -11,6 +11,6 @@ public class BossBase : MonoBehaviour, ICanSpawn
 
 	public bool CanSpawn()
 	{
-		return Player.Instance.GetLevelBeaten(bossType.ToString()) == false;
+		return Player.Instance.GetLevelBeaten(bossType) == false;
 	}
 }

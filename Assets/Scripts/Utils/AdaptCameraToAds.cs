@@ -6,7 +6,7 @@ public class AdaptCameraToAds : MonoBehaviour
 {
 	void Update ()
 	{
-		Rect viewportRect = new Rect(new Vector2(0, AdsManager.Instance.adsHeight), new Vector2(1.0f, 1.0f - AdsManager.Instance.adsHeight));
+		Rect viewportRect = new Rect(0.0f, AdsManager.Instance.adsHeight, 1.0f, 1.0f - AdsManager.Instance.adsHeight);
 		Camera.main.rect = viewportRect;
 	}
 }

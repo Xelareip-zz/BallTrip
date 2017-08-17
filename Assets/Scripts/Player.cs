@@ -96,6 +96,12 @@ public class Player : MonoBehaviour
 		SetLevelBeaten(level.ToString());
 	}
 
+	public void SetLevelBeaten(BOSS_TYPE boss)
+	{
+		_bossLevelsBeaten.Add(boss.ToString());
+		Save();
+	}
+
 	public void SetLevelBeaten(string level)
 	{
 		_bossLevelsBeaten.Add(level);
@@ -125,6 +131,11 @@ public class Player : MonoBehaviour
 	public bool GetLevelBeaten(int level)
 	{
 		return _bossLevelsBeaten.Contains(level.ToString());
+	}
+
+	public bool GetLevelBeaten(BOSS_TYPE boss)
+	{
+		return _bossLevelsBeaten.Contains(boss.ToString());
 	}
 
 	public bool GetLevelBeaten(string level)

@@ -14,6 +14,7 @@ public class Ball : MonoBehaviour
 	public Rigidbody ballRigidbody;
 	public LineRenderer lineRenderer;
 	public GameObject shieldVisual;
+	public GameObject uiFreeCollisions;
 	
 	public bool freeBounce;
 	public int currentCollisionCount;
@@ -99,5 +100,19 @@ public class Ball : MonoBehaviour
 	{
 		Gizmos.color = Color.yellow;
 		Gizmos.DrawLine(transform.position, transform.position + launchDirection * launchSpeed);
+	}
+
+	public void FreeCollisionsIncrease()
+	{
+		GameObject newUI = Instantiate<GameObject>(uiFreeCollisions);
+		newUI.transform.SetParent(Camera.main.transform);
+		newUI.transform.position = Ball.Instance.transform.position;
+		newUI.GetComponent<GoTo>().finished += FreeCollisionsIncreaseApply;
+		newUI.SetActive(true);
+	}
+
+	private void FreeCollisionsIncreaseApply()
+	{
+		++currentCollisionCount;
 	}
 }

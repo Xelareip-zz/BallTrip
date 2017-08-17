@@ -34,8 +34,7 @@ public class LevelPieceFactory : MonoBehaviour
 			levelPiecesDict.Add(levelPiece.GetComponentInChildren<LevelPiece>().GetPieceName(), levelPiece);
 		}
 	}
-
-#if UNITY_EDITOR
+	
 	public void ReloadLevelPiecesList()
 	{
 		levelPiecesDict = new Dictionary<string, GameObject>();
@@ -52,6 +51,5 @@ public class LevelPieceFactory : MonoBehaviour
 			}
 		}
 	}
-#endif
 
 }
