@@ -76,7 +76,7 @@ public class ManagementWindow : EditorWindow
 
 		if (followBall)
 		{
-			if (Ball.Instance != null)
+			if (Ball.Instance != null && SceneView.lastActiveSceneView != null)
 			{
 				SceneView.lastActiveSceneView.pivot = new Vector3(Ball.Instance.transform.position.x, Ball.Instance.transform.position.y, SceneView.lastActiveSceneView.pivot.z);
 			}

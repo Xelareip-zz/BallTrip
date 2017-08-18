@@ -3,6 +3,7 @@
 public enum BOSS_TYPE
 {
 	SHIELD,
+	HEART,
 }
 
 public class BossBase : MonoBehaviour, ICanSpawn

@@ -55,6 +55,11 @@ public class InfiniteGameManager : MonoBehaviour
 		score = 0;
 		SetScoreText();
 	}
+
+	void Start()
+	{
+		TutoManager.Instance.StartTuto("TutoFirstLaunch");
+	}
 	
 	void Update()
 	{

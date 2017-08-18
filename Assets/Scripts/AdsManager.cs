@@ -41,10 +41,7 @@ public class AdsManager : MonoBehaviour
 			.Build();
 		// Load the banner with the request.
 		bannerView.LoadAd(request);
-
-		Debug.Log("Ad : " + AdSize.Banner.Height);
-		Debug.Log("Screen : " + Screen.height);
+		
 		adsHeight = Screen.dpi * AdSize.Banner.Height / (Screen.height * 160);
-		Debug.Log("Result : " + adsHeight);
 	}
 }

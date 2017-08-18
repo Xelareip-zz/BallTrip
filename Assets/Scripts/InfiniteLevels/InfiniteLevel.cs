@@ -99,8 +99,11 @@ public class InfiniteLevel : MonoBehaviour
 	{
 		if (Ball.Instance.freeBounce)
         {
-
 			InfiniteGameManager.Instance.FreeLaunchIncrease();
+		}
+		else
+		{
+			TutoManager.Instance.StartTuto("TutoFirstCoin");
 		}
 		Ball.Instance.freeBounce = true;
 		InfiniteGameManager.Instance.AddScore(reward);

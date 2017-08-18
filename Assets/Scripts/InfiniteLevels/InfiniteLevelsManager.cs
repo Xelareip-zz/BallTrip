@@ -30,14 +30,14 @@ public class InfiniteLevelsManager : MonoBehaviour
 	void Awake()
 	{
 		instance = this;
-	}
-
-	void Start()
-	{
 		GameObject newLevel = Instantiate(possibleLevels[0]);
 		newLevel.GetComponent<InfiniteLevel>().CloseLevel();
 		currentLevel = 0;
 		FillToDepth();
+	}
+
+	void Start()
+	{
 	}
 
 	public void UpdateSpawnChances()

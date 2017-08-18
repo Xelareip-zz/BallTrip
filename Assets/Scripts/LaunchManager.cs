@@ -71,8 +71,12 @@ public class LaunchManager : MonoBehaviour
 
 		Vector3 drag = (dragOrigin - currentDrag) * XUtils.ScreenCamRatio();
 		Ball.Instance.launchDirection = drag.normalized;
+		float angle = Quaternion.FromToRotation(Vector3.up, Ball.Instance.launchDirection).eulerAngles.z;
 
-		if (shouldLaunch)
+		bool canShoot = TutoManager.Instance.GetCanShootAngle(angle);
+        Ball.Instance.lineRenderer.enabled = canShoot;
+
+		if (shouldLaunch && canShoot)
 		{
 			Ball.Instance.Launch();
 		}

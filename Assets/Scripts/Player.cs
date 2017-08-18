@@ -17,13 +17,13 @@ public class Player : MonoBehaviour
 
 	public int _bestScore = 0;
 	public int _gamesPlayed = 0;
-	public bool _tutoDone = false;
 	public int _coins = 0;
 	public int _launchesAllowed = 10;
 	public int _viewRange = 2;
 	public int _bounces = 1;
 
 	public List<string> _bossLevelsBeaten = new List<string>();
+	public List<string> _tutoFinished = new List<string>();
 
 	void Awake()
 	{
@@ -54,17 +54,6 @@ public class Player : MonoBehaviour
 	public int GetGamesStarted()
 	{
 		return _gamesPlayed;
-	}
-
-	public bool GetTutoDone()
-	{
-		return _tutoDone;
-	}
-
-	public void SetTutoDone(bool isDone)
-	{
-		_tutoDone = isDone;
-		Save();
 	}
 
 	public void AddCoins(int val)
@@ -108,6 +97,12 @@ public class Player : MonoBehaviour
 		Save();
 	}
 
+	public void SetTutoFinished(string tuto)
+	{
+		_tutoFinished.Add(tuto);
+		Save();
+	}
+
 	public int GetCoins()
 	{
 		return _coins;
@@ -143,6 +138,11 @@ public class Player : MonoBehaviour
 		return _bossLevelsBeaten.Contains(level);
 	}
 
+	public bool GetTutoFinished(string tuto)
+	{
+		return _tutoFinished.Contains(tuto);
+	}
+
 	public void ResetLevels()
 	{
 		_bossLevelsBeaten.Clear();
@@ -172,9 +172,6 @@ public class Player : MonoBehaviour
 				case "gamesPlayed":
 					_gamesPlayed = int.Parse(lineSplit[1]);
 					break;
-				case "tutoDone":
-					_tutoDone = bool.Parse(lineSplit[1]);
-					break;
 				case "coins":
 					_coins = int.Parse(lineSplit[1]);
 					break;
@@ -194,6 +191,13 @@ public class Player : MonoBehaviour
 						_bossLevelsBeaten.Add(level);
 					}
 					break;
+				case "tutoFinished":
+					_tutoFinished.Clear();
+					foreach (string level in lineSplit[1].Split('-'))
+					{
+						_tutoFinished.Add(level);
+					}
+					break;
 				default:
 					break;
 			}
@@ -207,12 +211,12 @@ public class Player : MonoBehaviour
 
 		saveString += "bestScore:" + _bestScore + "\n";
 		saveString += "gamesPlayed:" + _gamesPlayed + "\n";
-		saveString += "tutoDone:" + _tutoDone + "\n";
 		saveString += "coins:" + _coins + "\n";
         saveString += "launchesAllowed:" + _launchesAllowed + "\n"; ;
         saveString += "viewRange:" + _viewRange + "\n"; ;
 		saveString += "bounces:" + _bounces + "\n";
 		saveString += "bossLevels:" + String.Join("-", _bossLevelsBeaten.ToArray()) + "\n";
+		saveString += "bossLevels:" + String.Join("-", _tutoFinished.ToArray()) + "\n";
 
 		Directory.GetParent(Application.persistentDataPath).Create();
 		StreamWriter writer = new StreamWriter(Application.persistentDataPath + "/Save.dat");

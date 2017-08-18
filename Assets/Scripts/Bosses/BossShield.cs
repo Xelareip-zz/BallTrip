@@ -1,17 +1,17 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BossShield : BossBase
 {
-	public int hp;
-
 	public InfiniteLevel level;
 
 	public GameObject endLevelDoor;
 	public Text hpText;
 
 	public CameraShaker shaker;
+	public List<GameObject> shields;
 
 	void Start()
 	{
@@ -19,12 +19,11 @@ public class BossShield : BossBase
 		{
 			goal.goalHit += LevelPassed;
 		}
-	}
-
-	void Update()
-	{
-		hpText.color = InfiniteGameManager.Instance.currentColor;
-		hpText.text = hp.ToString();
+		foreach (CollisionSignal signal in GetComponentsInChildren<CollisionSignal>())
+		{
+			signal.collisionExit += ShieldDestroyed;
+			shields.Add(signal.gameObject);
+		}
 	}
 
 	public void LevelPassed(InfiniteLevelGoal goal)
@@ -32,28 +31,17 @@ public class BossShield : BossBase
 		Player.Instance.SetLevelBeaten(bossType);
 	}
 
-	void OnCollisionEnter(Collision coll)
+	void ShieldDestroyed(CollisionSignal signal, Collision coll)
 	{
 		if (coll.gameObject == Ball.Instance.gameObject)
 		{
-			shaker.stressLevel += 0.5f;
-			StartCoroutine(FreeCollisions(2));
-			--hp;
-			hp = Mathf.Max(hp, 0);
-			if (hp == 0)
+			Ball.Instance.freeBounce = true;
+			shields.Remove(signal.gameObject);
+			if (shields.Count == 0)
 			{
 				Destroy(endLevelDoor);
-				Destroy(gameObject);
 			}
-		}
-	}
-
-	private IEnumerator FreeCollisions(int number)
-	{
-		for (int idx = 0; idx < number; ++idx)
-		{
-			Ball.Instance.FreeCollisionsIncrease();
-			yield return new WaitForEndOfFrame();
+			Destroy(signal.gameObject);
 		}
 	}
 }
