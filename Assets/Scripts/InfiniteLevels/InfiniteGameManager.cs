@@ -170,7 +170,7 @@ public class InfiniteGameManager : MonoBehaviour
 	{
 		GameObject newUI = Instantiate<GameObject>(uiFreeLaunch);
 		newUI.transform.SetParent(Camera.main.transform);
-		newUI.transform.position = Ball.Instance.transform.position;
+		newUI.transform.position = Ball.Instance.transform.position + Vector3.back;
 		newUI.GetComponent<GoTo>().finished += FreeLaunchIncreaseApply;
 		newUI.SetActive(true);
 	}

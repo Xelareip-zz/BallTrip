@@ -105,7 +105,8 @@ public class InfiniteLevel : MonoBehaviour
 	public void GoalPassed(InfiniteLevelGoal goal)
 	{
 		if (Ball.Instance.shieldActive)
-        {
+		{
+			TutoManager.Instance.StartTuto("TutoFirstLaunchGauge");
 			InfiniteGameManager.Instance.FreeLaunchIncrease();
 		}
 		else
@@ -175,7 +176,7 @@ public class InfiniteLevel : MonoBehaviour
 		Gizmos.color = Color.blue;
 		foreach (Vector3 pickupSpot in pickupSpots)
 		{
-			Gizmos.DrawSphere(transform.position + pickupSpot, 0.3f);
+			Gizmos.DrawSphere(transform.TransformPoint(pickupSpot), 0.3f);
 		}
 	}
 #endif

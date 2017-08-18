@@ -642,8 +642,8 @@ MonoBehaviour:
   door: {fileID: 114356567984289740}
   reward: 10
   pickupSpots:
-  - {x: -10, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 12, y: 0, z: 0}
+  - {x: 2, y: 0, z: 0}
   levelTexts: []
-  levelNumber: 2
+  levelNumber: 9
   spawnChances: 1

@@ -37,7 +37,7 @@ public class BossHeart : BossBase
 		if (coll.gameObject == Ball.Instance.gameObject)
 		{
 			shaker.stressLevel += 0.5f;
-			StartCoroutine(FreeCollisions(2));
+			StartCoroutine(FreeCollisions(1));
 			--hp;
 			hp = Mathf.Max(hp, 0);
 			if (hp == 0)

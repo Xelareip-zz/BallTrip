@@ -293,6 +293,23 @@ Transform:
   m_PrefabParentObject: {fileID: 4717398054284982, guid: 8d8b087f6545d994daaf62390df77a4e,
     type: 2}
   m_PrefabInternal: {fileID: 378976317}
+--- !u!1 &378976319 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1199465218567514, guid: 8d8b087f6545d994daaf62390df77a4e,
+    type: 2}
+  m_PrefabInternal: {fileID: 378976317}
+--- !u!114 &378976320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 378976319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ec3d5c8ded4846b6060758c34c897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heartCost: 0
 --- !u!1001 &475425369
 Prefab:
   m_ObjectHideFlags: 0
@@ -378,6 +395,16 @@ Prefab:
     - target: {fileID: 4717398054284982, guid: 7484d6a1da9e59443a5924be75d2ed76, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114852130933307074, guid: 7484d6a1da9e59443a5924be75d2ed76,
+        type: 2}
+      propertyPath: pickupSpots.Array.data[0].x
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114852130933307074, guid: 7484d6a1da9e59443a5924be75d2ed76,
+        type: 2}
+      propertyPath: pickupSpots.Array.data[1].x
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7484d6a1da9e59443a5924be75d2ed76, type: 2}
@@ -1045,6 +1072,26 @@ Prefab:
     - target: {fileID: 4343544365236762, guid: 35a40473c6c80eb449e13d98c6a07031, type: 2}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114942799550014858, guid: 35a40473c6c80eb449e13d98c6a07031,
+        type: 2}
+      propertyPath: pickupSpots.Array.data[0].x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114942799550014858, guid: 35a40473c6c80eb449e13d98c6a07031,
+        type: 2}
+      propertyPath: pickupSpots.Array.data[0].y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114942799550014858, guid: 35a40473c6c80eb449e13d98c6a07031,
+        type: 2}
+      propertyPath: pickupSpots.Array.data[1].x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114942799550014858, guid: 35a40473c6c80eb449e13d98c6a07031,
+        type: 2}
+      propertyPath: pickupSpots.Array.data[1].y
+      value: -5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35a40473c6c80eb449e13d98c6a07031, type: 2}
