@@ -74,9 +74,19 @@ public class CameraDrag : MonoBehaviour
 		}
 
 		Vector3 drag = (dragOrigin - currentDrag) * XUtils.ScreenCamRatio();
-
-		transform.position += drag;
-
+		Vector3 newPos = transform.position + drag;
 		dragOrigin = currentDrag;
+
+		for (int levelIdx = 0; levelIdx < InfiniteLevelsManager.Instance.levels.Count; ++levelIdx)
+		{
+			Vector3 targetPoint = new Vector3(newPos.x, newPos.y, InfiniteLevelsManager.Instance.levels[levelIdx].transform.position.z);
+			Bounds currentBounds = InfiniteLevelsManager.Instance.levels[levelIdx].GetCurrentBounds();
+            if (currentBounds.Contains(targetPoint))
+			{
+				transform.position = newPos;
+				return;
+			}
+			continue;
+		}
 	}
 }

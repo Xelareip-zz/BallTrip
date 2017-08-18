@@ -86,6 +86,14 @@ public class InfiniteGameManager : MonoBehaviour
 	public void StartLaunchMode()
 	{
 		SetLaunchMode(LAUNCH_MODE.LAUNCH);
+		float yDiff = Camera.main.orthographicSize * 0.8f;
+		float xDiff = yDiff * Camera.main.rect.size.x / Camera.main.rect.size.y;
+
+		transform.position = new Vector3(
+			Mathf.Clamp(transform.position.x, Ball.Instance.transform.position.x - xDiff, Ball.Instance.transform.position.x + xDiff),
+			Mathf.Clamp(transform.position.y, Ball.Instance.transform.position.y - yDiff, Ball.Instance.transform.position.y + yDiff),
+			transform.position.z
+			);
 	}
 
 	public void SetLaunchMode(LAUNCH_MODE mode)
@@ -112,7 +120,7 @@ public class InfiniteGameManager : MonoBehaviour
 	{
 		GameObject newUI = Instantiate<GameObject>(uiCoinWon);
 		newUI.transform.SetParent(Camera.main.transform);
-		newUI.transform.position = Ball.Instance.transform.position;
+		newUI.transform.position = Ball.Instance.transform.position + Vector3.back;
 		newUI.GetComponent<GoTo>().finished += () => AddCoinsApply(scoreToAdd);
 		newUI.SetActive(true);
 	}

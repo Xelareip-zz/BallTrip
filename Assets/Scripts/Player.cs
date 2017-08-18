@@ -19,8 +19,9 @@ public class Player : MonoBehaviour
 	public int _gamesPlayed = 0;
 	public int _coins = 0;
 	public int _launchesAllowed = 10;
-	public int _viewRange = 2;
-	public int _bounces = 1;
+	public int _viewRange = 1;
+	public int _hearts = 1;
+	public int _shieldLevel = 0;
 
 	public List<string> _bossLevelsBeaten = new List<string>();
 	public List<string> _tutoFinished = new List<string>();
@@ -29,7 +30,22 @@ public class Player : MonoBehaviour
 	{
 		instance = this;
 		DontDestroyOnLoad(gameObject);
+		Reinit();
 		Load();
+	}
+
+	public void Reinit()
+	{
+		_bestScore = 0;
+		_gamesPlayed = 0;
+		_coins = 0;
+		_launchesAllowed = 1;
+		_viewRange = 1;
+		_hearts = 1;
+		_shieldLevel = 0;
+
+		_bossLevelsBeaten = new List<string>();
+		_tutoFinished = new List<string>();
 	}
 
 	public int GetBestScore()
@@ -76,7 +92,7 @@ public class Player : MonoBehaviour
 
 	public void SetBounces(int val)
 	{
-		_bounces = val;
+		_hearts = val;
 		Save();
 	}
 
@@ -103,6 +119,12 @@ public class Player : MonoBehaviour
 		Save();
 	}
 
+	public void SetShieldLevel(int level)
+	{
+		_shieldLevel = level;
+		Save();
+	}
+
 	public int GetCoins()
 	{
 		return _coins;
@@ -120,7 +142,12 @@ public class Player : MonoBehaviour
 
 	public int GetBounces()
 	{
-		return _bounces;
+		return _hearts;
+	}
+
+	public int GetShieldLevel()
+	{
+		return _shieldLevel;
 	}
 
 	public bool GetLevelBeaten(int level)
@@ -181,8 +208,11 @@ public class Player : MonoBehaviour
 				case "viewRange":
 					_viewRange = int.Parse(lineSplit[1]);
 					break;
-				case "bounces":
-					_bounces = int.Parse(lineSplit[1]);
+				case "hearts":
+					_hearts = int.Parse(lineSplit[1]);
+					break;
+				case "shieldLevel":
+					_shieldLevel = int.Parse(lineSplit[1]);
 					break;
 				case "bossLevels":
 					_bossLevelsBeaten.Clear();
@@ -214,9 +244,10 @@ public class Player : MonoBehaviour
 		saveString += "coins:" + _coins + "\n";
         saveString += "launchesAllowed:" + _launchesAllowed + "\n"; ;
         saveString += "viewRange:" + _viewRange + "\n"; ;
-		saveString += "bounces:" + _bounces + "\n";
+		saveString += "hearts:" + _hearts + "\n";
+		saveString += "shieldLevel:" + _shieldLevel + "\n";
 		saveString += "bossLevels:" + String.Join("-", _bossLevelsBeaten.ToArray()) + "\n";
-		saveString += "bossLevels:" + String.Join("-", _tutoFinished.ToArray()) + "\n";
+		saveString += "tutoFinished:" + String.Join("-", _tutoFinished.ToArray()) + "\n";
 
 		Directory.GetParent(Application.persistentDataPath).Create();
 		StreamWriter writer = new StreamWriter(Application.persistentDataPath + "/Save.dat");

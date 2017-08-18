@@ -36,10 +36,6 @@ public class InfiniteLevelsManager : MonoBehaviour
 		FillToDepth();
 	}
 
-	void Start()
-	{
-	}
-
 	public void UpdateSpawnChances()
 	{
 		totalSpawnWeights = 0;

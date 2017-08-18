@@ -102,10 +102,7 @@ public class ShopManager : MonoBehaviour
 
 	public void ResetProgress()
 	{
-		Player.Instance.SetLaunchesAllowed(1);
-		Player.Instance.SetViewRange(1);
-		Player.Instance.SetBounces(1);
-		Player.Instance.AddCoins(-Player.Instance.GetCoins());
-		Player.Instance.ResetLevels();
-	}
+		Player.Instance.Reinit();
+		Player.Instance.Save();
+    }
 }

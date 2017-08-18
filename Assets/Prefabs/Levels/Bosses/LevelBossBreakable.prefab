@@ -285,8 +285,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1327467120988234}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4240536313970784}
@@ -648,11 +648,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossType: 0
-  hp: 5
   level: {fileID: 0}
   endLevelDoor: {fileID: 1101333817877488}
   hpText: {fileID: 0}
   shaker: {fileID: 0}
+  shields: []
 --- !u!114 &114337958335843348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -720,8 +720,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseLevel: 0
   levelBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+    m_Center: {x: 0, y: 0.24999237, z: 0}
+    m_Extent: {x: 10.500002, y: 15.250008, z: 2.5}
   closeDelay: 0.25
   start: {fileID: 114337958335843348}
   ends:

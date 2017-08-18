@@ -58,38 +58,32 @@ public class XUtils
 		Collider mf = tr.GetComponent<Collider>();
 		if (mf == null)
 		{
-			Debug.Log("No MeshFilter on object");
 			for (int i = 0; i < points.Length; i++)
 				points[i] = tr.position;
 			return;
 		}
 
-		Bounds bounds = GetBounds(mf);
+		Bounds bounds = mf.bounds;
 		Vector3 v3Center = bounds.center;
 		Vector3 v3ext = bounds.extents;
 
-		points[0] = tr.TransformPoint(new Vector3(v3Center.x - v3ext.x, v3Center.y + v3ext.y, v3Center.z - v3ext.z));  // Front top left corner
-		points[1] = tr.TransformPoint(new Vector3(v3Center.x + v3ext.x, v3Center.y + v3ext.y, v3Center.z - v3ext.z));  // Front top right corner
-		points[2] = tr.TransformPoint(new Vector3(v3Center.x - v3ext.x, v3Center.y - v3ext.y, v3Center.z - v3ext.z));  // Front bottom left corner
-		points[3] = tr.TransformPoint(new Vector3(v3Center.x + v3ext.x, v3Center.y - v3ext.y, v3Center.z - v3ext.z));  // Front bottom right corner
-		points[4] = tr.TransformPoint(new Vector3(v3Center.x - v3ext.x, v3Center.y + v3ext.y, v3Center.z + v3ext.z));  // Back top left corner
-		points[5] = tr.TransformPoint(new Vector3(v3Center.x + v3ext.x, v3Center.y + v3ext.y, v3Center.z + v3ext.z));  // Back top right corner
-		points[6] = tr.TransformPoint(new Vector3(v3Center.x - v3ext.x, v3Center.y - v3ext.y, v3Center.z + v3ext.z));  // Back bottom left corner
-		points[7] = tr.TransformPoint(new Vector3(v3Center.x + v3ext.x, v3Center.y - v3ext.y, v3Center.z + v3ext.z));  // Back bottom right corner
-	}
-
-	public static Bounds GetBounds(Collider collider)
-	{
-		switch(collider.GetType().Name)
-		{
-			case "BoxCollider":
-				return GetBounds(collider as BoxCollider);
-		}
-		return new Bounds();
+		points[0] = new Vector3(v3Center.x - v3ext.x, v3Center.y + v3ext.y, v3Center.z - v3ext.z);  // Front top left corner
+		points[1] = new Vector3(v3Center.x + v3ext.x, v3Center.y + v3ext.y, v3Center.z - v3ext.z);  // Front top right corner
+		points[2] = new Vector3(v3Center.x - v3ext.x, v3Center.y - v3ext.y, v3Center.z - v3ext.z);  // Front bottom left corner
+		points[3] = new Vector3(v3Center.x + v3ext.x, v3Center.y - v3ext.y, v3Center.z - v3ext.z);  // Front bottom right corner
+		points[4] = new Vector3(v3Center.x - v3ext.x, v3Center.y + v3ext.y, v3Center.z + v3ext.z);  // Back top left corner
+		points[5] = new Vector3(v3Center.x + v3ext.x, v3Center.y + v3ext.y, v3Center.z + v3ext.z);  // Back top right corner
+		points[6] = new Vector3(v3Center.x - v3ext.x, v3Center.y - v3ext.y, v3Center.z + v3ext.z);  // Back bottom left corner
+		points[7] = new Vector3(v3Center.x + v3ext.x, v3Center.y - v3ext.y, v3Center.z + v3ext.z);  // Back bottom right corner
 	}
 
 	public static Bounds GetBounds(BoxCollider collider)
 	{
 		return new Bounds(collider.center, collider.size);
+	}
+
+	public static Bounds GetBounds(MeshCollider collider)
+	{
+		return collider.bounds;
 	}
 }

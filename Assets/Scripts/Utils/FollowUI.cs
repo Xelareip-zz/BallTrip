@@ -5,11 +5,10 @@ using UnityEngine;
 public class FollowUI : MonoBehaviour
 {
 	public RectTransform target;
+	public Vector2 offset;
 
 	void Start()
 	{
-		float z = transform.position.z;
-
 		Vector3[] corners = new Vector3[4];
 		target.GetWorldCorners(corners);
 		Vector3 result = Vector3.zero;
@@ -19,6 +18,6 @@ public class FollowUI : MonoBehaviour
 		}
 
 		result /= 4;
-		transform.position = new Vector3(result.x, result.y, z);
+		transform.position = new Vector3(result.x, result.y, transform.position.z) + new Vector3(offset.x, offset.y);
 	}
 }

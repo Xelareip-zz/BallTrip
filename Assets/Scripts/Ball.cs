@@ -16,7 +16,7 @@ public class Ball : MonoBehaviour
 	public GameObject shieldVisual;
 	public GameObject uiFreeCollisions;
 	
-	public bool freeBounce;
+	public bool shieldActive;
 	public int currentCollisionCount;
 	public float endDrag;
 
@@ -30,13 +30,13 @@ public class Ball : MonoBehaviour
 	void Awake()
 	{
 		instance = this;
-		currentCollisionCount = Player.Instance._bounces;
-		freeBounce = false;
+		currentCollisionCount = Player.Instance._hearts;
+		shieldActive = false;
 	}
 
 	void FixedUpdate()
 	{
-		if (currentCollisionCount <= 0 && freeBounce == false)
+		if (currentCollisionCount <= 0 && shieldActive == false)
 		{
 			ballRigidbody.velocity = ballRigidbody.velocity.normalized * Mathf.Max(0.0f, ballRigidbody.velocity.magnitude - slowSpeed * Time.fixedDeltaTime);
 		}
@@ -50,14 +50,17 @@ public class Ball : MonoBehaviour
 	{
 		if (ballRigidbody.velocity.magnitude == 0 && oldVelocity.magnitude != 0)
 		{
-			freeBounce = true;
+			if (Player.Instance.GetShieldLevel() > 0)
+			{
+				shieldActive = true;
+			}
 			InfiniteGameManager.Instance.SetLaunchMode(LAUNCH_MODE.LOOK);
-			currentCollisionCount = Player.Instance._bounces;
+			currentCollisionCount = Player.Instance._hearts;
 		}
 		oldVelocity = ballRigidbody.velocity;
 		lineRenderer.SetPositions(new Vector3[] { transform.position, transform.position + launchDirection * 10.0f });
 
-		shieldVisual.SetActive(freeBounce);
+		shieldVisual.SetActive(shieldActive);
 
 		Debug.DrawLine(transform.position, transform.position + launchDirection * 10.0f, Color.green, 0.0f);
 	}
@@ -84,9 +87,9 @@ public class Ball : MonoBehaviour
 		Vector3 newVelocity = oldVelocity - 2 * bouncedPart;
 		ballRigidbody.velocity = newVelocity;
 
-        if (freeBounce)
+        if (shieldActive)
 		{
-			freeBounce = false;
+			shieldActive = false;
 		}
 		else
 		{

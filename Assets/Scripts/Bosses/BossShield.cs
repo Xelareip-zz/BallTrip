@@ -29,13 +29,14 @@ public class BossShield : BossBase
 	public void LevelPassed(InfiniteLevelGoal goal)
 	{
 		Player.Instance.SetLevelBeaten(bossType);
+		Player.Instance.SetShieldLevel(1);
 	}
 
 	void ShieldDestroyed(CollisionSignal signal, Collision coll)
 	{
 		if (coll.gameObject == Ball.Instance.gameObject)
 		{
-			Ball.Instance.freeBounce = true;
+			Ball.Instance.shieldActive = true;
 			shields.Remove(signal.gameObject);
 			if (shields.Count == 0)
 			{

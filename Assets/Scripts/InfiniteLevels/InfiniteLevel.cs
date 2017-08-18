@@ -1,5 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -84,7 +87,10 @@ public class InfiniteLevel : MonoBehaviour
 				for (int childIdx = 0; childIdx < currentParent.childCount; ++childIdx)
 				{
 					Transform child = currentParent.GetChild(childIdx);
-					nextChildren.Add(child);
+					if (child is RectTransform == false)
+					{
+						nextChildren.Add(child);
+					}
 				}
 			}
 			children.AddRange(nextChildren);
@@ -93,11 +99,12 @@ public class InfiniteLevel : MonoBehaviour
 		}
 
 		levelBounds = XUtils.GetBounds(children);
+		levelBounds.center -= transform.position;
 	}
 
 	public void GoalPassed(InfiniteLevelGoal goal)
 	{
-		if (Ball.Instance.freeBounce)
+		if (Ball.Instance.shieldActive)
         {
 			InfiniteGameManager.Instance.FreeLaunchIncrease();
 		}
@@ -105,7 +112,10 @@ public class InfiniteLevel : MonoBehaviour
 		{
 			TutoManager.Instance.StartTuto("TutoFirstCoin");
 		}
-		Ball.Instance.freeBounce = true;
+		if (Player.Instance.GetShieldLevel() > 0)
+		{
+			Ball.Instance.shieldActive = true;
+		}
 		InfiniteGameManager.Instance.AddScore(reward);
 		InfiniteGameManager.Instance.currentColorCursor += 0.1f;
 		InfiniteLevelsManager.Instance.RemoveLevel(this, goal.boundStart.level);
@@ -150,13 +160,16 @@ public class InfiniteLevel : MonoBehaviour
 
 	public Bounds GetCurrentBounds()
 	{
-		return new Bounds(levelBounds.center + transform.position, levelBounds.extents);
+		return new Bounds(levelBounds.center + transform.position, levelBounds.size);
 	}
-
+#if UNITY_EDITOR
 	void OnDrawGizmos()
 	{
-		//Gizmos.color = Color.yellow;
-		//Gizmos.DrawWireCube(transform.position + levelBounds.center, levelBounds.extents * 2.0f);
+		if (Selection.Contains(gameObject))
+		{
+			Gizmos.color = Color.green;
+			Gizmos.DrawWireCube(transform.position + levelBounds.center, levelBounds.size);
+		}
 
 		Gizmos.color = Color.blue;
 		foreach (Vector3 pickupSpot in pickupSpots)
@@ -164,4 +177,5 @@ public class InfiniteLevel : MonoBehaviour
 			Gizmos.DrawSphere(transform.position + pickupSpot, 0.3f);
 		}
 	}
+#endif
 }

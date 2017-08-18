@@ -63,6 +63,10 @@ public class ManagementWindow : EditorWindow
 				InfiniteLevelsDemo.Instance.SpawnLevels();
 			}
 		}
+		if (GUILayout.Button("Save selected prefabs"))
+		{
+			SaveSelectedPrefabs();
+		}
 		GUILayout.EndVertical();
 	}
 
@@ -85,15 +89,9 @@ public class ManagementWindow : EditorWindow
 
 	private void UpdateAllBounds()
 	{
-		foreach (string assetGUID in AssetDatabase.FindAssets("t:GameObject"))
+		foreach (InfiniteLevel level in FindObjectsOfType<InfiniteLevel>())
 		{
-			GameObject go = AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(assetGUID));
-			InfiniteLevel level = go.GetComponent<InfiniteLevel>();
-			if (level != null)
-			{
-				level.CalculateBounds();
-			}
-            continue;
+			level.CalculateBounds();
 		}
 	}
 
@@ -147,5 +145,14 @@ public class ManagementWindow : EditorWindow
 			continue;
 		}
 		EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+	}
+
+	private void SaveSelectedPrefabs()
+	{
+		foreach (var obj in Selection.gameObjects)
+		{
+			PrefabUtility.ReplacePrefab(obj, PrefabUtility.GetPrefabParent(obj), ReplacePrefabOptions.Default);
+			(PrefabUtility.GetPrefabParent(obj) as GameObject).transform.position = Vector3.zero;
+        }
 	}
 }
