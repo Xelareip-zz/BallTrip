@@ -322,7 +322,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1327467120988234}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 70, y: 150, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4673211453404704}
@@ -645,5 +645,5 @@ MonoBehaviour:
   - {x: -10, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   levelTexts: []
-  levelNumber: 1
+  levelNumber: 2
   spawnChances: 1

@@ -26,6 +26,11 @@ public class BossShield : BossBase
 		}
 	}
 
+	public int GetHeartCost()
+	{
+		return 0;
+	}
+
 	public void LevelPassed(InfiniteLevelGoal goal)
 	{
 		Player.Instance.SetLevelBeaten(bossType);
@@ -37,6 +42,7 @@ public class BossShield : BossBase
 		if (coll.gameObject == Ball.Instance.gameObject)
 		{
 			Ball.Instance.shieldActive = true;
+			TutoManager.Instance.StartTuto("TutoFirstShield");
 			shields.Remove(signal.gameObject);
 			if (shields.Count == 0)
 			{

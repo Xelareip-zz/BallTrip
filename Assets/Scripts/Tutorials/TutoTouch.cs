@@ -6,8 +6,6 @@ public class TutoTouch : TutoBase
 {
 	void Update()
 	{
-		//Time.timeScale = Mathf.Min(Time.timeScale + Time.deltaTime / Time.timeScale, 1.0f);
-
 		foreach (Touch touch in Input.touches)
 		{
 			if (touch.phase == TouchPhase.Began)

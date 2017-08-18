@@ -75,6 +75,14 @@ public class Ball : MonoBehaviour
 
 	void OnCollisionEnter(Collision coll)
 	{
+		HeartCostModifier heartModifier = coll.gameObject.GetComponentInChildren<HeartCostModifier>();
+		int heartLoss = heartModifier == null ? 1 : heartModifier.GetHeartCost();
+
+		if (heartLoss == 0)
+		{
+			return;
+		}
+
 		Vector3 normal = Vector3.zero;
 
 		foreach (var contact in coll.contacts)
@@ -93,7 +101,7 @@ public class Ball : MonoBehaviour
 		}
 		else
 		{
-			currentCollisionCount = Mathf.Max(0, currentCollisionCount - 1);
+			currentCollisionCount = Mathf.Max(0, currentCollisionCount - heartLoss);
 		}
 		float stressIncrease = (1.0f - Vector3.Dot(coll.contacts[0].normal, oldVelocity)) / launchSpeed;
 		InfiniteGameManager.Instance.cameraShaker.stressLevel += stressIncrease;

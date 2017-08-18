@@ -115,6 +115,7 @@ public class InfiniteLevel : MonoBehaviour
 		if (Player.Instance.GetShieldLevel() > 0)
 		{
 			Ball.Instance.shieldActive = true;
+			TutoManager.Instance.StartTuto("TutoShieldPortal");
 		}
 		InfiniteGameManager.Instance.AddScore(reward);
 		InfiniteGameManager.Instance.currentColorCursor += 0.1f;
