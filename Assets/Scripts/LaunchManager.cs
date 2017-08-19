@@ -13,12 +13,15 @@ public class LaunchManager : MonoBehaviour
 	public bool canShoot = false;
 	public bool readyToShoot = false;
 
+	public Color canShootColor;
+	public Color cannotShootColor;
+
 	public GameObject startDragUI;
 
 	void Update()
 	{
-		Ball.Instance.lineRenderer.enabled = readyToShoot;
-		Ball.Instance.lineRenderer.startColor = canShoot ? Color.green : Color.red;
+		Ball.Instance.launchDirectionScript.gameObject.SetActive(readyToShoot);
+		Ball.Instance.launchDirectionScript.SetColor(canShoot ? canShootColor : cannotShootColor);
 		Vector3 newPos = (dragOrigin - new Vector3(Screen.width, Screen.height) / 2.0f) * XUtils.ScreenCamRatio() + transform.position;
         startDragUI.transform.position = new Vector3(newPos.x, newPos.y, startDragUI.transform.position.z);
 		startDragUI.SetActive(InfiniteGameManager.Instance.GetMode() == LAUNCH_MODE.LAUNCH && touchId >= 0);
@@ -44,6 +47,10 @@ public class LaunchManager : MonoBehaviour
 			{
 				touchId = 0;
 				position = Input.mousePosition;
+			}
+			else
+			{
+				readyToShoot = false;
 			}
 
 			dragOrigin = position;
@@ -86,9 +93,11 @@ public class LaunchManager : MonoBehaviour
 		canShoot = TutoManager.Instance.GetCanShootAngle(newAngle);
 		readyToShoot = drag.magnitude >= 2.5f;
 		canShoot &= readyToShoot;
+		Ball.Instance.launchDirectionScript.transform.rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
 
 		if (shouldLaunch && canShoot)
 		{
+			readyToShoot = false;
 			Ball.Instance.Launch();
 		}
 	}

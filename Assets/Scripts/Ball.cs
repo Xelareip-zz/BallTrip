@@ -12,7 +12,7 @@ public class Ball : MonoBehaviour
 	}
 
 	public Rigidbody ballRigidbody;
-	public LineRenderer lineRenderer;
+	public LaunchDirection launchDirectionScript;
 	public GameObject shieldVisual;
 	public GameObject uiFreeCollisions;
 	public GameObject uiHeartLost;
@@ -63,7 +63,6 @@ public class Ball : MonoBehaviour
 			currentHeartCountUI = currentHeartCount;
 		}
 		oldVelocity = ballRigidbody.velocity;
-		lineRenderer.SetPositions(new Vector3[] { transform.position, transform.position + launchDirection * 10.0f });
 
 		shieldVisual.SetActive(shieldActive);
 
