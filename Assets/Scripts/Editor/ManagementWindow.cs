@@ -11,6 +11,7 @@ public class ManagementWindow : EditorWindow
 	public bool wasPlaying;
 	public string screenshotName = "";
 	public bool followBall;
+	public GUISkin skin;
 
 	[MenuItem("BallTrip/Management")]
 	static void Init()
@@ -20,8 +21,18 @@ public class ManagementWindow : EditorWindow
 		window.Show();
 	}
 
+	private void InitSkin()
+	{
+		if (skin == null)
+		{
+			skin = AssetDatabase.LoadAssetAtPath<GUISkin>("Assets/EditorSkin/XelareipSkin.guiskin");
+		}
+		GUI.skin = skin;
+	}
+
 	void OnGUI()
 	{
+		InitSkin();
 		GUILayout.BeginVertical();
 		followBall = GUILayout.Toggle(followBall, "Follow ball");
 		if (GUILayout.Button("Fill levels list"))
