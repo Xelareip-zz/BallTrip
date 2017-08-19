@@ -57,6 +57,7 @@ public class Ball : MonoBehaviour
 			{
 				shieldActive = true;
 			}
+
 			InfiniteGameManager.Instance.SetLaunchMode(LAUNCH_MODE.LOOK);
 
 			currentHeartCount = Player.Instance._hearts;

@@ -120,11 +120,30 @@ public class InfiniteGameManager : MonoBehaviour
 		{
 			EndGame();
 		}
-		launchMode = mode;
-		lookModeUI.SetActive(launchMode == LAUNCH_MODE.LOOK);
+		else
+		{
+			launchMode = mode;
+			lookModeUI.SetActive(launchMode == LAUNCH_MODE.LOOK);
+		}
 	}
 
 	public void EndGame()
+	{
+		TutoManager.Instance.StartTuto("TutoFirstDeath");
+		StartCoroutine(EndGameEachFrame());
+	}
+
+	private IEnumerator EndGameEachFrame()
+	{
+		while (TutoManager.Instance.GetCanEndGame() == false)
+		{
+			yield return new WaitForEndOfFrame();
+		}
+		EndGameApply();
+		yield return null;
+	}
+
+	private void EndGameApply()
 	{
 		gameIsOver = true;
 		launchMode = LAUNCH_MODE.LOOK;
@@ -132,7 +151,7 @@ public class InfiniteGameManager : MonoBehaviour
 		if (Player.Instance.GetTutoFinished("TutoSecondLaunch") == false)
 		{
 			endLevelScreen.GoToShop();
-        }
+		}
 		else
 		{
 			endLevelScreen.gameObject.SetActive(true);

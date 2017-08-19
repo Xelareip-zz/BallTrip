@@ -106,4 +106,13 @@ public class TutoManager : MonoBehaviour
 		}
 		return true;
 	}
+
+	public virtual bool GetCanEndGame()
+	{
+		if (currentTuto != null)
+		{
+			return currentTuto.GetCanEndGame();
+		}
+		return true;
+	}
 }
