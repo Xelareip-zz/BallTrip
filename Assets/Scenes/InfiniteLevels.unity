@@ -254,6 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextTuto: {fileID: 0}
   finishTutorial: 
+  canDragCamera: 0
   linkedUI: []
 --- !u!4 &199996414
 Transform:
@@ -622,6 +623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextTuto: {fileID: 0}
   finishTutorial: 
+  canDragCamera: 0
   linkedUI: []
   tolerance: 5
   targetAngle: 0
@@ -819,7 +821,7 @@ GameObject:
   - component: {fileID: 483970632}
   - component: {fileID: 483970631}
   m_Layer: 0
-  m_Name: BouncesUI
+  m_Name: HeartUI
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -962,7 +964,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Start
+  m_Text: Sling!
 --- !u!222 &565481154
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1169,6 +1171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextTuto: {fileID: 0}
   finishTutorial: 
+  canDragCamera: 0
   linkedUI: []
 --- !u!4 &694157344
 Transform:
@@ -1335,8 +1338,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchMode: 2
   lookModeUI: {fileID: 1654431282}
-  scoreText: {fileID: 1644169562}
-  bouncesText: {fileID: 774543586}
+  coinsText: {fileID: 1644169562}
+  heartsText: {fileID: 774543586}
   launchesText: {fileID: 373729693}
   cameraShaker: {fileID: 766120374}
   themeColors:
@@ -1650,14 +1653,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 796908511}
-  m_LocalRotation: {x: 0, y: 0, z: 0.14780942, w: 0.9890159}
+  m_LocalRotation: {x: 0, y: 0, z: 0.13052616, w: 0.9914449}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1067794962}
   m_Father: {fileID: 1085202870}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 17}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
 --- !u!1 &913269441
 GameObject:
   m_ObjectHideFlags: 0
@@ -2126,9 +2129,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextTuto: {fileID: 0}
   finishTutorial: 
+  canDragCamera: 0
   linkedUI: []
   tolerance: 5
-  targetAngle: 17
+  targetAngle: 15
 --- !u!4 &1085202870
 Transform:
   m_ObjectHideFlags: 0
@@ -3107,6 +3111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextTuto: {fileID: 0}
   finishTutorial: 
+  canDragCamera: 0
   linkedUI: []
 --- !u!4 &1652202701
 Transform:
@@ -3134,7 +3139,7 @@ GameObject:
   - component: {fileID: 1654431285}
   - component: {fileID: 1654431284}
   m_Layer: 5
-  m_Name: Button
+  m_Name: SlingButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3742,6 +3747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextTuto: {fileID: 0}
   finishTutorial: 
+  canDragCamera: 0
   linkedUI: []
 --- !u!4 &1824433086
 Transform:
@@ -3967,6 +3973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextTuto: {fileID: 0}
   finishTutorial: 
+  canDragCamera: 0
   linkedUI: []
 --- !u!4 &2050750270
 Transform:

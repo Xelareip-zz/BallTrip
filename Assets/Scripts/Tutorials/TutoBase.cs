@@ -6,6 +6,7 @@ public class TutoBase : MonoBehaviour
 {
 	public TutoBase nextTuto;
 	public string finishTutorial;
+	public bool canDragCamera;
 
 	public List<GameObject> linkedUI = new List<GameObject>();
 
@@ -51,5 +52,10 @@ public class TutoBase : MonoBehaviour
 	public virtual bool GetCanStartGame()
 	{
 		return true;
+	}
+
+	public virtual bool GetCanDragCamera()
+	{
+		return canDragCamera;
 	}
 }

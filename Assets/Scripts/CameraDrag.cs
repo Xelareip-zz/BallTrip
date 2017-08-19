@@ -14,7 +14,7 @@ public class CameraDrag : MonoBehaviour
 
 	void Update()
 	{
-		if (ballTransform == null)
+		if (ballTransform == null || TutoManager.Instance.GetCanDragCamera() == false)
 		{
 			return;
 		}
@@ -77,16 +77,21 @@ public class CameraDrag : MonoBehaviour
 		Vector3 newPos = transform.position + drag;
 		dragOrigin = currentDrag;
 
-		for (int levelIdx = 0; levelIdx < InfiniteLevelsManager.Instance.levels.Count; ++levelIdx)
+		Vector3[] possiblePos = new Vector3[] { newPos, new Vector3(newPos.x, transform.position.y, newPos.z), new Vector3(transform.position.x, newPos.y, newPos.z) };
+		
+        for (int idx = 0; idx < possiblePos.Length; ++idx)
 		{
-			Vector3 targetPoint = new Vector3(newPos.x, newPos.y, InfiniteLevelsManager.Instance.levels[levelIdx].transform.position.z);
-			Bounds currentBounds = InfiniteLevelsManager.Instance.levels[levelIdx].GetCurrentBounds();
-            if (currentBounds.Contains(targetPoint))
+			for (int levelIdx = 0; levelIdx < InfiniteLevelsManager.Instance.levels.Count; ++levelIdx)
 			{
-				transform.position = newPos;
-				return;
+				Vector3 targetPoint = new Vector3(possiblePos[idx].x, possiblePos[idx].y, InfiniteLevelsManager.Instance.levels[levelIdx].transform.position.z);
+				Bounds currentBounds = InfiniteLevelsManager.Instance.levels[levelIdx].GetCurrentBounds();
+				if (currentBounds.Contains(targetPoint))
+				{
+					transform.position = possiblePos[idx];
+					return;
+				}
+				continue;
 			}
-			continue;
 		}
 	}
 }

@@ -97,4 +97,13 @@ public class TutoManager : MonoBehaviour
 		}
 		return true;
 	}
+
+	public virtual bool GetCanDragCamera()
+	{
+		if (currentTuto != null)
+		{
+			return currentTuto.GetCanDragCamera();
+		}
+		return true;
+	}
 }

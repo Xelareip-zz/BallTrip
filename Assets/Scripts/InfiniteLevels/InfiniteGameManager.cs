@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public enum LAUNCH_MODE
@@ -25,8 +26,8 @@ public class InfiniteGameManager : MonoBehaviour
 	public LAUNCH_MODE launchMode = LAUNCH_MODE.LOOK;
 
 	public GameObject lookModeUI;
-	public Text scoreText;
-	public Text bouncesText;
+	public Text coinsText;
+	public Text heartsText;
 	public Text launchesText;
 
 	public CameraShaker cameraShaker;
@@ -44,7 +45,8 @@ public class InfiniteGameManager : MonoBehaviour
 
 	public GameObject uiCoinWon;
 
-	private int score;
+	private int currentCoins;
+	private int currentCoinsUI;
 
 	public int launchesLeft;
 
@@ -52,8 +54,8 @@ public class InfiniteGameManager : MonoBehaviour
 	{
 		instance = this;
 		launchesLeft = Player.Instance._launchesAllowed;
-		score = 0;
-		SetScoreText();
+		currentCoins = 0;
+		SetCoinsText();
 	}
 
 	void Start()
@@ -62,6 +64,10 @@ public class InfiniteGameManager : MonoBehaviour
 		if (Player.Instance.GetTutoFinished("TutoFirstLaunch") && Player.Instance.GetShieldLevel() == 0)
 		{
 			TutoManager.Instance.StartTuto("TutoSecondLaunch");
+		}
+		if (TutoManager.Instance.GetCanDragCamera() == false)
+		{
+			SetLaunchMode(LAUNCH_MODE.LAUNCH);
 		}
 	}
 	
@@ -120,23 +126,37 @@ public class InfiniteGameManager : MonoBehaviour
 		return launchMode;
 	}
 
-	public void AddScore(int scoreToAdd)
+	public void AddCoins(int coinsToAdd, bool animation = true)
 	{
-		GameObject newUI = Instantiate<GameObject>(uiCoinWon);
-		newUI.transform.SetParent(Camera.main.transform);
-		newUI.transform.position = Ball.Instance.transform.position + Vector3.back;
-		newUI.GetComponent<GoTo>().finished += () => AddCoinsApply(scoreToAdd);
-		newUI.SetActive(true);
+		Player.Instance.AddCoins(coinsToAdd);
+		currentCoins += coinsToAdd;
+		if (animation)
+		{
+			GameObject newUI = Instantiate<GameObject>(uiCoinWon);
+			newUI.transform.SetParent(Camera.main.transform);
+			newUI.transform.position = Ball.Instance.transform.position + Vector3.back;
+			newUI.GetComponent<GoTo>().finished += () => AddCoinsApply(coinsToAdd);
+			newUI.SetActive(true);
+		}
+		else
+		{
+			AddCoinsApply(coinsToAdd);
+        }
 	}
 
-	private void SetScoreText()
+	private void AddCoinsApply(int coins)
 	{
-		scoreText.text = "" + score;
+		SetCoinsText();
+	}
+
+	private void SetCoinsText()
+	{
+		coinsText.text = "" + currentCoins;
 	}
 
 	private void SetBouncesText()
 	{
-		bouncesText.text = "" + Mathf.Max(Ball.Instance.currentHeartCountUI, 0);
+		heartsText.text = "" + Mathf.Max(Ball.Instance.currentHeartCountUI, 0);
 	}
 
 	private void SetLaunchesText()
@@ -182,12 +202,5 @@ public class InfiniteGameManager : MonoBehaviour
 	private void FreeLaunchIncreaseApply()
 	{
 		++freeLaunchGaugeValue;
-	}
-
-	private void AddCoinsApply(int coins)
-	{
-		Player.Instance.AddCoins(coins);
-		score += coins;
-		SetScoreText();
 	}
 }

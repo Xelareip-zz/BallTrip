@@ -116,7 +116,7 @@ public class InfiniteLevel : MonoBehaviour
 			Ball.Instance.shieldActive = true;
 			TutoManager.Instance.StartTuto("TutoShieldPortal");
 		}
-		InfiniteGameManager.Instance.AddScore(reward);
+		InfiniteGameManager.Instance.AddCoins(reward);
 		InfiniteGameManager.Instance.currentColorCursor += 0.1f;
 		InfiniteLevelsManager.Instance.RemoveLevel(this, goal.boundStart.level);
 	}
@@ -168,7 +168,8 @@ public class InfiniteLevel : MonoBehaviour
 		if (Selection.Contains(gameObject))
 		{
 			Gizmos.color = Color.green;
-			Gizmos.DrawWireCube(transform.position + levelBounds.center, levelBounds.size);
+			Bounds currentBounds = GetCurrentBounds();
+			Gizmos.DrawWireCube(transform.position + currentBounds.center, currentBounds.size);
 		}
 
 		Gizmos.color = Color.blue;
