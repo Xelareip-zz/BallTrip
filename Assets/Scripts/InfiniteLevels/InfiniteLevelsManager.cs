@@ -23,6 +23,8 @@ public class InfiniteLevelsManager : MonoBehaviour
 	public List<GameObject> walls;
 	public DictionaryIntGameobject specialLevels = new DictionaryIntGameobject();
 
+	public Transform levelsRoot;
+
 	public int depth;
 	public int currentLevel;
 
@@ -33,6 +35,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 		levelsCurrentSpawnRatios = new Dictionary<string, int>();
 		instance = this;
 		GameObject newLevel = Instantiate(possibleLevels[0]);
+		newLevel.transform.SetParent(levelsRoot);
 		newLevel.GetComponent<InfiniteLevel>().CloseLevel();
 		currentLevel = 0;
 		FillToDepth();
@@ -129,6 +132,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 		level.levelNumber = currentLevel;
 
 		GameObject newLevel = Instantiate(nextLevelModel, newPos, Quaternion.identity);
+		newLevel.transform.SetParent(levelsRoot);
 		newLevel.name = nextLevelModel.name + currentLevel;
 		newLevel.transform.position = newPos;
 		boundEnd.boundStart = newLevel.GetComponentInChildren<InfiniteLevelStart>();

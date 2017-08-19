@@ -43,9 +43,12 @@ public class InfiniteGameManager : MonoBehaviour
 	public int freeLaunchGaugeMax;
 	public int freeLaunchGaugeValue;
 
-	public GameObject uiCoinWon;
+	public bool gameIsOver;
+	public EndLevelScreenScript endLevelScreen;
 
-	private int currentCoins;
+	public GameObject uiCoinsWon;
+
+	public int currentCoins;
 	private int currentCoinsUI;
 
 	public int launchesLeft;
@@ -56,6 +59,7 @@ public class InfiniteGameManager : MonoBehaviour
 		launchesLeft = Player.Instance._launchesAllowed;
 		currentCoins = 0;
 		SetCoinsText();
+		gameIsOver = false;
 	}
 
 	void Start()
@@ -122,6 +126,21 @@ public class InfiniteGameManager : MonoBehaviour
 
 	public void EndGame()
 	{
+		gameIsOver = true;
+		launchMode = LAUNCH_MODE.LOOK;
+		lookModeUI.SetActive(false);
+		if (Player.Instance.GetTutoFinished("TutoSecondLaunch") == false)
+		{
+			endLevelScreen.GoToShop();
+        }
+		else
+		{
+			endLevelScreen.gameObject.SetActive(true);
+		}
+	}
+
+	public void GoToMainMenu()
+	{
 		SceneManager.LoadScene("InfiniteLevelsMenu");
 	}
 
@@ -136,7 +155,7 @@ public class InfiniteGameManager : MonoBehaviour
 		currentCoins += coinsToAdd;
 		if (animation)
 		{
-			GameObject newUI = Instantiate<GameObject>(uiCoinWon);
+			GameObject newUI = Instantiate<GameObject>(uiCoinsWon);
 			newUI.transform.SetParent(Camera.main.transform);
 			newUI.transform.position = Ball.Instance.transform.position + Vector3.back;
 			newUI.GetComponent<GoTo>().finished += () => AddCoinsApply(coinsToAdd);

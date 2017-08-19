@@ -14,7 +14,7 @@ public class CameraDrag : MonoBehaviour
 
 	void Update()
 	{
-		if (ballTransform == null || TutoManager.Instance.GetCanDragCamera() == false)
+		if (ballTransform == null || TutoManager.Instance.GetCanDragCamera() == false || InfiniteGameManager.Instance.gameIsOver)
 		{
 			return;
 		}
