@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 	{
 		_bestScore = 0;
 		_gamesPlayed = 0;
-		_coins = 0;
+		_coins = 15;
 		_launchesAllowed = 1;
 		_viewRange = 1;
 		_hearts = 1;

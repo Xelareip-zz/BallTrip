@@ -140,12 +140,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bestScore: 0
   _gamesPlayed: 0
-  _tutoDone: 0
   _coins: 0
   _launchesAllowed: 1
   _viewRange: 2
-  _bounces: 1
+  _hearts: 1
+  _shieldLevel: 0
   _bossLevelsBeaten: []
+  _tutoFinished: []
 --- !u!4 &1297464427
 Transform:
   m_ObjectHideFlags: 0
@@ -296,4 +297,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c364f5673a1dfc488e3de614b6e5949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: InfiniteLevelsMenu

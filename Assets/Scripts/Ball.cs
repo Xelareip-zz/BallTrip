@@ -15,7 +15,8 @@ public class Ball : MonoBehaviour
 	public LineRenderer lineRenderer;
 	public GameObject shieldVisual;
 	public GameObject uiFreeCollisions;
-	
+	public GameObject uiHeartLost;
+
 	public bool shieldActive;
 	public int currentCollisionCount;
 	public float endDrag;
@@ -102,6 +103,11 @@ public class Ball : MonoBehaviour
 		else
 		{
 			currentCollisionCount = Mathf.Max(0, currentCollisionCount - heartLoss);
+			GameObject heartUi = Instantiate<GameObject>(uiHeartLost);
+			heartUi.transform.SetParent(null);
+			heartUi.transform.position = uiHeartLost.transform.position;
+            heartUi.GetComponentInChildren<MoveInDir>().direction = -coll.contacts[0].normal;
+            heartUi.SetActive(true);
 		}
 		float stressIncrease = (1.0f - Vector3.Dot(coll.contacts[0].normal, oldVelocity)) / launchSpeed;
 		InfiniteGameManager.Instance.cameraShaker.stressLevel += stressIncrease;
