@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
@@ -18,12 +19,17 @@ public class ShopManager : MonoBehaviour
 	public List<int> pricesBounces;
 	public List<int> pricesView;
 
+	void Start()
+	{
+		TutoManager.Instance.StartTuto("TutoFirstBuy");
+	}
+
 	void Update()
 	{
 		coinsText.text = "" + Player.Instance.GetCoins();
 		launchesText.text = "" + Player.Instance.GetLaunches();
 		viewText.text = "" + Player.Instance.GetViewRange();
-		bouncesText.text = "" + Player.Instance.GetBounces();
+		bouncesText.text = "" + Player.Instance.GetHearts();
 
 		
 		launchesPriceText.text = "" + GetFriendlyPrice(GetLaunchPrice());
@@ -52,7 +58,7 @@ public class ShopManager : MonoBehaviour
 
 	public int GetBouncePrice()
 	{
-		int nextBounceCapacity = Player.Instance.GetBounces() + 1;
+		int nextBounceCapacity = Player.Instance.GetHearts() + 1;
 		if (nextBounceCapacity > pricesBounces.Count)
 		{
 			return int.MaxValue;
@@ -96,7 +102,7 @@ public class ShopManager : MonoBehaviour
 		if (Player.Instance.CanBuy(bouncePrice))
 		{
 			Player.Instance.AddCoins(-bouncePrice);
-			Player.Instance.SetBounces(Player.Instance.GetBounces() + 1);
+			Player.Instance.SetBounces(Player.Instance.GetHearts() + 1);
 		}
 	}
 
@@ -105,4 +111,12 @@ public class ShopManager : MonoBehaviour
 		Player.Instance.Reinit();
 		Player.Instance.Save();
     }
+
+	public void StartGame()
+	{
+		if (TutoManager.Instance.GetCanStartGame())
+		{
+			SceneManager.LoadScene("InfiniteLevels");
+		}
+	}
 }

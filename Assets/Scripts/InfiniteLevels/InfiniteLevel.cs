@@ -27,8 +27,6 @@ public class InfiniteLevel : MonoBehaviour
 	public List<Text> levelTexts;
 
 	public int levelNumber;
-	public float spawnChances = 0;
-	
 
 	void Awake()
 	{

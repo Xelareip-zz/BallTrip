@@ -52,10 +52,17 @@ public class ManagementWindow : EditorWindow
 		{
 			ScreenCapture.CaptureScreenshot(screenshotName);
 		}
+		GUILayout.BeginHorizontal();
 		if (GUILayout.Button("Start game"))
 		{
 			StartGame();
 		}
+		if (GUILayout.Button("Start new game"))
+		{
+			DeleteSave();
+			StartGame();
+		}
+		GUILayout.EndHorizontal();
 		if (InfiniteLevelsDemo.Instance != null)
 		{
 			if (GUILayout.Button("Fill levels"))
@@ -154,5 +161,10 @@ public class ManagementWindow : EditorWindow
 			PrefabUtility.ReplacePrefab(obj, PrefabUtility.GetPrefabParent(obj), ReplacePrefabOptions.Default);
 			(PrefabUtility.GetPrefabParent(obj) as GameObject).transform.position = Vector3.zero;
         }
+	}
+
+	private void DeleteSave()
+	{
+		FileUtil.DeleteFileOrDirectory(Player.GetPath());
 	}
 }

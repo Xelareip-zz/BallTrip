@@ -11,12 +11,14 @@ public class LaunchManager : MonoBehaviour
 	public Vector3 nullVect = new Vector3(-10000, -10000);
 
 	public bool canShoot = false;
+	public bool readyToShoot = false;
 
 	public GameObject startDragUI;
 
 	void Update()
 	{
-		Ball.Instance.lineRenderer.enabled = canShoot;
+		Ball.Instance.lineRenderer.enabled = readyToShoot;
+		Ball.Instance.lineRenderer.startColor = canShoot ? Color.green : Color.red;
 		Vector3 newPos = (dragOrigin - new Vector3(Screen.width, Screen.height) / 2.0f) * XUtils.ScreenCamRatio() + transform.position;
         startDragUI.transform.position = new Vector3(newPos.x, newPos.y, startDragUI.transform.position.z);
 		startDragUI.SetActive(InfiniteGameManager.Instance.GetMode() == LAUNCH_MODE.LAUNCH && touchId >= 0);
@@ -78,11 +80,12 @@ public class LaunchManager : MonoBehaviour
 		}
 
 		Vector3 drag = (dragOrigin - currentDrag) * XUtils.ScreenCamRatio();
-		Ball.Instance.launchDirection = drag.normalized;
-		float angle = Quaternion.FromToRotation(Vector3.up, Ball.Instance.launchDirection).eulerAngles.z;
-
-		canShoot = TutoManager.Instance.GetCanShootAngle(angle);
-		canShoot &= drag.magnitude >= 2.5f;
+		float angle = Quaternion.FromToRotation(Vector3.up, drag).eulerAngles.z;
+		float newAngle = TutoManager.Instance.GetAngleModifier(angle);
+		Ball.Instance.launchDirection = Quaternion.AngleAxis(newAngle, Vector3.forward) * Vector3.up;
+		canShoot = TutoManager.Instance.GetCanShootAngle(newAngle);
+		readyToShoot = drag.magnitude >= 2.5f;
+		canShoot &= readyToShoot;
 
 		if (shouldLaunch && canShoot)
 		{

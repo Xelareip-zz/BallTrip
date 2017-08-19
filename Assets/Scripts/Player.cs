@@ -34,6 +34,11 @@ public class Player : MonoBehaviour
 		Load();
 	}
 
+	public static string GetPath()
+	{
+		return Application.persistentDataPath + "/Save.dat";
+    }
+
 	public void Reinit()
 	{
 		_bestScore = 0;
@@ -140,7 +145,7 @@ public class Player : MonoBehaviour
 		return _viewRange;
 	}
 
-	public int GetBounces()
+	public int GetHearts()
 	{
 		return _hearts;
 	}
@@ -178,7 +183,7 @@ public class Player : MonoBehaviour
 
 	private void Load()
 	{
-		if (File.Exists(Application.persistentDataPath + "/Save.dat") == false)
+		if (File.Exists(GetPath()) == false)
 		{
 			return;
 		}

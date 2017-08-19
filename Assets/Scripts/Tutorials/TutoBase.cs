@@ -22,6 +22,7 @@ public class TutoBase : MonoBehaviour
 
 	public virtual void End()
 	{
+		Player.Instance.SetTutoFinished(gameObject.name);
 		gameObject.SetActive(false);
 		foreach (GameObject uiObject in linkedUI)
 		{
@@ -37,7 +38,17 @@ public class TutoBase : MonoBehaviour
 		}
 	}
 
+	public virtual float GetAngleModifier(float angle)
+	{
+		return angle;
+	}
+
 	public virtual bool GetCanShootAngle(float angle)
+	{
+		return true;
+	}
+
+	public virtual bool GetCanStartGame()
 	{
 		return true;
 	}

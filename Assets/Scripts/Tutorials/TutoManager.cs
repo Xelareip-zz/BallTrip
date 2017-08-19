@@ -62,7 +62,20 @@ public class TutoManager : MonoBehaviour
 		}
 		return false;
 	}
-	
+
+	public float GetAngleModifier(float angle)
+	{
+		if (angle > 180.0f)
+		{
+			angle -= 360.0f;
+		}
+		if (currentTuto != null)
+		{
+			return currentTuto.GetAngleModifier(angle);
+		}
+		return angle;
+	}
+
 	public bool GetCanShootAngle(float angle)
 	{
 		if (angle > 180.0f)
@@ -72,6 +85,15 @@ public class TutoManager : MonoBehaviour
 		if (currentTuto != null)
 		{
 			return currentTuto.GetCanShootAngle(angle);
+		}
+		return true;
+	}
+
+	public bool GetCanStartGame()
+	{
+		if (currentTuto != null)
+		{
+			return currentTuto.GetCanStartGame();
 		}
 		return true;
 	}

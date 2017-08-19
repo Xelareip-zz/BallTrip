@@ -16,6 +16,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 	}
 
 	public SpawnRatios levelsSpawnRatios;
+	public Dictionary<string, int> levelsCurrentSpawnRatios;
 	public List<GameObject> possibleLevels;
 	public List<InfiniteLevel> levels;
 	public List<GameObject> levelsObj;
@@ -29,6 +30,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 
 	void Awake()
 	{
+		levelsCurrentSpawnRatios = new Dictionary<string, int>();
 		instance = this;
 		GameObject newLevel = Instantiate(possibleLevels[0]);
 		newLevel.GetComponent<InfiniteLevel>().CloseLevel();
@@ -46,14 +48,28 @@ public class InfiniteLevelsManager : MonoBehaviour
 			{
 				if (levelsSpawnRatios[levelObj].ContainsKey(currentLevel))
 				{
-					level.spawnChances = levelsSpawnRatios[levelObj][currentLevel];
+					if (levelsCurrentSpawnRatios.ContainsKey(level.gameObject.name))
+					{
+						levelsCurrentSpawnRatios[level.gameObject.name] = levelsSpawnRatios[levelObj][currentLevel];
+					}
+					else
+					{
+						levelsCurrentSpawnRatios.Add(level.gameObject.name, levelsSpawnRatios[levelObj][currentLevel]);
+					}
 				}
 			}
 			else
 			{
-				level.spawnChances = 0;
+				if (levelsCurrentSpawnRatios.ContainsKey(level.gameObject.name))
+				{
+					levelsCurrentSpawnRatios[level.gameObject.name] = 0;
+				}
+				else
+				{
+					levelsCurrentSpawnRatios.Add(level.gameObject.name, 0);
+				}
 			}
-			totalSpawnWeights += level.spawnChances;
+			totalSpawnWeights += levelsCurrentSpawnRatios[level.gameObject.name];
 		}
 	}
 
@@ -62,7 +78,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 		float weightPicked = Random.Range(0.0f, totalSpawnWeights);
 		for (int idx = 0; idx < possibleLevels.Count; ++idx)
 		{
-			weightPicked -= possibleLevels[idx].GetComponentInChildren<InfiniteLevel>().spawnChances;
+			weightPicked -= levelsCurrentSpawnRatios[possibleLevels[idx].name];
 			if (weightPicked <= 0.0f)
 			{
 				return idx;
@@ -74,17 +90,15 @@ public class InfiniteLevelsManager : MonoBehaviour
 	public void SpawnLevel()
 	{
 		currentLevel += 1;
-
 		int scaleMod = 1;
 		GameObject nextLevelModel;
+		UpdateSpawnChances();
 		if (specialLevels.ContainsKey(currentLevel) && specialLevels[currentLevel].GetComponent<InfiniteLevel>().CanSpawn())
 		{
 			nextLevelModel = specialLevels[currentLevel];
 		}
 		else
 		{
-			UpdateSpawnChances();
-			
 			if (Random.Range(0, 2) == 0)
 			{
 				scaleMod = -1;
