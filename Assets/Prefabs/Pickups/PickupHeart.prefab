@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 135548243508691754}
   - component: {fileID: 114370303137908742}
   m_Layer: 0
-  m_Name: PickupShield
+  m_Name: PickupHeart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

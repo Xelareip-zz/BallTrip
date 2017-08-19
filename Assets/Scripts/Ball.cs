@@ -18,7 +18,8 @@ public class Ball : MonoBehaviour
 	public GameObject uiHeartLost;
 
 	public bool shieldActive;
-	public int currentCollisionCount;
+	public int currentHeartCount;
+	public int currentHeartCountUI;
 	public float endDrag;
 
 	public float launchSpeed;
@@ -31,13 +32,14 @@ public class Ball : MonoBehaviour
 	void Awake()
 	{
 		instance = this;
-		currentCollisionCount = Player.Instance._hearts;
+		currentHeartCount = Player.Instance._hearts;
+		currentHeartCountUI = currentHeartCount;
 		shieldActive = false;
 	}
 
 	void FixedUpdate()
 	{
-		if (currentCollisionCount <= 0 && shieldActive == false)
+		if (currentHeartCount <= 0 && shieldActive == false)
 		{
 			ballRigidbody.velocity = ballRigidbody.velocity.normalized * Mathf.Max(0.0f, ballRigidbody.velocity.magnitude - slowSpeed * Time.fixedDeltaTime);
 		}
@@ -56,7 +58,9 @@ public class Ball : MonoBehaviour
 				shieldActive = true;
 			}
 			InfiniteGameManager.Instance.SetLaunchMode(LAUNCH_MODE.LOOK);
-			currentCollisionCount = Player.Instance._hearts;
+
+			currentHeartCount = Player.Instance._hearts;
+			currentHeartCountUI = currentHeartCount;
 		}
 		oldVelocity = ballRigidbody.velocity;
 		lineRenderer.SetPositions(new Vector3[] { transform.position, transform.position + launchDirection * 10.0f });
@@ -102,12 +106,16 @@ public class Ball : MonoBehaviour
 		}
 		else
 		{
-			currentCollisionCount = Mathf.Max(0, currentCollisionCount - heartLoss);
+
+			int lostValue = Mathf.Min(currentHeartCount, heartLoss);
+			currentHeartCount -= lostValue;
+			currentHeartCountUI -= lostValue;
 			GameObject heartUi = Instantiate<GameObject>(uiHeartLost);
 			heartUi.transform.SetParent(null);
 			heartUi.transform.position = uiHeartLost.transform.position;
             heartUi.GetComponentInChildren<MoveInDir>().direction = -coll.contacts[0].normal;
             heartUi.SetActive(true);
+			TutoManager.Instance.StartTuto("TutoFirstHit");
 		}
 		float stressIncrease = (1.0f - Vector3.Dot(coll.contacts[0].normal, oldVelocity)) / launchSpeed;
 		InfiniteGameManager.Instance.cameraShaker.stressLevel += stressIncrease;
@@ -119,17 +127,28 @@ public class Ball : MonoBehaviour
 		Gizmos.DrawLine(transform.position, transform.position + launchDirection * launchSpeed);
 	}
 
-	public void FreeCollisionsIncrease()
+	public void HeartIncrease(int value = 1, bool animation = false)
 	{
-		GameObject newUI = Instantiate<GameObject>(uiFreeCollisions);
-		newUI.transform.SetParent(Camera.main.transform);
-		newUI.transform.position = Ball.Instance.transform.position;
-		newUI.GetComponent<GoTo>().finished += FreeCollisionsIncreaseApply;
-		newUI.SetActive(true);
+		currentHeartCount += value;
+		if (animation)
+		{
+			for (int idx = 0; idx < value; ++idx)
+			{
+				GameObject newUI = Instantiate<GameObject>(uiFreeCollisions);
+				newUI.transform.SetParent(Camera.main.transform);
+				newUI.transform.position = Ball.Instance.transform.position;
+				newUI.GetComponent<GoTo>().finished += HeartIncreaseApply;
+				newUI.SetActive(true);
+			}
+		}
+		else
+		{
+			currentHeartCountUI += value;
+		}
 	}
 
-	private void FreeCollisionsIncreaseApply()
+	private void HeartIncreaseApply()
 	{
-		++currentCollisionCount;
+		++currentHeartCountUI;
 	}
 }

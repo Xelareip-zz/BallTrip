@@ -132,7 +132,7 @@ public class InfiniteGameManager : MonoBehaviour
 
 	private void SetBouncesText()
 	{
-		bouncesText.text = "" + Ball.Instance.currentCollisionCount;
+		bouncesText.text = "" + Mathf.Max(Ball.Instance.currentHeartCountUI, 0);
 	}
 
 	private void SetLaunchesText()

@@ -37,7 +37,7 @@ public class BossHeart : BossBase
 		if (coll.gameObject == Ball.Instance.gameObject)
 		{
 			shaker.stressLevel += 0.5f;
-			StartCoroutine(FreeCollisions(1));
+			FreeHeart(1);
 			--hp;
 			hp = Mathf.Max(hp, 0);
 			if (hp == 0)
@@ -48,12 +48,8 @@ public class BossHeart : BossBase
 		}
 	}
 
-	private IEnumerator FreeCollisions(int number)
+	private void FreeHeart(int number)
 	{
-		for (int idx = 0; idx < number; ++idx)
-		{
-			Ball.Instance.FreeCollisionsIncrease();
-			yield return new WaitForEndOfFrame();
-		}
+		Ball.Instance.HeartIncrease(number, true);
 	}
 }
