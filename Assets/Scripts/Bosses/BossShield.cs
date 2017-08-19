@@ -7,7 +7,6 @@ public class BossShield : BossBase
 {
 	public InfiniteLevel level;
 
-	public GameObject endLevelDoor;
 	public Text hpText;
 
 	public CameraShaker shaker;
@@ -15,6 +14,13 @@ public class BossShield : BossBase
 
 	void Start()
 	{
+		if (GetIsAlive() == false)
+		{
+			deadVersion.SetActive(true);
+			gameObject.SetActive(false);
+			Destroy(endLevelDoor);
+			return;
+		}
 		foreach (InfiniteLevelGoal goal in level.ends)
 		{
 			goal.goalHit += LevelPassed;
@@ -24,11 +30,6 @@ public class BossShield : BossBase
 			signal.collisionExit += ShieldDestroyed;
 			shields.Add(signal.gameObject);
 		}
-	}
-
-	public int GetHeartCost()
-	{
-		return 0;
 	}
 
 	public void LevelPassed(InfiniteLevelGoal goal)

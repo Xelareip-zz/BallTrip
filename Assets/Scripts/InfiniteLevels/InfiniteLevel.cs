@@ -160,7 +160,9 @@ public class InfiniteLevel : MonoBehaviour
 
 	public Bounds GetCurrentBounds()
 	{
-		return new Bounds(levelBounds.center + transform.position, levelBounds.size);
+		Vector3 center = levelBounds.center;
+		center.x *= transform.localScale.x;
+		return new Bounds(center + transform.position, levelBounds.size);
 	}
 #if UNITY_EDITOR
 	void OnDrawGizmos()
@@ -169,7 +171,7 @@ public class InfiniteLevel : MonoBehaviour
 		{
 			Gizmos.color = Color.green;
 			Bounds currentBounds = GetCurrentBounds();
-			Gizmos.DrawWireCube(transform.position + currentBounds.center, currentBounds.size);
+			Gizmos.DrawWireCube(currentBounds.center, currentBounds.size);
 		}
 
 		Gizmos.color = Color.blue;

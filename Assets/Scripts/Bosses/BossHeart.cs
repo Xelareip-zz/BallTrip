@@ -52,4 +52,9 @@ public class BossHeart : BossBase
 	{
 		Ball.Instance.HeartIncrease(number, true);
 	}
+
+	public override bool CanSpawn()
+	{
+		return GetIsAlive();
+	}
 }
