@@ -10,8 +10,16 @@ public class LaunchManager : MonoBehaviour
 
 	public Vector3 nullVect = new Vector3(-10000, -10000);
 
+	public bool canShoot = false;
+
+	public GameObject startDragUI;
+
 	void Update()
 	{
+		Ball.Instance.lineRenderer.enabled = canShoot;
+		Vector3 newPos = (dragOrigin - new Vector3(Screen.width, Screen.height) / 2.0f) * XUtils.ScreenCamRatio() + transform.position;
+        startDragUI.transform.position = new Vector3(newPos.x, newPos.y, startDragUI.transform.position.z);
+		startDragUI.SetActive(InfiniteGameManager.Instance.GetMode() == LAUNCH_MODE.LAUNCH && touchId >= 0);
 		if (Ball.Instance.ballRigidbody.velocity.magnitude != 0.0f || InfiniteGameManager.Instance.GetMode() == LAUNCH_MODE.LOOK)
 		{
 			touchId = -1;
@@ -73,8 +81,8 @@ public class LaunchManager : MonoBehaviour
 		Ball.Instance.launchDirection = drag.normalized;
 		float angle = Quaternion.FromToRotation(Vector3.up, Ball.Instance.launchDirection).eulerAngles.z;
 
-		bool canShoot = TutoManager.Instance.GetCanShootAngle(angle);
-        Ball.Instance.lineRenderer.enabled = canShoot;
+		canShoot = TutoManager.Instance.GetCanShootAngle(angle);
+		canShoot &= drag.magnitude >= 2.5f;
 
 		if (shouldLaunch && canShoot)
 		{

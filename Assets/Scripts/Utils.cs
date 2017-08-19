@@ -6,7 +6,7 @@ public class XUtils
 {
 	public static float ScreenCamRatio()
 	{
-		return 2.0f * Camera.main.orthographicSize / Screen.height;
+		return 2.0f * Camera.main.orthographicSize / (Screen.height * Camera.main.rect.height);
 	}
 
 	public static Bounds GetBounds(List<Transform> objs)
