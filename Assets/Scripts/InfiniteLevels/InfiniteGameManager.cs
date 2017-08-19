@@ -65,6 +65,10 @@ public class InfiniteGameManager : MonoBehaviour
 		{
 			TutoManager.Instance.StartTuto("TutoSecondLaunch");
 		}
+		if (Player.Instance.GetTutoFinished("TutoSecondLaunch"))
+		{
+			TutoManager.Instance.StartTuto("TutoFirstDrag");
+		}
 		if (TutoManager.Instance.GetCanDragCamera() == false)
 		{
 			SetLaunchMode(LAUNCH_MODE.LAUNCH);
