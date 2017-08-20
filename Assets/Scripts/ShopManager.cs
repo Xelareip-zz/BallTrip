@@ -39,10 +39,19 @@ public class ShopManager : MonoBehaviour
 
 	void Start()
 	{
-		if (TutoManager.Instance.StartTuto("TutoFirstBuy") == false)
+		TutoManager.Instance.StartTuto("TutoFirstBuy");
+		ShopButton[] shopButtons = FindObjectsOfType<ShopButton>();
+        foreach (var button in shopButtons)
 		{
-			SelectButton(defaultButton);
-        }
+			if (button.CanBuy())
+			{
+				SelectButton(button);
+			}
+		}
+		if (selectedButton == null)
+		{
+			SelectButton(shopButtons[0]);
+		}
 	}
 
 	void Update()
