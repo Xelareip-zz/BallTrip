@@ -6,10 +6,20 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
+	private static ShopManager instance;
+	public static ShopManager Instance
+	{
+		get
+		{
+			return instance;
+		}
+	}
+
 	public Text coinsText;
 	public Text launchesText;
 	public Text viewText;
 	public Text bouncesText;
+	public Text priceText;
 
 	public Text launchesPriceText;
 	public Text viewPriceText;
@@ -19,15 +29,35 @@ public class ShopManager : MonoBehaviour
 	public List<int> pricesBounces;
 	public List<int> pricesView;
 
+	public ShopButton defaultButton;
+	public ShopButton selectedButton;
+
+	void Awake()
+	{
+		instance = this;
+	}
+
 	void Start()
 	{
-		TutoManager.Instance.StartTuto("TutoFirstBuy");
+		if (TutoManager.Instance.StartTuto("TutoFirstBuy") == false)
+		{
+			SelectButton(defaultButton);
+        }
 	}
 
 	void Update()
 	{
+		if (selectedButton != null)
+		{
+			priceText.text = GetBuyablePrice(selectedButton.buyable).ToString();
+        }
+		else
+		{
+			priceText.text = "-";
+		}
+
 		coinsText.text = "" + Player.Instance.GetCoins();
-		launchesText.text = "" + Player.Instance.GetLaunches();
+		launchesText.text = "" + Player.Instance.GetBuyableLevel(BUYABLE.LAUNCH);
 		viewText.text = "" + Player.Instance.GetViewRange();
 		bouncesText.text = "" + Player.Instance.GetHearts();
 
@@ -37,9 +67,22 @@ public class ShopManager : MonoBehaviour
 		bouncesPriceText.text = "" + GetFriendlyPrice(GetBouncePrice());
 	}
 
+	public void SelectButton(ShopButton button)
+	{
+		if (selectedButton != null)
+		{
+			selectedButton.Unselect();
+		}
+		if (button != null)
+		{
+			button.Select();
+		}
+		selectedButton = button;
+	}
+
 	public int GetLaunchPrice()
 	{
-		int nextLaunchCapacity = Player.Instance.GetLaunches() + 1;
+		int nextLaunchCapacity = Player.Instance.GetBuyableLevel(BUYABLE.LAUNCH) + 1;
 		if (nextLaunchCapacity > pricesLaunches.Count)
 		{
 			return int.MaxValue;
@@ -58,7 +101,7 @@ public class ShopManager : MonoBehaviour
 
 	public int GetBouncePrice()
 	{
-		int nextBounceCapacity = Player.Instance.GetHearts() + 1;
+		int nextBounceCapacity = Player.Instance.GetBuyableLevel(BUYABLE.HEARTS) + 1;
 		if (nextBounceCapacity > pricesBounces.Count)
 		{
 			return int.MaxValue;
@@ -68,7 +111,7 @@ public class ShopManager : MonoBehaviour
 
 	public int GetViewPrice()
 	{
-		int nextViewCapacity = Player.Instance.GetViewRange() + 1;
+		int nextViewCapacity = Player.Instance.GetBuyableLevel(BUYABLE.VIEW) + 1;
 		if (nextViewCapacity > pricesView.Count)
 		{
 			return int.MaxValue;
@@ -76,33 +119,25 @@ public class ShopManager : MonoBehaviour
 		return pricesView[nextViewCapacity];
 	}
 
-	public void BuyLaunch()
+	public int GetBuyablePrice(BUYABLE buyable)
 	{
-		int launchPrice = GetLaunchPrice();
-		if (Player.Instance.CanBuy(launchPrice))
+		switch(buyable)
 		{
-			Player.Instance.AddCoins(-launchPrice);
-			Player.Instance.SetLaunchesAllowed(Player.Instance.GetLaunches() + 1);
-        }
-	}
-
-	public void BuyView()
-	{
-		int viewPrice = GetViewPrice();
-		if (Player.Instance.CanBuy(viewPrice))
-		{
-			Player.Instance.AddCoins(-viewPrice);
-			Player.Instance.SetViewRange(Player.Instance.GetViewRange() + 1);
+			case BUYABLE.HEARTS:
+				return GetBouncePrice();
+			case BUYABLE.LAUNCH:
+				return GetLaunchPrice();
+			case BUYABLE.VIEW:
+				return GetViewPrice();
 		}
+		return int.MaxValue;
 	}
 
-	public void BuyBounce()
+	public void BuySelected()
 	{
-		int bouncePrice = GetBouncePrice();
-		if (Player.Instance.CanBuy(bouncePrice))
+		if (selectedButton != null)
 		{
-			Player.Instance.AddCoins(-bouncePrice);
-			Player.Instance.SetBounces(Player.Instance.GetHearts() + 1);
+			selectedButton.BuyButtonClicked();
 		}
 	}
 

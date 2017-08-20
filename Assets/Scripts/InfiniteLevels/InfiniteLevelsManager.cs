@@ -197,7 +197,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 
 	public void FillToDepth()
 	{
-		while (DepthFilled() < Player.Instance._viewRange)
+		while (DepthFilled() < Player.Instance.GetViewRange())
 		{
 			SpawnLevel();
 		}

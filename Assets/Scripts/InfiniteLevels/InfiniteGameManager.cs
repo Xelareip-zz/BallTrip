@@ -56,7 +56,7 @@ public class InfiniteGameManager : MonoBehaviour
 	void Awake ()
 	{
 		instance = this;
-		launchesLeft = Player.Instance._launchesAllowed;
+		launchesLeft = Player.Instance.GetLaunches();
 		currentCoins = 0;
 		SetCoinsText();
 		gameIsOver = false;

@@ -32,7 +32,7 @@ public class Ball : MonoBehaviour
 	void Awake()
 	{
 		instance = this;
-		currentHeartCount = Player.Instance._hearts;
+		currentHeartCount = Player.Instance.GetHearts();
 		currentHeartCountUI = currentHeartCount;
 		shieldActive = false;
 	}
@@ -60,7 +60,7 @@ public class Ball : MonoBehaviour
 
 			InfiniteGameManager.Instance.SetLaunchMode(LAUNCH_MODE.LOOK);
 
-			currentHeartCount = Player.Instance._hearts;
+			currentHeartCount = Player.Instance.GetHearts();
 			currentHeartCountUI = currentHeartCount;
 		}
 		oldVelocity = ballRigidbody.velocity;

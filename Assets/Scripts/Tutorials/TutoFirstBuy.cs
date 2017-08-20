@@ -4,17 +4,23 @@ using System.Collections.Generic;
 
 public class TutoFirstBuy : TutoBase
 {
+	public ShopButton selectButton;
+
 	void Update()
 	{
-		if (Player.Instance.GetHearts() > 1)
+		foreach (BUYABLE buyable in Enum.GetValues(typeof(BUYABLE)))
 		{
-			End();
+			if (Player.Instance.GetBuyableLevel(buyable) > 0)
+			{
+				End();
+			}
 		}
 	}
 
 	public override void Begin()
 	{
 		base.Begin();
+		ShopManager.Instance.SelectButton(selectButton);
 	}
 
 	public override void End()

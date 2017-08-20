@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+public enum BUYABLE
+{
+	LAUNCH,
+	HEARTS,
+	VIEW,
+};
+
 public class Player : MonoBehaviour
 {
 	private static Player instance;
@@ -18,11 +25,10 @@ public class Player : MonoBehaviour
 	public int _bestScore = 0;
 	public int _gamesPlayed = 0;
 	public int _coins = 0;
-	public int _launchesAllowed = 10;
-	public int _viewRange = 1;
-	public int _hearts = 1;
 	public int _shieldLevel = 0;
 	public int _bestLevel = 0;
+
+	public Dictionary<BUYABLE, int> _buyableLevels = new Dictionary<BUYABLE, int>();
 
 	public List<string> _bossLevelsBeaten = new List<string>();
 	public List<string> _tutoFinished = new List<string>();
@@ -45,11 +51,16 @@ public class Player : MonoBehaviour
 		_bestScore = 0;
 		_gamesPlayed = 0;
 		_coins = 15;
-		_launchesAllowed = 1;
-		_viewRange = 1;
-		_hearts = 1;
 		_shieldLevel = 0;
 		_bestLevel = 0;
+
+		_buyableLevels = new Dictionary<BUYABLE, int>();
+
+		Array buyableValues = Enum.GetValues(typeof(BUYABLE));
+        for (int idx = 0; idx < buyableValues.Length; ++idx)
+		{
+			_buyableLevels.Add((BUYABLE)buyableValues.GetValue(idx), 0);
+		}
 
 		_bossLevelsBeaten = new List<string>();
 		_tutoFinished = new List<string>();
@@ -82,24 +93,6 @@ public class Player : MonoBehaviour
 	public void AddCoins(int val)
 	{
 		_coins += val;
-		Save();
-	}
-
-	public void SetLaunchesAllowed(int val)
-	{
-		_launchesAllowed = val;
-		Save();
-	}
-
-	public void SetViewRange(int val)
-	{
-		_viewRange = val;
-		Save();
-	}
-
-	public void SetBounces(int val)
-	{
-		_hearts = val;
 		Save();
 	}
 
@@ -150,17 +143,17 @@ public class Player : MonoBehaviour
 
 	public int GetLaunches()
 	{
-		return _launchesAllowed;
+		return 1 + GetBuyableLevel(BUYABLE.LAUNCH);
 	}
 
 	public int GetViewRange()
 	{
-		return _viewRange;
+		return 1 + GetBuyableLevel(BUYABLE.VIEW);
 	}
 
 	public int GetHearts()
 	{
-		return _hearts;
+		return 1 + GetBuyableLevel(BUYABLE.HEARTS);
 	}
 
 	public int GetShieldLevel()
@@ -186,6 +179,16 @@ public class Player : MonoBehaviour
 	public bool GetTutoFinished(string tuto)
 	{
 		return _tutoFinished.Contains(tuto);
+	}
+
+	public int GetBuyableLevel(BUYABLE buyable)
+	{
+		return _buyableLevels[buyable];
+	}
+
+	public void SetBuyableLevel(BUYABLE buyable, int level)
+	{
+		_buyableLevels[buyable] = level;
 	}
 
 	public void ResetLevels()
@@ -220,15 +223,6 @@ public class Player : MonoBehaviour
 				case "coins":
 					_coins = int.Parse(lineSplit[1]);
 					break;
-				case "launchesAllowed":
-					_launchesAllowed = int.Parse(lineSplit[1]);
-					break;
-				case "viewRange":
-					_viewRange = int.Parse(lineSplit[1]);
-					break;
-				case "hearts":
-					_hearts = int.Parse(lineSplit[1]);
-					break;
 				case "shieldLevel":
 					_shieldLevel = int.Parse(lineSplit[1]);
 					break;
@@ -249,6 +243,19 @@ public class Player : MonoBehaviour
 						_tutoFinished.Add(level);
 					}
 					break;
+				case "buyableLevels":
+					_buyableLevels.Clear();
+					Array buyableValues = Enum.GetValues(typeof(BUYABLE));
+					for (int idx = 0; idx < buyableValues.Length; ++idx)
+					{
+						_buyableLevels.Add((BUYABLE)buyableValues.GetValue(idx), 0);
+					}
+					foreach (string buyable in lineSplit[1].Split('-'))
+					{
+						string[] buyableSplit = buyable.Split('~');
+						_buyableLevels[(BUYABLE)Enum.Parse(typeof(BUYABLE), buyableSplit[0])] = int.Parse(buyableSplit[1]);
+					}
+					break;
 				default:
 					break;
 			}
@@ -258,18 +265,22 @@ public class Player : MonoBehaviour
 
 	public void Save()
 	{
+		List<string> buyableStrings = new List<string>();
+		foreach (var kvp in _buyableLevels)
+		{
+			buyableStrings.Add(kvp.Key.ToString() + "~" + kvp.Value.ToString());
+		}
+
 		string saveString = "";
 
 		saveString += "bestScore:" + _bestScore + "\n";
 		saveString += "gamesPlayed:" + _gamesPlayed + "\n";
 		saveString += "coins:" + _coins + "\n";
-        saveString += "launchesAllowed:" + _launchesAllowed + "\n"; ;
-        saveString += "viewRange:" + _viewRange + "\n"; ;
-		saveString += "hearts:" + _hearts + "\n";
 		saveString += "shieldLevel:" + _shieldLevel + "\n";
 		saveString += "bestLevel:" + _bestLevel + "\n";
 		saveString += "bossLevels:" + String.Join("-", _bossLevelsBeaten.ToArray()) + "\n";
 		saveString += "tutoFinished:" + String.Join("-", _tutoFinished.ToArray()) + "\n";
+		saveString += "buyableLevels:" + String.Join("-", buyableStrings.ToArray()) + "\n";
 
 		Directory.GetParent(Application.persistentDataPath).Create();
 		StreamWriter writer = new StreamWriter(Application.persistentDataPath + "/Save.dat");

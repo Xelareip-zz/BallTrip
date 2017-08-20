@@ -8,7 +8,6 @@ public class BossHeart : BossBase
 
 	public InfiniteLevel level;
 
-	public GameObject endLevelDoor;
 	public Text hpText;
 
 	public CameraShaker shaker;
