@@ -53,7 +53,11 @@ public class InfiniteLevel : MonoBehaviour
 	{
 		for (int textIdx = 0; textIdx < levelTexts.Count; ++textIdx)
 		{
-			levelTexts[textIdx].text = levelNumber.ToString();
+			if (levelTexts[textIdx].transform.lossyScale.x < 0)
+			{
+				levelTexts[textIdx].transform.localScale = new Vector3(-levelTexts[textIdx].transform.localScale.x, levelTexts[textIdx].transform.localScale.y, levelTexts[textIdx].transform.localScale.z);
+            }
+            levelTexts[textIdx].text = levelNumber.ToString();
 		}
 	}
 
@@ -116,6 +120,7 @@ public class InfiniteLevel : MonoBehaviour
 			Ball.Instance.shieldActive = true;
 			TutoManager.Instance.StartTuto("TutoShieldPortal");
 		}
+		Player.Instance.SetBestLevel(levelNumber);
 		InfiniteGameManager.Instance.AddCoins(reward);
 		InfiniteGameManager.Instance.currentColorCursor += 0.1f;
 		InfiniteLevelsManager.Instance.RemoveLevel(this, goal.boundStart.level);

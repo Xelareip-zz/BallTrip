@@ -7,11 +7,13 @@ using UnityEngine.UI;
 public class EndLevelScreenScript : MonoBehaviour
 {
 	public Text levelText;
+	public Text bestLevelText;
 	public Text coinsText;
 
 	void Start ()
 	{
 		levelText.text = (InfiniteLevelsManager.Instance.currentLevel - InfiniteLevelsManager.Instance.levels.Count).ToString();
+		bestLevelText.text = Player.Instance.GetBestLevel().ToString();
 		coinsText.text = InfiniteGameManager.Instance.currentCoins.ToString();
 	}
 

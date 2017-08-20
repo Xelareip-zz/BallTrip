@@ -57,7 +57,10 @@
 			{
 				i.uv.x = fract(i.uv.x * repeatsX);
 				i.uv.y = fract(i.uv.y * repeatsY);
-				return tex2D(_MainTex, i.uv) * _Color;
+				float4 res = tex2D(_MainTex, i.uv);
+				if (res.a == 0)
+					discard;
+				return res * _Color;
 			}
 			ENDCG
 		}

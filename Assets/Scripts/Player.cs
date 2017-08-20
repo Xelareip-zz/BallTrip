@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
 	public int _viewRange = 1;
 	public int _hearts = 1;
 	public int _shieldLevel = 0;
+	public int _bestLevel = 0;
 
 	public List<string> _bossLevelsBeaten = new List<string>();
 	public List<string> _tutoFinished = new List<string>();
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour
 		_viewRange = 1;
 		_hearts = 1;
 		_shieldLevel = 0;
+		_bestLevel = 0;
 
 		_bossLevelsBeaten = new List<string>();
 		_tutoFinished = new List<string>();
@@ -128,6 +130,17 @@ public class Player : MonoBehaviour
 	{
 		_shieldLevel = level;
 		Save();
+	}
+
+	public void SetBestLevel(int level)
+	{
+		_bestLevel = Mathf.Max(_bestLevel, level);
+		Save();
+	}
+
+	public int GetBestLevel()
+	{
+		return _bestLevel;
 	}
 
 	public int GetCoins()
@@ -219,6 +232,9 @@ public class Player : MonoBehaviour
 				case "shieldLevel":
 					_shieldLevel = int.Parse(lineSplit[1]);
 					break;
+				case "bestLevel":
+					_bestLevel = int.Parse(lineSplit[1]);
+					break;
 				case "bossLevels":
 					_bossLevelsBeaten.Clear();
 					foreach (string level in lineSplit[1].Split('-'))
@@ -251,6 +267,7 @@ public class Player : MonoBehaviour
         saveString += "viewRange:" + _viewRange + "\n"; ;
 		saveString += "hearts:" + _hearts + "\n";
 		saveString += "shieldLevel:" + _shieldLevel + "\n";
+		saveString += "bestLevel:" + _bestLevel + "\n";
 		saveString += "bossLevels:" + String.Join("-", _bossLevelsBeaten.ToArray()) + "\n";
 		saveString += "tutoFinished:" + String.Join("-", _tutoFinished.ToArray()) + "\n";
 

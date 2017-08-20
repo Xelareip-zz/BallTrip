@@ -129,9 +129,9 @@ public class InfiniteLevelsManager : MonoBehaviour
 
 		InfiniteLevel level = nextLevelModel.GetComponent<InfiniteLevel>();
 		Vector3 newPos = endPrevious - level.start.transform.localPosition;
-		level.levelNumber = currentLevel;
 
 		GameObject newLevel = Instantiate(nextLevelModel, newPos, Quaternion.identity);
+		newLevel.GetComponentInChildren<InfiniteLevel>().levelNumber = currentLevel;
 		newLevel.transform.SetParent(levelsRoot);
 		newLevel.name = nextLevelModel.name + currentLevel;
 		newLevel.transform.position = newPos;
