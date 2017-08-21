@@ -9,6 +9,7 @@ public enum BUYABLE
 	LAUNCH,
 	HEARTS,
 	VIEW,
+	PU_HEARTS
 };
 
 public class Player : MonoBehaviour
@@ -156,6 +157,11 @@ public class Player : MonoBehaviour
 		return 1 + GetBuyableLevel(BUYABLE.HEARTS);
 	}
 
+	public float GetPUHeartsChances()
+	{
+		return GetBuyableLevel(BUYABLE.PU_HEARTS) * 3.0f;
+	}
+
 	public int GetShieldLevel()
 	{
 		return _shieldLevel;
@@ -286,6 +292,20 @@ public class Player : MonoBehaviour
 		StreamWriter writer = new StreamWriter(Application.persistentDataPath + "/Save.dat");
 		writer.Write(saveString);
 		writer.Close();
+	}
+
+	public bool BuyableUnlocked(BUYABLE buyable)
+	{
+		switch (buyable)
+		{
+			case BUYABLE.HEARTS:
+			case BUYABLE.LAUNCH:
+			case BUYABLE.VIEW:
+				return true;
+			case BUYABLE.PU_HEARTS:
+				return GetLevelBeaten(BOSS_TYPE.HEART);
+		}
+		return false;
 	}
 
 	public bool CanBuy(int value)

@@ -14,14 +14,18 @@ public class ShopButton : MonoBehaviour, IPointerDownHandler
 	public int startLevel;
 	public GameObject selectedUI;
 	public GameObject notifUI;
+	public GameObject lockUI;
 	public Sprite untickedSprite;
 	public Sprite tickedSprite;
 	public MethodInfo levelMethodInfoSet;
 	public MethodInfo levelMethodInfoGet;
 	public Image[] ticks;
+	public Selectable selectable;
 
 	void Awake()
 	{
+		selectable = GetComponent<Selectable>();
+
 		Type thisType = typeof(Player);
 		levelMethodInfoGet = thisType.GetMethod(levelMethodGet);
 		levelMethodInfoSet = thisType.GetMethod(levelMethodSet);
@@ -30,6 +34,10 @@ public class ShopButton : MonoBehaviour, IPointerDownHandler
 
 	void Update()
 	{
+		if (lockUI != null)
+		{
+			lockUI.SetActive(Player.Instance.BuyableUnlocked(buyable) == false);
+		}
 		int level = Player.Instance.GetBuyableLevel(buyable);
 		level -= startLevel;
 		for (int tickIdx = 0; tickIdx < ticks.Length; ++tickIdx)
@@ -40,6 +48,11 @@ public class ShopButton : MonoBehaviour, IPointerDownHandler
 	}
 	public void OnPointerDown(PointerEventData eventData)
 	{
+		if (Player.Instance.BuyableUnlocked(buyable) == false)
+		{
+			return;
+		}
+
 		if (ShopManager.Instance.selectedButton == this)
 		{
 			ShopManager.Instance.SelectButton(null);

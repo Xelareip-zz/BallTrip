@@ -85,8 +85,7 @@ public class AdsManager : MonoBehaviour
 		bannerView.LoadAd(request);
 		bannersHeight = Screen.dpi * AdSize.Banner.Height / (Screen.height * 160);
 
-		//StartCoroutine(LoadRewardedVideos());
-		rewardedVideo.LoadAd(request, rewardedAdUnitId);
+		StartCoroutine(LoadRewardedVideos());
 	}
 
 	public IEnumerator LoadRewardedVideos()

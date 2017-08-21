@@ -16,10 +16,6 @@ public class PickupHeart : PickupBase
 
 	public override float GetDropWeight()
 	{
-		if (Player.Instance.GetLevelBeaten(BOSS_TYPE.HEART))
-		{
-			return 30f;
-		}
-		return 0f;
+		return Player.Instance.GetPUHeartsChances();
 	}
 }
