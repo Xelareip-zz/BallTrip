@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
 	public int _coins = 0;
 	public int _shieldLevel = 0;
 	public int _bestLevel = 0;
+	public int _hp = 100;
 
 	public Dictionary<BUYABLE, int> _buyableLevels = new Dictionary<BUYABLE, int>();
 
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour
 		_coins = 15;
 		_shieldLevel = 0;
 		_bestLevel = 0;
+		_hp = 100;
 
 		_buyableLevels = new Dictionary<BUYABLE, int>();
 
@@ -144,12 +146,12 @@ public class Player : MonoBehaviour
 
 	public int GetLaunches()
 	{
-		return 1 + GetBuyableLevel(BUYABLE.LAUNCH);
+		return 1;// + GetBuyableLevel(BUYABLE.LAUNCH);
 	}
 
 	public int GetViewRange()
 	{
-		return 1 + GetBuyableLevel(BUYABLE.VIEW);
+		return 5;// 1 + GetBuyableLevel(BUYABLE.VIEW);
 	}
 
 	public int GetHearts()
@@ -197,6 +199,17 @@ public class Player : MonoBehaviour
 		_buyableLevels[buyable] = level;
 	}
 
+	public int GetHp()
+	{
+		return _hp;
+	}
+
+	public void SetHp(int hp)
+	{
+		_hp = hp;
+		Save();
+	}
+
 	public void ResetLevels()
 	{
 		_bossLevelsBeaten.Clear();
@@ -234,6 +247,9 @@ public class Player : MonoBehaviour
 					break;
 				case "bestLevel":
 					_bestLevel = int.Parse(lineSplit[1]);
+					break;
+				case "hp":
+					_hp = int.Parse(lineSplit[1]);
 					break;
 				case "bossLevels":
 					_bossLevelsBeaten.Clear();
@@ -284,6 +300,7 @@ public class Player : MonoBehaviour
 		saveString += "coins:" + _coins + "\n";
 		saveString += "shieldLevel:" + _shieldLevel + "\n";
 		saveString += "bestLevel:" + _bestLevel + "\n";
+		saveString += "hp:" + _hp + "\n";
 		saveString += "bossLevels:" + String.Join("-", _bossLevelsBeaten.ToArray()) + "\n";
 		saveString += "tutoFinished:" + String.Join("-", _tutoFinished.ToArray()) + "\n";
 		saveString += "buyableLevels:" + String.Join("-", buyableStrings.ToArray()) + "\n";

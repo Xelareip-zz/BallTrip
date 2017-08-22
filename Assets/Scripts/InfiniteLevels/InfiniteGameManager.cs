@@ -60,6 +60,7 @@ public class InfiniteGameManager : MonoBehaviour
 		currentCoins = 0;
 		SetCoinsText();
 		gameIsOver = false;
+		SetHpGauge(1.0f);
 	}
 
 	void Start()
@@ -83,7 +84,7 @@ public class InfiniteGameManager : MonoBehaviour
 	{
 		SetBouncesText();
 		SetLaunchesText();
-		SetFreeLaunchesText();
+		SetHpGauge();
 		if (currentColorCursorProgress < currentColorCursor)
 		{
 			currentColorCursorProgress += 0.1f * Time.deltaTime;
@@ -206,6 +207,37 @@ public class InfiniteGameManager : MonoBehaviour
 		launchesText.text = "" + launchesLeft;
 	}
 
+	private void SetHpGauge(float percentage = -1.0f)
+	{
+		float maxWidth = (freeLaunchGaugeTransform.parent as RectTransform).rect.width;
+		if (percentage >= 0.0f && percentage <= 1.0f)
+		{
+			freeLaunchGaugeTransform.offsetMax = new Vector2(maxWidth * percentage, 0);
+			return;
+		}
+		float stepSize = maxWidth / 2.0f;
+
+		float targetX = maxWidth * Ball.Instance.hp / (float)Player.Instance.GetHp();
+
+		float newX;
+		if (targetX >= freeLaunchGaugeTransform.offsetMax.x)
+		{
+			newX = Mathf.Min(freeLaunchGaugeTransform.offsetMax.x + stepSize * Time.deltaTime, targetX);
+		}
+		else
+		{
+			newX = Mathf.Max(freeLaunchGaugeTransform.offsetMax.x - stepSize * Time.deltaTime, targetX);
+		}
+
+		freeLaunchGaugeTransform.offsetMax = new Vector2(Mathf.Clamp(newX, 0, maxWidth), 0);
+		/*
+		if (newX >= maxWidth)
+		{
+			freeLaunchGaugeValue -= freeLaunchGaugeMax;
+			++launchesLeft;
+		}*/
+	}
+	/*
 	private void SetFreeLaunchesText()
 	{
 		float maxWidth = (freeLaunchGaugeTransform.parent as RectTransform).rect.width;
@@ -217,20 +249,20 @@ public class InfiniteGameManager : MonoBehaviour
 		if (targetX >= freeLaunchGaugeTransform.offsetMax.x)
 		{
 			newX = Mathf.Min(freeLaunchGaugeTransform.offsetMax.x + stepSize * Time.deltaTime, targetX);
-        }
+		}
 		else
 		{
 			newX = Mathf.Max(freeLaunchGaugeTransform.offsetMax.x - stepSize * Time.deltaTime, targetX);
 		}
 
-        freeLaunchGaugeTransform.offsetMax = new Vector2(Mathf.Clamp(newX, 0, maxWidth), 0);
+		freeLaunchGaugeTransform.offsetMax = new Vector2(Mathf.Clamp(newX, 0, maxWidth), 0);
 
 		if (newX >= maxWidth)
 		{
 			freeLaunchGaugeValue -= freeLaunchGaugeMax;
 			++launchesLeft;
 		}
-	}
+	}*/
 
 	public void FreeLaunchIncrease()
 	{

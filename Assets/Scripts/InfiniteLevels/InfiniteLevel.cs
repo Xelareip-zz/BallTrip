@@ -51,6 +51,14 @@ public class InfiniteLevel : MonoBehaviour
 
 	void Start()
 	{
+		Obstacle[] obstacles = GetComponentsInChildren<Obstacle>(true);
+		foreach (Obstacle obstacle in obstacles)
+		{
+			if (Random.Range(0, 100) > 20 - levelNumber)
+			{
+				obstacle.gameObject.SetActive(true);
+			}
+		}
 		for (int textIdx = 0; textIdx < levelTexts.Count; ++textIdx)
 		{
 			if (levelTexts[textIdx].transform.lossyScale.x < 0)

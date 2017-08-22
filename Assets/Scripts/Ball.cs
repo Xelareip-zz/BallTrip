@@ -29,12 +29,15 @@ public class Ball : MonoBehaviour
 
 	public Vector3 oldVelocity;
 
+	public float hp;
+
 	void Awake()
 	{
 		instance = this;
 		currentHeartCount = Player.Instance.GetHearts();
 		currentHeartCountUI = currentHeartCount;
 		shieldActive = false;
+        hp = Player.Instance.GetHp();
 	}
 
 	void FixedUpdate()
@@ -57,6 +60,7 @@ public class Ball : MonoBehaviour
 			{
 				shieldActive = true;
 			}
+			hp = Player.Instance.GetHp();
 
 			InfiniteGameManager.Instance.SetLaunchMode(LAUNCH_MODE.LOOK);
 
@@ -79,7 +83,7 @@ public class Ball : MonoBehaviour
     }
 
 	void OnCollisionEnter(Collision coll)
-	{
+	{/*
 		HeartCostModifier heartModifier = coll.gameObject.GetComponentInChildren<HeartCostModifier>();
 		int heartLoss = heartModifier == null ? 1 : heartModifier.GetHeartCost();
 
@@ -118,8 +122,19 @@ public class Ball : MonoBehaviour
 			TutoManager.Instance.StartTuto("TutoFirstHit");
 		}
 		float stressIncrease = (1.0f - Vector3.Dot(coll.contacts[0].normal, oldVelocity)) / launchSpeed;
-		InfiniteGameManager.Instance.cameraShaker.stressLevel += stressIncrease;
+		InfiniteGameManager.Instance.cameraShaker.stressLevel += stressIncrease;*/
     }
+
+	private void LooseHeartUI(int heartLoss, Vector3 direction)
+	{
+		int lostValue = Mathf.Min(currentHeartCount, heartLoss);
+		currentHeartCountUI -= lostValue;
+		GameObject heartUi = Instantiate<GameObject>(uiHeartLost);
+		heartUi.transform.SetParent(null);
+		heartUi.transform.position = uiHeartLost.transform.position;
+		heartUi.GetComponentInChildren<MoveInDir>().direction = direction;
+		heartUi.SetActive(true);
+	}
 
 	void OnDrawGizmos()
 	{
@@ -145,6 +160,14 @@ public class Ball : MonoBehaviour
 		{
 			currentHeartCountUI += value;
 		}
+	}
+
+	public void Hit(Obstacle obstacle, Collision coll)
+	{
+		hp -= obstacle.heartCost;
+		//LooseHeartUI(obstacle.heartCost, coll.contacts[0].normal);
+		shieldActive = false;
+		currentHeartCount = Mathf.FloorToInt(hp);
 	}
 
 	private void HeartIncreaseApply()
