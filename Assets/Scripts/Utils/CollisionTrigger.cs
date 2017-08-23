@@ -3,6 +3,7 @@ using System;
 
 public class CollisionTrigger : MonoBehaviour
 {
+	public event Action<CollisionTrigger, Collider> collisionStay;
 	public event Action<Collider> collisionEnter;
 	public event Action<Collider> collisionExit;
 
@@ -11,6 +12,14 @@ public class CollisionTrigger : MonoBehaviour
 		if (collisionEnter != null)
 		{
 			collisionEnter(coll);
+		}
+	}
+
+	void OnTriggerStay(Collider coll)
+	{
+		if (collisionStay != null)
+		{
+			collisionStay(this, coll);
 		}
 	}
 

@@ -408,7 +408,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: b57e6dc0338ccef4c82e46c63eedee37, type: 2}
+  - {fileID: 2100000, guid: 883b6b88ebdeec740b9f392ef467267d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -590,6 +590,8 @@ MonoBehaviour:
   - {x: 5, y: 0, z: 0}
   levelTexts:
   - {fileID: 114030914709406732}
+  initialObstacleChance: 0
+  increaseObstacleChance: 0
   levelNumber: 0
 --- !u!114 &114030914709406732
 MonoBehaviour:

@@ -736,7 +736,6 @@ MonoBehaviour:
   endLevelDoor: {fileID: 1101333817877488}
   hp: 5
   level: {fileID: 114852130933307074}
-  endLevelDoor: {fileID: 1101333817877488}
   hpText: {fileID: 114451388099568726}
   shaker: {fileID: 114285646952726810}
 --- !u!114 &114094604169181180
@@ -1012,6 +1011,8 @@ MonoBehaviour:
   - {x: 5, y: 0, z: 0}
   levelTexts:
   - {fileID: 114238393221086504}
+  initialObstacleChance: 0
+  increaseObstacleChance: 0
   levelNumber: 0
 --- !u!114 &114910494475877674
 MonoBehaviour:

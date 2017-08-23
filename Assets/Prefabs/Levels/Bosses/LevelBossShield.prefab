@@ -1013,6 +1013,8 @@ MonoBehaviour:
   - {x: 5, y: 0, z: 0}
   levelTexts:
   - {fileID: 114545570029852818}
+  initialObstacleChance: 0
+  increaseObstacleChance: 0
   levelNumber: 0
 --- !u!114 &114910494475877674
 MonoBehaviour:

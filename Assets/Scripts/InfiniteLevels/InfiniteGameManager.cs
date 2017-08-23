@@ -117,7 +117,7 @@ public class InfiniteGameManager : MonoBehaviour
 
 	public void SetLaunchMode(LAUNCH_MODE mode)
 	{
-		if (mode == LAUNCH_MODE.LOOK && launchesLeft == 0)
+		if (mode == LAUNCH_MODE.LOOK && Ball.Instance.currentHeartCount == 0)
 		{
 			EndGame();
 		}
@@ -276,5 +276,10 @@ public class InfiniteGameManager : MonoBehaviour
 	private void FreeLaunchIncreaseApply()
 	{
 		++freeLaunchGaugeValue;
+	}
+
+	public int GetFreeHeartDistance()
+	{
+		return 5;
 	}
 }

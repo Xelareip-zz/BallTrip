@@ -26,6 +26,12 @@ public class InfiniteLevel : MonoBehaviour
 	public List<Vector3> pickupSpots;
 	public List<Text> levelTexts;
 
+	public int baseObstaclesCountLevel;
+	public int baseObstaclesCount;
+	public int levelsToAllObstacles;
+	public int baseObstaclesCountLevelPoison;
+	public int baseObstaclesCountPoison;
+	public int levelsToAllObstaclesPoison;
 	public int levelNumber;
 
 	void Awake()
@@ -51,12 +57,34 @@ public class InfiniteLevel : MonoBehaviour
 
 	void Start()
 	{
-		Obstacle[] obstacles = GetComponentsInChildren<Obstacle>(true);
-		foreach (Obstacle obstacle in obstacles)
+		if (baseObstaclesCountLevel <= levelNumber)
 		{
-			if (Random.Range(0, 100) > 20 - levelNumber)
+			List<Obstacle> obstacles = new List<Obstacle>();
+			obstacles.AddRange(GetComponentsInChildren<Obstacle>(true));
+
+			int obstaclesCount = baseObstaclesCount + Mathf.FloorToInt((obstacles.Count - baseObstaclesCount) * ((float)levelNumber - baseObstaclesCountLevel) / (float)levelsToAllObstacles);
+			for (int obstacleIdx = 0; obstacleIdx < obstaclesCount && obstacles.Count > 0; ++obstacleIdx)
 			{
-				obstacle.gameObject.SetActive(true);
+				int obstacleRetainedId = Random.Range(0, obstacles.Count);
+
+				obstacles[obstacleRetainedId].gameObject.SetActive(true);
+				obstacles.RemoveAt(obstacleRetainedId);
+			}
+		}
+
+
+		if (baseObstaclesCountLevelPoison <= levelNumber)
+		{
+			List<ObstaclePoison> obstaclesPoison = new List<ObstaclePoison>();
+			obstaclesPoison.AddRange(GetComponentsInChildren<ObstaclePoison>(true));
+
+			int obstaclesCount = baseObstaclesCountPoison + Mathf.FloorToInt((obstaclesPoison.Count - baseObstaclesCountPoison) * ((float)levelNumber - baseObstaclesCountLevelPoison) / (float)levelsToAllObstaclesPoison);
+			for (int obstacleIdx = 0; obstacleIdx < obstaclesCount && obstaclesPoison.Count > 0; ++obstacleIdx)
+			{
+				int obstacleRetainedId = Random.Range(0, obstaclesPoison.Count);
+
+				obstaclesPoison[obstacleRetainedId].gameObject.SetActive(true);
+				obstaclesPoison.RemoveAt(obstacleRetainedId);
 			}
 		}
 		for (int textIdx = 0; textIdx < levelTexts.Count; ++textIdx)
@@ -114,6 +142,11 @@ public class InfiniteLevel : MonoBehaviour
 
 	public void GoalPassed(InfiniteLevelGoal goal)
 	{
+		if (levelNumber == InfiniteLevelsManager.Instance.nextFreeHeartLevel)
+		{
+			InfiniteLevelsManager.Instance.freeHeartLevelUI.SetActive(false);
+			Ball.Instance.HeartIncrease(1, true);
+		}
 		if (Ball.Instance.shieldActive)
 		{
 			TutoManager.Instance.StartTuto("TutoFirstLaunchGauge");

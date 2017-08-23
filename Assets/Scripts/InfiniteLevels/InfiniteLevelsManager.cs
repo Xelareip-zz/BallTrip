@@ -30,6 +30,9 @@ public class InfiniteLevelsManager : MonoBehaviour
 
 	public float totalSpawnWeights = 0;
 
+	public GameObject freeHeartLevelUI;
+	public int nextFreeHeartLevel;
+
 	void Awake()
 	{
 		levelsCurrentSpawnRatios = new Dictionary<string, int>();
@@ -39,7 +42,29 @@ public class InfiniteLevelsManager : MonoBehaviour
 		newLevel.transform.position = Vector3.zero;
 		newLevel.GetComponent<InfiniteLevel>().CloseLevel();
 		currentLevel = 0;
+		nextFreeHeartLevel = InfiniteGameManager.Instance.GetFreeHeartDistance();
 		FillToDepth();
+	}
+
+	private void SetCurrentSpawnRatio(GameObject levelObj, int spawnChance)
+	{
+		if (levelsCurrentSpawnRatios.ContainsKey(levelObj.name))
+		{
+			levelsCurrentSpawnRatios[levelObj.name] = spawnChance;
+		}
+		else
+		{
+			levelsCurrentSpawnRatios.Add(levelObj.name, spawnChance);
+		}
+	}
+
+	private int GetCurrentSpawnRatio(GameObject levelObj)
+	{
+		if (levelsCurrentSpawnRatios.ContainsKey(levelObj.name))
+		{
+			return levelsCurrentSpawnRatios[levelObj.name];
+		}
+		return 0;
 	}
 
 	public void UpdateSpawnChances()
@@ -52,28 +77,18 @@ public class InfiniteLevelsManager : MonoBehaviour
 			{
 				if (levelsSpawnRatios[levelObj].ContainsKey(currentLevel))
 				{
-					if (levelsCurrentSpawnRatios.ContainsKey(level.gameObject.name))
-					{
-						levelsCurrentSpawnRatios[level.gameObject.name] = levelsSpawnRatios[levelObj][currentLevel];
-					}
-					else
-					{
-						levelsCurrentSpawnRatios.Add(level.gameObject.name, levelsSpawnRatios[levelObj][currentLevel]);
-					}
+					SetCurrentSpawnRatio(levelObj, levelsSpawnRatios[levelObj][currentLevel]);
+				}
+				else
+				{
+					SetCurrentSpawnRatio(levelObj, GetCurrentSpawnRatio(levelObj));
 				}
 			}
 			else
 			{
-				if (levelsCurrentSpawnRatios.ContainsKey(level.gameObject.name))
-				{
-					levelsCurrentSpawnRatios[level.gameObject.name] = 0;
-				}
-				else
-				{
-					levelsCurrentSpawnRatios.Add(level.gameObject.name, 0);
-				}
+				SetCurrentSpawnRatio(levelObj, 0);
 			}
-			totalSpawnWeights += levelsCurrentSpawnRatios[level.gameObject.name];
+			totalSpawnWeights += GetCurrentSpawnRatio(levelObj);
 		}
 	}
 
@@ -138,6 +153,10 @@ public class InfiniteLevelsManager : MonoBehaviour
 		newLevel.transform.position = newPos;
 		boundEnd.boundStart = newLevel.GetComponentInChildren<InfiniteLevelStart>();
 		boundEnd.boundStart.boundEnd = boundEnd;
+		if (nextFreeHeartLevel == currentLevel)
+		{
+			SetFreeHeartLevelPosition();
+		}
 		if (scaleMod != 1)
 		{
 			newLevel.transform.localScale = new Vector3(scaleMod * newLevel.transform.localScale.x, newLevel.transform.localScale.y, newLevel.transform.localScale.z);
@@ -222,4 +241,40 @@ public class InfiniteLevelsManager : MonoBehaviour
             }
 		}
 	}
+
+	public int GetFirstLevelNumber()
+	{
+		return currentLevel - levels.Count;
+	}
+
+	public InfiniteLevel GetLevel(int levelNumber)
+	{
+		for (int lvlIdx = 0; lvlIdx < levels.Count; ++lvlIdx)
+		{
+			if (levels[lvlIdx].levelNumber == levelNumber)
+			{
+				return levels[lvlIdx];
+            }
+		}
+		return null;
+	}
+
+	public void SetNextHeartLevel()
+	{
+		if (nextFreeHeartLevel < GetFirstLevelNumber())
+		{
+			nextFreeHeartLevel = GetFirstLevelNumber() + InfiniteGameManager.Instance.GetFreeHeartDistance();
+			SetFreeHeartLevelPosition();
+		}
+	}
+
+	public void SetFreeHeartLevelPosition()
+	{
+		InfiniteLevel levelCandidate = GetLevel(nextFreeHeartLevel);
+		if (levelCandidate)
+		{
+			freeHeartLevelUI.transform.position = new Vector3(levelCandidate.ends[0].transform.position.x, levelCandidate.ends[0].transform.position.y, freeHeartLevelUI.transform.position.z);
+			freeHeartLevelUI.SetActive(true);
+		}
+    }
 }
