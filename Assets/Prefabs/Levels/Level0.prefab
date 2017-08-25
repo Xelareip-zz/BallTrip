@@ -2411,6 +2411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066744a9c405be43875348a8eec22fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: 4f41acb3-5fbe-441d-a5db-9a0b62484c73
   hpCost: 10
 --- !u!114 &114059881826459648
 MonoBehaviour:
@@ -2466,6 +2467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d89d77b8e46bd84b80c872d5a079d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: 90927c3e-1cea-488f-87c1-cdb8538e2024
   hpPerSecond: 10
 --- !u!114 &114166640980114158
 MonoBehaviour:
@@ -2478,6 +2480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d89d77b8e46bd84b80c872d5a079d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: e3bad603-ce8b-4423-a31e-07183b9767b8
   hpPerSecond: 10
 --- !u!114 &114185521654358314
 MonoBehaviour:
@@ -2490,6 +2493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066744a9c405be43875348a8eec22fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: c14da6ce-b054-4d6d-809c-4fd3b662012f
   hpCost: 10
 --- !u!114 &114198333099324264
 MonoBehaviour:
@@ -2502,6 +2506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066744a9c405be43875348a8eec22fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: a011380d-ff35-4e4e-8112-df0adfc2b6f7
   hpCost: 10
 --- !u!114 &114206125468426654
 MonoBehaviour:
@@ -2514,6 +2519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066744a9c405be43875348a8eec22fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: a32609d9-78f7-4743-9ea2-7547aa2025c2
   hpCost: 10
 --- !u!114 &114253252508071094
 MonoBehaviour:
@@ -2526,6 +2532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066744a9c405be43875348a8eec22fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: cec8d8bd-ae1e-4b65-8b28-9537a08544d6
   hpCost: 10
 --- !u!114 &114297784766182214
 MonoBehaviour:
@@ -2538,6 +2545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066744a9c405be43875348a8eec22fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: 379bf47a-8a89-406b-866b-eaca7a410a99
   hpCost: 10
 --- !u!114 &114301803069247384
 MonoBehaviour:
@@ -2550,6 +2558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066744a9c405be43875348a8eec22fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: aa32b7e3-8774-49cc-b3f3-88c84b03a300
   hpCost: 10
 --- !u!114 &114302786997998706
 MonoBehaviour:
@@ -2562,6 +2571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d89d77b8e46bd84b80c872d5a079d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: e11b5dfa-1097-47d4-8ea3-f5c8c7843ec2
   hpPerSecond: 10
 --- !u!114 &114337958335843348
 MonoBehaviour:
@@ -2587,6 +2597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066744a9c405be43875348a8eec22fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: abe7333a-8006-4156-871e-329bcf6d1487
   hpCost: 10
 --- !u!114 &114492563947835484
 MonoBehaviour:
@@ -2599,6 +2610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066744a9c405be43875348a8eec22fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: 446d25f9-9295-45bd-b060-6475e913ab3b
   hpCost: 10
 --- !u!114 &114508234932895860
 MonoBehaviour:
@@ -2611,6 +2623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066744a9c405be43875348a8eec22fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: 6049b8a7-f2e0-4825-abf1-b37d4deefb04
   hpCost: 10
 --- !u!114 &114512743116578258
 MonoBehaviour:
@@ -2623,6 +2636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066744a9c405be43875348a8eec22fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: 86b4b2ee-f123-458e-be13-6eeeb1af1476
   hpCost: 10
 --- !u!114 &114518389831009938
 MonoBehaviour:
@@ -2635,6 +2649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066744a9c405be43875348a8eec22fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: 010e5ccb-e675-40eb-8a03-7c764e1b8dae
   hpCost: 10
 --- !u!114 &114530751489680260
 MonoBehaviour:
@@ -2662,6 +2677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066744a9c405be43875348a8eec22fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: b8a8895c-1472-4bf4-b43c-f1224dd2904a
   hpCost: 10
 --- !u!114 &114659986713201704
 MonoBehaviour:
@@ -2674,6 +2690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d89d77b8e46bd84b80c872d5a079d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: 711d31ea-de5c-4407-9136-b4e887bd628d
   hpPerSecond: 10
 --- !u!114 &114664892734632230
 MonoBehaviour:
@@ -2686,6 +2703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066744a9c405be43875348a8eec22fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: cbba52fa-b96c-4ad9-8ff6-fdf85141927a
   hpCost: 10
 --- !u!114 &114735417709140418
 MonoBehaviour:
@@ -2698,6 +2716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066744a9c405be43875348a8eec22fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: 293feddc-1da0-47bb-a4c8-b619e1be92a8
   hpCost: 10
 --- !u!114 &114852130933307074
 MonoBehaviour:
@@ -2711,6 +2730,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseLevel: 1
+  variations: {fileID: 0}
+  variationsLevels:
+  - content:
+    - content:
+      - 5ee7d0d1-171b-4983-b3a6-268fad922a94
+      - 86b4b2ee-f123-458e-be13-6eeeb1af1476
+      - c14da6ce-b054-4d6d-809c-4fd3b662012f
+      - a32609d9-78f7-4743-9ea2-7547aa2025c2
+    - content:
+      - cec8d8bd-ae1e-4b65-8b28-9537a08544d6
+      - 5ee7d0d1-171b-4983-b3a6-268fad922a94
+      - b8a8895c-1472-4bf4-b43c-f1224dd2904a
+      - 86b4b2ee-f123-458e-be13-6eeeb1af1476
+      - aa32b7e3-8774-49cc-b3f3-88c84b03a300
+    - content:
+      - c14da6ce-b054-4d6d-809c-4fd3b662012f
+      - a32609d9-78f7-4743-9ea2-7547aa2025c2
+      - 293feddc-1da0-47bb-a4c8-b619e1be92a8
+  - content:
+    - content:
+      - cec8d8bd-ae1e-4b65-8b28-9537a08544d6
+      - 5ee7d0d1-171b-4983-b3a6-268fad922a94
+      - b8a8895c-1472-4bf4-b43c-f1224dd2904a
+      - 86b4b2ee-f123-458e-be13-6eeeb1af1476
+      - aa32b7e3-8774-49cc-b3f3-88c84b03a300
+      - c14da6ce-b054-4d6d-809c-4fd3b662012f
+      - 293feddc-1da0-47bb-a4c8-b619e1be92a8
+      - a32609d9-78f7-4743-9ea2-7547aa2025c2
   levelBounds:
     m_Center: {x: 0, y: 0.25, z: 0}
     m_Extent: {x: 10.500002, y: 15.250008, z: 0.5}
@@ -2727,7 +2774,7 @@ MonoBehaviour:
   - {fileID: 114901282308439876}
   baseObstaclesCountLevel: 0
   baseObstaclesCount: 1
-  levelsToAllObstacles: 100
+  levelsToAllObstacles: 20
   baseObstaclesCountLevelPoison: 20
   baseObstaclesCountPoison: 1
   levelsToAllObstaclesPoison: 100
@@ -2803,6 +2850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066744a9c405be43875348a8eec22fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: 5ee7d0d1-171b-4983-b3a6-268fad922a94
   hpCost: 10
 --- !u!114 &114938407880622456
 MonoBehaviour:
@@ -2815,6 +2863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d89d77b8e46bd84b80c872d5a079d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: eeef5ce3-50e6-4de9-aa31-f3cb925949a2
   hpPerSecond: 10
 --- !u!114 &114950385817660000
 MonoBehaviour:
@@ -2827,6 +2876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d89d77b8e46bd84b80c872d5a079d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GUID: 51a9ce67-3fed-478e-92b2-7d1a7b663e22
   hpPerSecond: 10
 --- !u!222 &222929689688656586
 CanvasRenderer:

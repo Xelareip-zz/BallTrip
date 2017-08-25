@@ -43,6 +43,10 @@ public class ManagementWindow : EditorWindow
 		{
 			FillPickupsList();
 		}
+		if (GUILayout.Button("Set all GUIDs"))
+		{
+			SetAllGUIDs();
+		}
 		if (LevelPieceFactory.Instance != null)
 		{
 			if (GUILayout.Button("Reload level pieces"))
@@ -90,7 +94,7 @@ public class ManagementWindow : EditorWindow
 
 	void Update()
 	{
-		if (wasPlaying && EditorApplication.isPlaying == false)
+		if (wasPlaying && EditorApplication.isPlaying == false && string.IsNullOrEmpty(lastScene) == false)
 		{
 			EditorSceneManager.OpenScene(lastScene);
 		}
@@ -115,6 +119,16 @@ public class ManagementWindow : EditorWindow
 
 	private void StartGame()
 	{
+
+		VariationsWindow window = (VariationsWindow)GetWindow(typeof(VariationsWindow));
+		if (window != null)
+		{
+			window.SetActive(false);
+		}
+		else
+		{
+			Debug.Log("No variations window");
+		}
 		lastScene = EditorSceneManager.GetActiveScene().path;
 		EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
 		EditorSceneManager.OpenScene("Assets/Scenes/LaunchScene.unity");
@@ -141,6 +155,19 @@ public class ManagementWindow : EditorWindow
 			continue;
 		}
 		EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+	}
+
+	private void SetAllGUIDs()
+	{
+		foreach (string assetGUID in AssetDatabase.FindAssets("t:GameObject"))
+		{
+			GameObject go = AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(assetGUID));
+			IGUIDIdentified[] guidHolders = go.GetComponentsInChildren<IGUIDIdentified>();
+			foreach (var guidHolder in guidHolders)
+			{
+				guidHolder.SetGUID();
+			}
+		}
 	}
 
 	private void FillPickupsList()

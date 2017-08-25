@@ -14,6 +14,10 @@ public class InfiniteLevel : MonoBehaviour
 	public bool baseLevel;
 #endif
 
+	public LevelVariationsContainer variations;
+	[SerializeField]
+	public List<ListListString> variationsLevels = new List<ListListString>();
+
 	public Bounds levelBounds;
 
 	public float closeDelay;
@@ -25,7 +29,6 @@ public class InfiniteLevel : MonoBehaviour
 
 	public List<Vector3> pickupSpots;
 	public List<Text> levelTexts;
-
 	public int baseObstaclesCountLevel;
 	public int baseObstaclesCount;
 	public int levelsToAllObstacles;
@@ -55,38 +58,27 @@ public class InfiniteLevel : MonoBehaviour
         }
 	}
 
+	public void ApplyVariation(ListString obstacles)
+	{
+
+		IGUIDIdentified[] guids = GetComponentsInChildren<IGUIDIdentified>(true);
+		foreach (IGUIDIdentified guidObj in guids)
+		{
+			(guidObj as MonoBehaviour).gameObject.SetActive(obstacles.Contains(guidObj.GetGUID()));
+		}
+	}
+
 	void Start()
 	{
-		if (baseObstaclesCountLevel <= levelNumber)
+		int layer = 0;
+
+		if (baseObstaclesCountLevel <= levelNumber && variationsLevels.Count > 1)
 		{
-			List<Obstacle> obstacles = new List<Obstacle>();
-			obstacles.AddRange(GetComponentsInChildren<Obstacle>(true));
-
-			int obstaclesCount = baseObstaclesCount + Mathf.FloorToInt((obstacles.Count - baseObstaclesCount) * ((float)levelNumber - baseObstaclesCountLevel) / (float)levelsToAllObstacles);
-			for (int obstacleIdx = 0; obstacleIdx < obstaclesCount && obstacles.Count > 0; ++obstacleIdx)
-			{
-				int obstacleRetainedId = Random.Range(0, obstacles.Count);
-
-				obstacles[obstacleRetainedId].gameObject.SetActive(true);
-				obstacles.RemoveAt(obstacleRetainedId);
-			}
+			layer = Mathf.FloorToInt(Mathf.Min((variationsLevels.Count - 1) * ((float)levelNumber - baseObstaclesCountLevel) / levelsToAllObstacles, variationsLevels.Count - 1));
 		}
 
-
-		if (baseObstaclesCountLevelPoison <= levelNumber)
-		{
-			List<ObstaclePoison> obstaclesPoison = new List<ObstaclePoison>();
-			obstaclesPoison.AddRange(GetComponentsInChildren<ObstaclePoison>(true));
-
-			int obstaclesCount = baseObstaclesCountPoison + Mathf.FloorToInt((obstaclesPoison.Count - baseObstaclesCountPoison) * ((float)levelNumber - baseObstaclesCountLevelPoison) / (float)levelsToAllObstaclesPoison);
-			for (int obstacleIdx = 0; obstacleIdx < obstaclesCount && obstaclesPoison.Count > 0; ++obstacleIdx)
-			{
-				int obstacleRetainedId = Random.Range(0, obstaclesPoison.Count);
-
-				obstaclesPoison[obstacleRetainedId].gameObject.SetActive(true);
-				obstaclesPoison.RemoveAt(obstacleRetainedId);
-			}
-		}
+		ApplyVariation(variationsLevels[layer][Random.Range(0, variationsLevels[layer].Count)]);
+		
 		for (int textIdx = 0; textIdx < levelTexts.Count; ++textIdx)
 		{
 			if (levelTexts[textIdx].transform.lossyScale.x < 0)

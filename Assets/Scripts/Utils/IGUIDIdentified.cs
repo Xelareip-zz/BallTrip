@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IObstacle : IGUIDIdentified
+public interface IGUIDIdentified
 {
-	float HpLossOnTick();
+	void SetGUID();
+
+	string GetGUID();
 }
