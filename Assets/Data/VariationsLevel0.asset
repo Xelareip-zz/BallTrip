@@ -16,11 +16,23 @@ MonoBehaviour:
   layerLevels:
   - mode: 0
     value: 0
-  - mode: 1
-    value: 6
+  - mode: 0
+    value: 8
   variationsLevels:
   - content:
-    - content: []
+    - content:
+      - cec8d8bd-ae1e-4b65-8b28-9537a08544d6
+      - 5ee7d0d1-171b-4983-b3a6-268fad922a94
+      - b8a8895c-1472-4bf4-b43c-f1224dd2904a
+      - 86b4b2ee-f123-458e-be13-6eeeb1af1476
+      - aa32b7e3-8774-49cc-b3f3-88c84b03a300
+      - c14da6ce-b054-4d6d-809c-4fd3b662012f
+      - 293feddc-1da0-47bb-a4c8-b619e1be92a8
+      - a32609d9-78f7-4743-9ea2-7547aa2025c2
+      - 6049b8a7-f2e0-4825-abf1-b37d4deefb04
+      - a011380d-ff35-4e4e-8112-df0adfc2b6f7
+      - cbba52fa-b96c-4ad9-8ff6-fdf85141927a
+      - 446d25f9-9295-45bd-b060-6475e913ab3b
   - content:
     - content:
       - aa32b7e3-8774-49cc-b3f3-88c84b03a300

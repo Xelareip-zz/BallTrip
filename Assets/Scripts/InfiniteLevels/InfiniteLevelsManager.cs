@@ -67,7 +67,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 		}
 		return 0;
 	}
-	/*
+	
 	public void UpdateSpawnChances()
 	{
 		for (int levelId = 0; levelId < possibleLevels.Count; ++levelId)
@@ -76,7 +76,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 			{
 				continue;
 			}
-			if (possibleLevels[levelId].GetComponent<InfiniteLevel>().variationsData.baseObstaclesCountLevel <= currentLevel)
+			if (possibleLevels[levelId].GetComponent<InfiniteLevel>().variationsData.layerLevels[0].value <= currentLevel)
 			{
 				spawnableLevels.Add(possibleLevels[levelId]);
 			}
@@ -104,7 +104,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 			}
 			totalSpawnWeights += GetCurrentSpawnRatio(levelObj);
 		}
-	}*/
+	}
 
 	public int PickLevelToSpawn()
 	{
@@ -125,7 +125,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 		currentLevel += 1;
 		int scaleMod = 1;
 		GameObject nextLevelModel;
-		//UpdateSpawnChances();
+		UpdateSpawnChances();
 		if (specialLevels.ContainsKey(currentLevel) && specialLevels[currentLevel].GetComponent<InfiniteLevel>().CanSpawn())
 		{
 			nextLevelModel = specialLevels[currentLevel];

@@ -24,6 +24,8 @@ public class Obstacle : MonoBehaviour, IObstacle
 	#endregion
 
 	public int hpCost;
+	public Vector4 offset;
+	public MeshRenderer meshRenderer;
 
 	void Awake()
 	{
@@ -33,6 +35,12 @@ public class Obstacle : MonoBehaviour, IObstacle
 		}
 		gameObject.SetActive(false);
 	}
+
+	void Start()
+	{
+		meshRenderer = GetComponent<MeshRenderer>();
+		meshRenderer.material = Resources.Load<Material>("ObstacleTransMaterial");
+    }
 
 	private void Signal_collisionEnter(CollisionSignal signal, Collision coll)
 	{
@@ -58,5 +66,12 @@ public class Obstacle : MonoBehaviour, IObstacle
 	public float HpLossOnTick()
 	{
 		return hpCost;
+	}
+
+	void Update()
+	{
+		offset = new Vector4(0.5f - (transform.position.x / transform.localScale.x) % 1, 0.5f - (transform.position.y / transform.localScale.y) % 1, 0.0f, 0.0f);
+		meshRenderer.material.SetFloat("repeatsX", Mathf.RoundToInt(transform.localScale.x));
+		meshRenderer.material.SetFloat("repeatsY", Mathf.RoundToInt(transform.localScale.y));
 	}
 }
