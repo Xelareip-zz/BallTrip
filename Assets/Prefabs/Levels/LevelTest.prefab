@@ -775,14 +775,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799c73cabb3d1534ea6376c1c6224ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseLevel: 1
-  variations: {fileID: 0}
-  variationsLevels:
-  - content:
-    - content: []
-    - content:
-      - cec8d8bd-ae1e-4b65-8b28-9537a08544d6
-      - 5ee7d0d1-171b-4983-b3a6-268fad922a94
+  baseLevel: 0
+  variationsData: {fileID: 11400000, guid: bc5e2c1098e69dc45afd4b6223c97f09, type: 2}
   levelBounds:
     m_Center: {x: 0, y: 0.25, z: 0}
     m_Extent: {x: 10.500002, y: 15.250008, z: 0.5}
@@ -797,12 +791,6 @@ MonoBehaviour:
   - {x: 5, y: 0, z: 0}
   levelTexts:
   - {fileID: 114901282308439876}
-  baseObstaclesCountLevel: 0
-  baseObstaclesCount: 1
-  levelsToAllObstacles: 100
-  baseObstaclesCountLevelPoison: 20
-  baseObstaclesCountPoison: 1
-  levelsToAllObstaclesPoison: 100
   levelNumber: 0
 --- !u!114 &114879767112162260
 MonoBehaviour:

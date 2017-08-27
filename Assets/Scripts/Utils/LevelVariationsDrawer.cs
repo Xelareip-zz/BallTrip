@@ -22,7 +22,7 @@ public class LevelVariationsContainerDrawer : PropertyDrawer
 		height = 0;
 		EditorGUI.BeginChangeCheck();
 		string name = property.name.Substring(0, 1).ToUpper() + property.name.Substring(1);
-        LevelVariationsContainer temp = EditorGUI.ObjectField(new Rect(new Vector2(position.position.x, position.position.y + height), new Vector2(position.size.x, 17f)), name, (property.serializedObject.targetObject as InfiniteLevel).variations, typeof(LevelVariationsContainer), false) as LevelVariationsContainer;
+        LevelVariationsContainer temp = EditorGUI.ObjectField(new Rect(new Vector2(position.position.x, position.position.y + height), new Vector2(position.size.x, 17f)), name, (property.serializedObject.targetObject as InfiniteLevel).variationsData, typeof(LevelVariationsContainer), false) as LevelVariationsContainer;
 		if (EditorGUI.EndChangeCheck())
 		{
 			if (temp == null)
@@ -32,15 +32,15 @@ public class LevelVariationsContainerDrawer : PropertyDrawer
 					variations.linkedPrefab = null;
 					EditorUtility.SetDirty(variations);
 				}
-				(property.serializedObject.targetObject as InfiniteLevel).variations = null;
+				(property.serializedObject.targetObject as InfiniteLevel).variationsData = null;
 
 				EditorUtility.SetDirty((property.serializedObject.targetObject as InfiniteLevel).gameObject);
 			}
 			else
 			{
-				(property.serializedObject.targetObject as InfiniteLevel).variations = temp;
+				(property.serializedObject.targetObject as InfiniteLevel).variationsData = temp;
 				temp.linkedPrefab = (property.serializedObject.targetObject as InfiniteLevel).gameObject;
-				EditorUtility.SetDirty((property.serializedObject.targetObject as InfiniteLevel).variations);
+				EditorUtility.SetDirty((property.serializedObject.targetObject as InfiniteLevel).variationsData);
 				EditorUtility.SetDirty(temp.linkedPrefab);
 			}
 		}

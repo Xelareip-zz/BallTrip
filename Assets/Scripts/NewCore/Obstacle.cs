@@ -46,7 +46,15 @@ public class Obstacle : MonoBehaviour, IObstacle
 			Ball.Instance.Hit(this);
 		}
 	}
-	
+
+	void OnTriggerEnter(Collider coll)
+	{
+		if (coll.gameObject == Ball.Instance.gameObject)
+		{
+			Ball.Instance.Hit(this);
+		}
+	}
+
 	public float HpLossOnTick()
 	{
 		return hpCost;

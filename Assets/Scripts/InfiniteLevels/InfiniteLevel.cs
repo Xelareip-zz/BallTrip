@@ -13,10 +13,8 @@ public class InfiniteLevel : MonoBehaviour
 #if UNITY_EDITOR
 	public bool baseLevel;
 #endif
-
-	public LevelVariationsContainer variations;
-	[SerializeField]
-	public List<ListListString> variationsLevels = new List<ListListString>();
+	
+	public LevelVariationsContainer variationsData;
 
 	public Bounds levelBounds;
 
@@ -29,12 +27,6 @@ public class InfiniteLevel : MonoBehaviour
 
 	public List<Vector3> pickupSpots;
 	public List<Text> levelTexts;
-	public int baseObstaclesCountLevel;
-	public int baseObstaclesCount;
-	public int levelsToAllObstacles;
-	public int baseObstaclesCountLevelPoison;
-	public int baseObstaclesCountPoison;
-	public int levelsToAllObstaclesPoison;
 	public int levelNumber;
 
 	void Awake()
@@ -70,14 +62,9 @@ public class InfiniteLevel : MonoBehaviour
 
 	void Start()
 	{
-		int layer = 0;
+		int layer = variationsData.GetLayerForLevel(levelNumber);
 
-		if (baseObstaclesCountLevel <= levelNumber && variationsLevels.Count > 1)
-		{
-			layer = Mathf.FloorToInt(Mathf.Min((variationsLevels.Count - 1) * ((float)levelNumber - baseObstaclesCountLevel) / levelsToAllObstacles, variationsLevels.Count - 1));
-		}
-
-		ApplyVariation(variationsLevels[layer][Random.Range(0, variationsLevels[layer].Count)]);
+		ApplyVariation(variationsData.variationsLevels[layer][Random.Range(0, variationsData.variationsLevels[layer].Count)]);
 		
 		for (int textIdx = 0; textIdx < levelTexts.Count; ++textIdx)
 		{

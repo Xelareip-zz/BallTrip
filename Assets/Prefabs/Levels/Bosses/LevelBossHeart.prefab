@@ -997,6 +997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseLevel: 0
+  variationsData: {fileID: 11400000, guid: f331ded51a078e146a3e6e3932c91dcf, type: 2}
   levelBounds:
     m_Center: {x: 0, y: 0.24999237, z: 0}
     m_Extent: {x: 10.500003, y: 15.250008, z: 2.5}
@@ -1011,8 +1012,6 @@ MonoBehaviour:
   - {x: 5, y: 0, z: 0}
   levelTexts:
   - {fileID: 114238393221086504}
-  initialObstacleChance: 0
-  increaseObstacleChance: 0
   levelNumber: 0
 --- !u!114 &114910494475877674
 MonoBehaviour:

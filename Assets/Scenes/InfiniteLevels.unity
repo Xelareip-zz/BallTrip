@@ -2289,14 +2289,7 @@ MonoBehaviour:
       _values: 0200000002000000
   possibleLevels:
   - {fileID: 1327467120988234, guid: 7baba0f9e7a2f9f4fab9a135f421f53a, type: 2}
-  - {fileID: 1327467120988234, guid: 596c0da93486d50429a0d3707e13a968, type: 2}
-  - {fileID: 1327467120988234, guid: 7484d6a1da9e59443a5924be75d2ed76, type: 2}
-  - {fileID: 1589650703576266, guid: 2fba60c428053e74a871bf268ebe6fc2, type: 2}
-  - {fileID: 1747305802974908, guid: 35a40473c6c80eb449e13d98c6a07031, type: 2}
-  - {fileID: 1727167241816896, guid: 9b6b57c6c97ca844e9d3580659b00b96, type: 2}
-  - {fileID: 1535593829250084, guid: a6494045c9044eb4da86043e674fa467, type: 2}
-  - {fileID: 1314345353414092, guid: bf21a7046745fd6458ef20cfd0629e6c, type: 2}
-  - {fileID: 1314345353414092, guid: 44b2a1f8bdc8464409051e52a3f72139, type: 2}
+  spawnableLevels: []
   levels: []
   levelsObj: []
   walls: []

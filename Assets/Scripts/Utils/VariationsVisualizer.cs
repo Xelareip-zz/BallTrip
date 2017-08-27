@@ -26,10 +26,13 @@ public class VariationsVisualizer : MonoBehaviour
 			return;
 		}
 
+		cam.orthographicSize = Mathf.Max(level.levelBounds.extents.y + 1, level.levelBounds.extents.x * 2 + 1);
+		cam.transform.position = new Vector3(level.GetCurrentBounds().center.x, level.GetCurrentBounds().center.y, cam.transform.position.z);
+
 		transform.position = new Vector3(variationPosition.x * 50, variationPosition.y * 50, 0);
 
 		IGUIDIdentified[] guids = GetComponentsInChildren<IGUIDIdentified>(true);
-		var variations = level.variationsLevels[(int)variationPosition.x][(int)variationPosition.y];
+		var variations = level.variationsData.variationsLevels[(int)variationPosition.x][(int)variationPosition.y];
         foreach (IGUIDIdentified guidObj in guids)
 		{
 			if (guidObj.GetGUID() == selectedGUID)
@@ -53,6 +56,6 @@ public class VariationsVisualizer : MonoBehaviour
 		GameObject go = Instantiate<GameObject>(prefab);
 		go.transform.SetParent(transform);
 		go.transform.localPosition = new Vector3(0, 0, 5);
-		level = prefab.GetComponent<InfiniteLevel>();
+		level = go.GetComponent<InfiniteLevel>();
 	}
 }

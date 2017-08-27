@@ -18,6 +18,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 	public SpawnRatios levelsSpawnRatios;
 	public Dictionary<string, int> levelsCurrentSpawnRatios;
 	public List<GameObject> possibleLevels;
+	public List<GameObject> spawnableLevels;
 	public List<InfiniteLevel> levels;
 	public List<GameObject> levelsObj;
 	public List<GameObject> walls;
@@ -66,9 +67,22 @@ public class InfiniteLevelsManager : MonoBehaviour
 		}
 		return 0;
 	}
-
+	/*
 	public void UpdateSpawnChances()
 	{
+		for (int levelId = 0; levelId < possibleLevels.Count; ++levelId)
+		{
+			if (spawnableLevels.Contains(possibleLevels[levelId]))
+			{
+				continue;
+			}
+			if (possibleLevels[levelId].GetComponent<InfiniteLevel>().variationsData.baseObstaclesCountLevel <= currentLevel)
+			{
+				spawnableLevels.Add(possibleLevels[levelId]);
+			}
+		}
+		return;
+
 		totalSpawnWeights = 0;
 		foreach (var levelObj in possibleLevels)
 		{
@@ -90,7 +104,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 			}
 			totalSpawnWeights += GetCurrentSpawnRatio(levelObj);
 		}
-	}
+	}*/
 
 	public int PickLevelToSpawn()
 	{
@@ -111,7 +125,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 		currentLevel += 1;
 		int scaleMod = 1;
 		GameObject nextLevelModel;
-		UpdateSpawnChances();
+		//UpdateSpawnChances();
 		if (specialLevels.ContainsKey(currentLevel) && specialLevels[currentLevel].GetComponent<InfiniteLevel>().CanSpawn())
 		{
 			nextLevelModel = specialLevels[currentLevel];
@@ -123,7 +137,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 				scaleMod = -1;
 			}
 
-			nextLevelModel = possibleLevels[PickLevelToSpawn()];
+			nextLevelModel = spawnableLevels[Random.Range(0, spawnableLevels.Count)];
 		}
 
 		InfiniteLevelGoal boundEnd = null;

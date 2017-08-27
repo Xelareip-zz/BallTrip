@@ -4,6 +4,8 @@ using UnityEditor.SceneManagement;
 using System.Collections.Generic;
 using System.Collections;
 
+
+
 public class VariationsWindow : EditorWindow
 {
 	private GUISkin skin;
@@ -16,6 +18,7 @@ public class VariationsWindow : EditorWindow
 	private double lastUpdate;
 	private GameObject currentLevelObject;
 	private InfiniteLevel currentLevel;
+	private LevelVariationsContainer currentData;
 	private Texture2D tex;
 	private Vector2 selectedVariation;
 	private bool lazyVisUpdate;
@@ -128,9 +131,9 @@ public class VariationsWindow : EditorWindow
 	private VariationsVisualizer GetVisualizer(int layer, int variation)
 	{
 		int currentCount = 0;
-		for (int layerIdx = 0; layerIdx < currentLevel.variationsLevels.Count; ++layerIdx)
+		for (int layerIdx = 0; layerIdx < currentData.variationsLevels.Count; ++layerIdx)
 		{
-			for (int varIdx = 0; varIdx < currentLevel.variationsLevels[layerIdx].Count; ++varIdx)
+			for (int varIdx = 0; varIdx < currentData.variationsLevels[layerIdx].Count; ++varIdx)
 			{
 				if (layerIdx == layer && varIdx == variation)
 				{
@@ -151,9 +154,9 @@ public class VariationsWindow : EditorWindow
 		}
 
 		int currentCount = 0;
-		for (int layerIdx = 0; layerIdx < currentLevel.variationsLevels.Count; ++layerIdx)
+		for (int layerIdx = 0; layerIdx < currentData.variationsLevels.Count; ++layerIdx)
 		{
-			for (int varIdx = 0; varIdx < currentLevel.variationsLevels[layerIdx].Count; ++varIdx)
+			for (int varIdx = 0; varIdx < currentData.variationsLevels[layerIdx].Count; ++varIdx)
 			{
 				++currentCount;
 			}
@@ -174,9 +177,9 @@ public class VariationsWindow : EditorWindow
 		}
 
 		currentCount = 0;
-		for (int layerIdx = 0; layerIdx < currentLevel.variationsLevels.Count; ++layerIdx)
+		for (int layerIdx = 0; layerIdx < currentData.variationsLevels.Count; ++layerIdx)
 		{
-			for (int varIdx = 0; varIdx < currentLevel.variationsLevels[layerIdx].Count; ++varIdx)
+			for (int varIdx = 0; varIdx < currentData.variationsLevels[layerIdx].Count; ++varIdx)
 			{
 				visualizers[currentCount].variationPosition = new Vector2(layerIdx, varIdx);
 				++currentCount;
@@ -255,6 +258,7 @@ public class VariationsWindow : EditorWindow
 			{
 				currentLevelObject = possibleLevels[newIndex - 1];
 				currentLevel = currentLevelObject.GetComponent<InfiniteLevel>();
+				currentData = currentLevel.variationsData;
 				DestroyVisualizers();
 				UpdateVisualizers();
 			}
@@ -262,6 +266,7 @@ public class VariationsWindow : EditorWindow
 			{
 				currentLevel = null;
 				currentLevelObject = null;
+				currentData = null;
 				UpdateVisualizers();
 			}
 		}
@@ -270,9 +275,10 @@ public class VariationsWindow : EditorWindow
 			GUI.EndScrollView();
 			return;
 		}
+		EditorGUI.BeginChangeCheck();
 		if (GUI.Button(MakeRect(200, 17, true), "Add Layer"))
 		{
-			currentLevel.variationsLevels.Add(new ListListString());
+			currentData.variationsLevels.Add(new ListListString());
 			EditorUtility.SetDirty(currentLevelObject);
 			GUI.EndScrollView();
 			return;
@@ -285,20 +291,20 @@ public class VariationsWindow : EditorWindow
 			return;
 		}
 		int count = 0;
-		for (int layerIdx = 0; layerIdx < currentLevel.variationsLevels.Count; ++layerIdx)
+		for (int layerIdx = 0; layerIdx < currentData.variationsLevels.Count; ++layerIdx)
 		{
 			width = 0;
 			if (GUI.Button(MakeRect(100, 20), "Delete Layer"))
 			{
-				currentLevel.variationsLevels.RemoveAt(layerIdx);
+				currentData.variationsLevels.RemoveAt(layerIdx);
 				GUI.EndScrollView();
 				return;
 			}
 			if (layerIdx != 0 && GUI.Button(MakeRect(100, 20), "Move up"))
 			{
-				var temp = currentLevel.variationsLevels[layerIdx];
-				currentLevel.variationsLevels[layerIdx] = currentLevel.variationsLevels[layerIdx - 1];
-				currentLevel.variationsLevels[layerIdx - 1] = temp;
+				var temp = currentData.variationsLevels[layerIdx];
+				currentData.variationsLevels[layerIdx] = currentData.variationsLevels[layerIdx - 1];
+				currentData.variationsLevels[layerIdx - 1] = temp;
 
 				var tempVis = visualizers[layerIdx];
 				visualizers[layerIdx] = visualizers[layerIdx - 1];
@@ -306,11 +312,11 @@ public class VariationsWindow : EditorWindow
 				GUI.EndScrollView();
 				return;
 			}
-			if (layerIdx != currentLevel.variationsLevels.Count - 1 && GUI.Button(MakeRect(100, 20), "Move down"))
+			if (layerIdx != currentData.variationsLevels.Count - 1 && GUI.Button(MakeRect(100, 20), "Move down"))
 			{
-				var temp = currentLevel.variationsLevels[layerIdx];
-				currentLevel.variationsLevels[layerIdx] = currentLevel.variationsLevels[layerIdx + 1];
-				currentLevel.variationsLevels[layerIdx + 1] = temp;
+				var temp = currentData.variationsLevels[layerIdx];
+				currentData.variationsLevels[layerIdx] = currentData.variationsLevels[layerIdx + 1];
+				currentData.variationsLevels[layerIdx + 1] = temp;
 
 				var tempVis = visualizers[layerIdx];
 				visualizers[layerIdx] = visualizers[layerIdx + 1];
@@ -318,17 +324,34 @@ public class VariationsWindow : EditorWindow
 				GUI.EndScrollView();
 				return;
 			}
+			currentData.AdaptLayerLevelsSize();
+			currentData.layerLevels[layerIdx].mode = (LAYER_LEVEL_MODE) EditorGUI.EnumPopup(MakeRect(150, 17), currentData.layerLevels[layerIdx].mode);
+			int potentialSecond = EditorGUI.IntField(MakeRect(150, 17), currentData.layerLevels[layerIdx].value);
+			if (currentData.layerLevels[layerIdx].value != potentialSecond)
+			{
+				if (layerIdx == 0 ||
+					currentData.layerLevels[layerIdx].mode == LAYER_LEVEL_MODE.RELATIVE ||
+					potentialSecond >= currentData.GetLevelForLayer(layerIdx - 1))
+				{
+					currentData.layerLevels[layerIdx].value = potentialSecond;
+                }
+            }
+			EditorGUI.LabelField(MakeRect(150, 17, true), currentData.GetLevelForLayer(layerIdx).ToString());
 
-			EditorGUI.LabelField(MakeRect(150, 17, true), count.ToString());
+			EditorGUI.LabelField(MakeRect(150, 17, true), "Layer " + layerIdx.ToString());
 			DrawLayer(layerIdx);
 			++count;
 		}
 		GUI.EndScrollView();
+		if (EditorGUI.EndChangeCheck())
+		{
+			EditorUtility.SetDirty(currentData);
+		}
 	}
 
 	private void DrawLayer(int layerIdx)
 	{
-		ListListString variations = currentLevel.variationsLevels[layerIdx];
+		ListListString variations = currentData.variationsLevels[layerIdx];
 
 		float variationWidth = 132;
 		float variationHeight = 260;
