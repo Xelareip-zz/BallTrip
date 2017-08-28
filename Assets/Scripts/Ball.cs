@@ -41,7 +41,7 @@ public class Ball : MonoBehaviour
 		currentHeartCountUI = currentHeartCount;
 		shieldActive = false;
 		lastLevelHit = -1;
-        hp = Player.Instance.GetHp();
+        hp = Player.Instance.GetEnergy();
 	}
 
 	void FixedUpdate()
@@ -64,7 +64,7 @@ public class Ball : MonoBehaviour
 			{
 				shieldActive = true;
 			}
-			hp = Player.Instance.GetHp();
+			hp = Player.Instance.GetEnergy();
 
 			InfiniteLevelsManager.Instance.SetNextHeartLevel();
 

@@ -9,12 +9,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc820e7d234d6294a98a02ec1e84a1bc, type: 3}
-  m_Name: VariationsLevelBossHeart
+  m_Name: VariationsLevelBossEnergy
   m_EditorClassIdentifier: 
   linkedPrefab: {fileID: 1327467120988234, guid: 8d8b087f6545d994daaf62390df77a4e,
     type: 2}
+  layerLevels:
+  - mode: 1
+    value: 1
   variationsLevels:
   - content:
-    - content: []
-  baseObstaclesCountLevel: 10
-  levelsToAllObstacles: 0
+    - content:
+      - 
+      - cebacc4c-f32e-46e9-83e4-6c69bdaa399e
+      - dc2ddf9d-6618-446f-9237-9994ac73efab

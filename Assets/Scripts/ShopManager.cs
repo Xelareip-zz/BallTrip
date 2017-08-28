@@ -134,7 +134,7 @@ public class ShopManager : MonoBehaviour
 		{
 			case BUYABLE.HEARTS:
 				return GetBouncePrice();
-			case BUYABLE.LAUNCH:
+			case BUYABLE.ENERGY:
 				return GetLaunchPrice();
 			case BUYABLE.VIEW:
 				return GetViewPrice();

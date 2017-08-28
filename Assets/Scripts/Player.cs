@@ -9,7 +9,8 @@ public enum BUYABLE
 	LAUNCH,
 	HEARTS,
 	VIEW,
-	PU_HEARTS
+	PU_HEARTS,
+	ENERGY
 };
 
 public class Player : MonoBehaviour
@@ -157,6 +158,11 @@ public class Player : MonoBehaviour
 	public int GetHearts()
 	{
 		return 1 + GetBuyableLevel(BUYABLE.HEARTS);
+	}
+
+	public int GetEnergy()
+	{
+		return 10 + GetBuyableLevel(BUYABLE.ENERGY) * 7;
 	}
 
 	public float GetPUHeartsChances()
@@ -318,6 +324,7 @@ public class Player : MonoBehaviour
 			case BUYABLE.HEARTS:
 			case BUYABLE.LAUNCH:
 			case BUYABLE.VIEW:
+			case BUYABLE.ENERGY:
 				return true;
 			case BUYABLE.PU_HEARTS:
 				return GetLevelBeaten(BOSS_TYPE.HEART);

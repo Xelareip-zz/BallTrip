@@ -23,32 +23,6 @@ MonoBehaviour:
   variationsLevels:
   - content:
     - content:
-      - f308a257-9137-4e3b-90f4-0b9bdfef1e8a
-      - 19544232-fbb7-4861-a393-be97db948e4c
-      - 3ae378bb-c10c-461a-b35c-e42ea918b933
-      - 080c41d0-feb6-40d3-80f9-21280dfcaf28
-      - ca8b305c-4880-4d36-bfd1-eac0089d4aa0
-      - 07b2afeb-0e87-4e39-9d00-f70032627e6b
-      - 0ed4d5ce-8c3d-4114-9d24-91b095a7f062
-      - 6ca74184-5d1d-4345-b8e0-8cbbc6d14989
-      - 949f0841-6e7e-4f75-b499-dad9ff771499
-    - content:
-      - a3c1ccb0-cf42-4731-993a-cbf53e28618a
-      - 991a23ac-725a-48c7-8e55-37ecaaf862f8
-    - content:
-      - 936f080f-f79b-43bf-baea-dae2e14d7583
-      - f5775bcb-3e92-46b5-9fcd-dea0901ce70a
-      - c9db4d54-d43d-48ff-a330-8c7fe78c75a6
-      - 757eabab-4f6c-4dc4-bf42-c9cf9df206be
-    - content:
-      - d36eb382-58d0-40cf-b6d8-b1897144a496
-      - 9977ce57-8ccc-4945-9d86-947a4ce98c6a
-      - 7c4e25d4-895f-43a8-ab7a-869bdef5f947
-      - 1f374ffd-eb00-496c-9eb6-3dc59e236d3f
-      - 81a016b8-6906-423a-ad03-9cdad45450e7
-      - 2b3e90e4-8016-48dd-8d46-bdaeadf7129a
-  - content:
-    - content:
       - 1453f97f-37c9-4e6e-a412-6c8f251968d3
       - 87e64867-644c-4d09-949b-2bd4ef0226cf
       - 46e26f39-b52d-4c09-b5cb-2af32ac55326
@@ -58,6 +32,17 @@ MonoBehaviour:
       - b37e0fe2-4355-4c52-b788-65e0f2d26cfe
       - 3ae378bb-c10c-461a-b35c-e42ea918b933
       - 080c41d0-feb6-40d3-80f9-21280dfcaf28
+  - content:
+    - content:
+      - f308a257-9137-4e3b-90f4-0b9bdfef1e8a
+      - 19544232-fbb7-4861-a393-be97db948e4c
+      - 3ae378bb-c10c-461a-b35c-e42ea918b933
+      - 080c41d0-feb6-40d3-80f9-21280dfcaf28
+      - ca8b305c-4880-4d36-bfd1-eac0089d4aa0
+      - 07b2afeb-0e87-4e39-9d00-f70032627e6b
+      - 0ed4d5ce-8c3d-4114-9d24-91b095a7f062
+      - 6ca74184-5d1d-4345-b8e0-8cbbc6d14989
+      - 949f0841-6e7e-4f75-b499-dad9ff771499
   - content:
     - content:
       - aa32b7e3-8774-49cc-b3f3-88c84b03a300
