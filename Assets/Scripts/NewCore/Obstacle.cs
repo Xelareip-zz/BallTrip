@@ -11,7 +11,7 @@ public class Obstacle : MonoBehaviour, IObstacle
 
 	public void SetGUID()
 	{
-		if (GetGUID() != null)
+		if (GetGUID() == null)
 		{
 			GUID = Guid.NewGuid().ToString();
 		}
