@@ -25,6 +25,7 @@ public class Obstacle : MonoBehaviour, IObstacle
 
 	public int hpCost;
 	public Vector4 offset;
+	public bool isTrigger;
 	public MeshRenderer meshRenderer;
 
 	void Awake()
@@ -39,8 +40,10 @@ public class Obstacle : MonoBehaviour, IObstacle
 	void Start()
 	{
 		meshRenderer = GetComponent<MeshRenderer>();
-		meshRenderer.material = Resources.Load<Material>("ObstacleTransMaterial");
-    }
+		isTrigger = GetComponent<Collider>().isTrigger;
+		meshRenderer.material = Resources.Load<Material>(isTrigger ? "ObstacleTransMaterial" : "ObstacleMaterial");
+
+	}
 
 	private void Signal_collisionEnter(CollisionSignal signal, Collision coll)
 	{

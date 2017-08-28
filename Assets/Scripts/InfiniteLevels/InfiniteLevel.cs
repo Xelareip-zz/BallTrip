@@ -76,7 +76,7 @@ public class InfiniteLevel : MonoBehaviour
 		}
 	}
 
-	public bool CanSpawn()
+	public virtual bool CanSpawn()
 	{
 		foreach (ICanSpawn canSpawner in GetComponentsInChildren<ICanSpawn>())
 		{
@@ -125,6 +125,7 @@ public class InfiniteLevel : MonoBehaviour
 		{
 			InfiniteLevelsManager.Instance.freeHeartLevelUI.SetActive(false);
 			Ball.Instance.HeartIncrease(1, true);
+			TutoManager.Instance.StartTuto("TutoFirstFreeHeart");
 		}
 		if (Ball.Instance.shieldActive)
 		{

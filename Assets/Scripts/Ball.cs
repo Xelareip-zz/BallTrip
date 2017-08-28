@@ -68,7 +68,14 @@ public class Ball : MonoBehaviour
 
 			InfiniteLevelsManager.Instance.SetNextHeartLevel();
 
-			InfiniteGameManager.Instance.SetLaunchMode(LAUNCH_MODE.LOOK);
+			if (TutoManager.Instance.StartTuto("TutoSecondSling"))
+			{
+				InfiniteGameManager.Instance.SetLaunchMode(LAUNCH_MODE.LAUNCH);
+			}
+			else
+			{
+				InfiniteGameManager.Instance.SetLaunchMode(LAUNCH_MODE.LOOK);
+			}
 		}
 		oldVelocity = ballRigidbody.velocity;
 
@@ -155,6 +162,7 @@ public class Ball : MonoBehaviour
 		{
 			return;
 		}
+		TutoManager.Instance.StartTuto("TutoFirstHit");
 		bool hadHp = hp > 0;
 		hp -= obstacle.HpLossOnTick();
 		shieldActive = false;

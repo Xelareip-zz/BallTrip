@@ -275,7 +275,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 
 	public void SetNextHeartLevel()
 	{
-		if (nextFreeHeartLevel < GetFirstLevelNumber())
+		if (nextFreeHeartLevel < GetFirstLevelNumber() + 1)
 		{
 			nextFreeHeartLevel = GetFirstLevelNumber() + InfiniteGameManager.Instance.GetFreeHeartDistance();
 			SetFreeHeartLevelPosition();

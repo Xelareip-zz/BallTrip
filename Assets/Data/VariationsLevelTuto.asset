@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc820e7d234d6294a98a02ec1e84a1bc, type: 3}
+  m_Name: VariationsLevelTuto
+  m_EditorClassIdentifier: 
+  linkedPrefab: {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243,
+    type: 2}
+  layerLevels:
+  - mode: 1
+    value: 0
+  - mode: 1
+    value: 1
+  - mode: 1
+    value: 1
+  - mode: 1
+    value: 1
+  - mode: 1
+    value: 1
+  - mode: 1
+    value: 1
+  - mode: 1
+    value: 1
+  variationsLevels:
+  - content:
+    - content:
+      - 5ee7d0d1-171b-4983-b3a6-268fad922a94
+      - 6ad0bdd0-e488-4556-9f30-d4b06818950e
+  - content:
+    - content:
+      - cec8d8bd-ae1e-4b65-8b28-9537a08544d6
+      - a80cc26b-10d3-43ce-aa74-b5d5799eef8e
+  - content:
+    - content:
+      - 7e287c9b-29ef-4787-ac23-b859ef6de064
+  - content:
+    - content:
+      - 5b4f882f-7162-4521-a932-ce0cac12332b
+  - content:
+    - content:
+      - 6ad0bdd0-e488-4556-9f30-d4b06818950e
+  - content:
+    - content:
+      - 7e287c9b-29ef-4787-ac23-b859ef6de064
+  - content:
+    - content:
+      - 56921364-42e1-4976-9091-eaecd07a4ff0

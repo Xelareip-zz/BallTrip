@@ -65,12 +65,7 @@ public class InfiniteGameManager : MonoBehaviour
 
 	void Start()
 	{
-		TutoManager.Instance.StartTuto("TutoFirstLaunch");
-		if (Player.Instance.GetTutoFinished("TutoFirstLaunch") && Player.Instance.GetShieldLevel() == 0)
-		{
-			TutoManager.Instance.StartTuto("TutoSecondLaunch");
-		}
-		if (Player.Instance.GetTutoFinished("TutoSecondLaunch"))
+		if (TutoManager.Instance.StartTuto("TutoFirstLaunch") == false)
 		{
 			TutoManager.Instance.StartTuto("TutoFirstDrag");
 		}

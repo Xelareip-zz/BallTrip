@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
 	public int _coins = 0;
 	public int _shieldLevel = 0;
 	public int _bestLevel = 0;
-	public int _hp = 100;
+	public int _hp = 10;
 
 	public Dictionary<BUYABLE, int> _buyableLevels = new Dictionary<BUYABLE, int>();
 
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
 		_coins = 15;
 		_shieldLevel = 0;
 		_bestLevel = 0;
-		_hp = 100;
+		_hp = 10;
 
 		_buyableLevels = new Dictionary<BUYABLE, int>();
 

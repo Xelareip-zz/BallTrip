@@ -24,6 +24,8 @@ public class ObstaclePoison : MonoBehaviour, IObstacle
 	#endregion
 
 	public float hpPerSecond;
+	public Vector4 offset;
+	public MeshRenderer meshRenderer;
 
 	void Awake()
 	{
@@ -32,6 +34,12 @@ public class ObstaclePoison : MonoBehaviour, IObstacle
 			trigger.collisionStay += Signal_collisionStay;
 		}
 		gameObject.SetActive(false);
+	}
+
+	void Start()
+	{
+		meshRenderer = GetComponent<MeshRenderer>();
+		meshRenderer.material = Resources.Load<Material>("ObstaclePoisonMaterial");
 	}
 
 	private void Signal_collisionStay(CollisionTrigger trigger, Collider coll)
@@ -50,5 +58,11 @@ public class ObstaclePoison : MonoBehaviour, IObstacle
 	public float HpLossOnTick()
 	{
 		return hpPerSecond * Time.fixedDeltaTime;
+	}
+	void Update()
+	{
+		offset = new Vector4(0.5f - (transform.position.x / transform.localScale.x) % 1, 0.5f - (transform.position.y / transform.localScale.y) % 1, 0.0f, 0.0f);
+		meshRenderer.material.SetFloat("repeatsX", Mathf.RoundToInt(transform.localScale.x));
+		meshRenderer.material.SetFloat("repeatsY", Mathf.RoundToInt(transform.localScale.y));
 	}
 }

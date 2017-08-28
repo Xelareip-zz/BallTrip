@@ -395,7 +395,7 @@ public class VariationsWindow : EditorWindow
 					return;
 				}
 				IGUIDIdentified[] guids = currentLevelObject.GetComponentsInChildren<IGUIDIdentified>(true);
-				SetScroll("selected", GUI.BeginScrollView(new Rect(currentOffset, 20, editionWidth, variationHeight), GetScroll("selected"), new Rect(0, 0, editionWidth - 17, guids.Length * 17)));
+				SetScroll("selected", GUI.BeginScrollView(new Rect(currentOffset, 20, editionWidth, variationHeight - 22), GetScroll("selected"), new Rect(0, 0, editionWidth - 17, guids.Length * 17)));
 				float guidHeight = 2;
 				for (int guidPos = 0; guidPos < guids.Length; ++guidPos)
 				{
