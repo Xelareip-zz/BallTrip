@@ -89,8 +89,8 @@ GameObject:
   - component: {fileID: 4583479470328836}
   - component: {fileID: 135352618760309044}
   - component: {fileID: 114285646952726810}
+  - component: {fileID: 114030033297127132}
   - component: {fileID: 114528365423326630}
-  - component: {fileID: 114347409554794282}
   m_Layer: 0
   m_Name: Heart
   m_TagString: Untagged
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 4717398054284982}
   - component: {fileID: 114852130933307074}
   m_Layer: 0
-  m_Name: LevelBossEnergy
+  m_Name: LevelBossHeart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1087,6 +1087,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114030033297127132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1199465218567514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 423159da1e701504793111ecbd25dbce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossType: 1
+  deadVersion: {fileID: 0}
+  endLevelDoor: {fileID: 1101333817877488}
+  hp: 2
+  level: {fileID: 114852130933307074}
+  hpText: {fileID: 114451388099568726}
+  shaker: {fileID: 114285646952726810}
 --- !u!114 &114094604169181180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1221,24 +1239,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: {fileID: 0}
   boundEnd: {fileID: 0}
---- !u!114 &114347409554794282
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1199465218567514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9468d175c1384a43bfbcca64dad56a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossType: 2
-  deadVersion: {fileID: 0}
-  endLevelDoor: {fileID: 1101333817877488}
-  hp: 2
-  level: {fileID: 114852130933307074}
-  hpText: {fileID: 114451388099568726}
-  shaker: {fileID: 114285646952726810}
 --- !u!114 &114380507535167212
 MonoBehaviour:
   m_ObjectHideFlags: 1

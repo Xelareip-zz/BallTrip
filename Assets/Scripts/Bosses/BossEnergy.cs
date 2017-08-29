@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BossHeart : BossBase
+public class BossEnergy : BossBase
 {
 	public int hp;
 
@@ -36,7 +36,7 @@ public class BossHeart : BossBase
 		if (coll.gameObject == Ball.Instance.gameObject)
 		{
 			shaker.stressLevel += 0.5f;
-			//FreeHeart(1);
+			Ball.Instance.hp += 15;
 			--hp;
 			hp = Mathf.Max(hp, 0);
 			if (hp == 0)

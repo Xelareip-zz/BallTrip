@@ -212,7 +212,7 @@ public class InfiniteGameManager : MonoBehaviour
 		}
 		float stepSize = maxWidth / 2.0f;
 
-		float targetX = maxWidth * Ball.Instance.hp / (float)Player.Instance.GetHp();
+		float targetX = maxWidth * Ball.Instance.hp / (float)Player.Instance.GetEnergy();
 
 		float newX;
 		if (targetX >= freeLaunchGaugeTransform.offsetMax.x)
@@ -275,6 +275,6 @@ public class InfiniteGameManager : MonoBehaviour
 
 	public int GetFreeHeartDistance()
 	{
-		return 5;
+		return 3;
 	}
 }

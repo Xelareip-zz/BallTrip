@@ -30,7 +30,7 @@ public class ManagementWindow : EditorWindow
 		GUI.skin = skin;
 	}
 
-	void OnGUI()
+    void OnGUI()
 	{
 		InitSkin();
 		GUILayout.BeginVertical();

@@ -15,6 +15,8 @@ public class ShopManager : MonoBehaviour
 		}
 	}
 
+	public ShopData data;
+
 	public Text coinsText;
 	public Text launchesText;
 	public Text viewText;
@@ -43,22 +45,22 @@ public class ShopManager : MonoBehaviour
 		ShopButton[] shopButtons = FindObjectsOfType<ShopButton>();
         foreach (var button in shopButtons)
 		{
-			if (button.CanBuy())
+			if (Player.Instance.BuyableUnlocked(button.buyable) && button.CanBuy())
 			{
 				SelectButton(button);
 			}
 		}
-		if (selectedButton == null)
-		{
-			SelectButton(shopButtons[0]);
-		}
+		//if (selectedButton == null)
+		//{
+		//	SelectButton(shopButtons[0]);
+		//}
 	}
 
 	void Update()
 	{
 		if (selectedButton != null)
 		{
-			priceText.text = GetBuyablePrice(selectedButton.buyable).ToString();
+			priceText.text = GetPrice(selectedButton.buyable).ToString();
         }
 		else
 		{
@@ -108,6 +110,16 @@ public class ShopManager : MonoBehaviour
 		return val.ToString();
 	}
 
+	public int GetPrice(BUYABLE buyable)
+	{
+		int buyableLevel = Player.Instance.GetBuyableLevel(buyable);
+		if (buyableLevel >= data.prices[buyable].Count - 1)
+		{
+			return int.MaxValue;
+		}
+		return data.prices[buyable][buyableLevel + 1];
+    }
+
 	public int GetBouncePrice()
 	{
 		int nextBounceCapacity = Player.Instance.GetBuyableLevel(BUYABLE.HEARTS) + 1;
@@ -127,7 +139,7 @@ public class ShopManager : MonoBehaviour
 		}
 		return pricesView[nextViewCapacity];
 	}
-
+	/*
 	public int GetBuyablePrice(BUYABLE buyable)
 	{
 		switch(buyable)
@@ -141,7 +153,7 @@ public class ShopManager : MonoBehaviour
 		}
 		return int.MaxValue;
 	}
-
+	*/
 	public void BuySelected()
 	{
 		if (selectedButton != null)

@@ -75,7 +75,7 @@ public class ShopButton : MonoBehaviour, IPointerDownHandler
 
 	public bool CanBuy()
 	{
-		int price = ShopManager.Instance.GetBuyablePrice(buyable);
+		int price = ShopManager.Instance.GetPrice(buyable);
 		return Player.Instance.CanBuy(price);
     }
 
@@ -83,7 +83,7 @@ public class ShopButton : MonoBehaviour, IPointerDownHandler
 	{
 		if (CanBuy())
 		{
-            Player.Instance.AddCoins(-ShopManager.Instance.GetBuyablePrice(buyable));
+            Player.Instance.AddCoins(-ShopManager.Instance.GetPrice(buyable));
 			Player.Instance.SetBuyableLevel(buyable, Player.Instance.GetBuyableLevel(buyable) + 1);
 			return true;
 		}

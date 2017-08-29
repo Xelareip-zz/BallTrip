@@ -165,7 +165,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 30
+  orthographic size: 40
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2412,6 +2412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possiblePickups:
+  - {fileID: 114835791364611054, guid: 63f856b56cf55fb4dab2023cf2027c48, type: 2}
   - {fileID: 114370303137908742, guid: a0a0e5c396e8c974a8dfbcf447c6e72e, type: 2}
   - {fileID: 114830049137292030, guid: 6440a74ac1393e64282bb223999021ce, type: 2}
 --- !u!4 &766120370
@@ -2488,7 +2489,7 @@ MonoBehaviour:
   levelsObj: []
   walls: []
   specialLevels:
-    _keys: 020000000100000003000000040000000500000006000000070000000f000000
+    _keys: 020000000100000003000000040000000500000006000000070000000f00000028000000
     _values:
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
@@ -2498,6 +2499,7 @@ MonoBehaviour:
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
     - {fileID: 1327467120988234, guid: 8d8b087f6545d994daaf62390df77a4e, type: 2}
+    - {fileID: 1327467120988234, guid: fb23ee09527c5cc43a58bad976788859, type: 2}
   levelsRoot: {fileID: 1534835381}
   depth: 3
   currentLevel: 0

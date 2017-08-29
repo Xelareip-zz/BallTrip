@@ -167,13 +167,13 @@ public class InfiniteLevelsManager : MonoBehaviour
 		newLevel.transform.position = newPos;
 		boundEnd.boundStart = newLevel.GetComponentInChildren<InfiniteLevelStart>();
 		boundEnd.boundStart.boundEnd = boundEnd;
-		if (nextFreeHeartLevel == currentLevel)
-		{
-			SetFreeHeartLevelPosition();
-		}
 		if (scaleMod != 1)
 		{
 			newLevel.transform.localScale = new Vector3(scaleMod * newLevel.transform.localScale.x, newLevel.transform.localScale.y, newLevel.transform.localScale.z);
+		}
+		if (nextFreeHeartLevel == currentLevel)
+		{
+			SetFreeHeartLevelPosition();
 		}
 	}
 
