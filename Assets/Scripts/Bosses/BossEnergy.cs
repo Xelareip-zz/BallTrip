@@ -36,7 +36,7 @@ public class BossEnergy : BossBase
 		if (coll.gameObject == Ball.Instance.gameObject)
 		{
 			shaker.stressLevel += 0.5f;
-			Ball.Instance.hp += 15;
+			Ball.Instance.AddHP(15);
 			--hp;
 			hp = Mathf.Max(hp, 0);
 			if (hp == 0)

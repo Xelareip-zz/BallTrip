@@ -44,7 +44,7 @@ public class ShopButton : MonoBehaviour, IPointerDownHandler
 		{
 			ticks[tickIdx].sprite = level <= tickIdx ? untickedSprite : tickedSprite;
 		}
-		notifUI.SetActive(CanBuy());
+		notifUI.SetActive(Player.Instance.BuyableUnlocked(buyable) && CanBuy());
 	}
 	public void OnPointerDown(PointerEventData eventData)
 	{

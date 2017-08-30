@@ -144,6 +144,8 @@ public class InfiniteGameManager : MonoBehaviour
 		gameIsOver = true;
 		launchMode = LAUNCH_MODE.LOOK;
 		lookModeUI.SetActive(false);
+		endLevelScreen.gameObject.SetActive(true);
+		/*
 		if (Player.Instance.GetTutoFinished("TutoSecondLaunch") == false)
 		{
 			endLevelScreen.GoToShop();
@@ -151,7 +153,7 @@ public class InfiniteGameManager : MonoBehaviour
 		else
 		{
 			endLevelScreen.gameObject.SetActive(true);
-		}
+		}*/
 	}
 
 	public void GoToMainMenu()
@@ -189,17 +191,17 @@ public class InfiniteGameManager : MonoBehaviour
 
 	private void SetCoinsText()
 	{
-		coinsText.text = "" + currentCoins;
+		coinsText.text = currentCoins.ToString();
 	}
 
 	private void SetBouncesText()
 	{
-		heartsText.text = "" + Mathf.Max(Ball.Instance.currentHeartCountUI, 0);
+		heartsText.text = Mathf.Max(Ball.Instance.currentHeartCountUI, 0).ToString();
 	}
 
 	private void SetLaunchesText()
 	{
-		launchesText.text = "" + launchesLeft;
+		launchesText.text = Mathf.RoundToInt(Ball.Instance.GetHp()).ToString();
 	}
 
 	private void SetHpGauge(float percentage = -1.0f)
@@ -212,7 +214,7 @@ public class InfiniteGameManager : MonoBehaviour
 		}
 		float stepSize = maxWidth / 2.0f;
 
-		float targetX = maxWidth * Ball.Instance.hp / (float)Player.Instance.GetEnergy();
+		float targetX = maxWidth * Ball.Instance.GetHp() / (float)Player.Instance.GetEnergy();
 
 		float newX;
 		if (targetX >= freeLaunchGaugeTransform.offsetMax.x)
@@ -273,8 +275,8 @@ public class InfiniteGameManager : MonoBehaviour
 		++freeLaunchGaugeValue;
 	}
 
-	public int GetFreeHeartDistance()
+	public int GetFreeHeartDistance(int currentLevel)
 	{
-		return 3;
+		return Mathf.FloorToInt(currentLevel / 20.0f) + 2;
 	}
 }

@@ -29,10 +29,13 @@ public class Ball : MonoBehaviour
 
 	public Vector3 oldVelocity;
 
-	public float hp;
+	[SerializeField]
+	private float hp;
 
 	public int lastLevelHit;
 	public int lastLevelHitCount;
+
+	public bool invincible;
 
 	void Awake()
 	{
@@ -41,11 +44,16 @@ public class Ball : MonoBehaviour
 		currentHeartCountUI = currentHeartCount;
 		shieldActive = false;
 		lastLevelHit = -1;
+		invincible = false;
         hp = Player.Instance.GetEnergy();
 	}
 
 	void FixedUpdate()
 	{
+		if (invincible)
+		{
+			return;
+		}
 		if (hp <= 0 && shieldActive == false)
 		{
 			ballRigidbody.velocity = ballRigidbody.velocity.normalized * Mathf.Max(0.0f, ballRigidbody.velocity.magnitude - slowSpeed * Time.fixedDeltaTime);
@@ -158,13 +166,13 @@ public class Ball : MonoBehaviour
 
 	public void Hit(IObstacle obstacle)
 	{
-		if (InfiniteGameManager.Instance.GetMode() != LAUNCH_MODE.FOLLOW)
+		if (InfiniteGameManager.Instance.GetMode() != LAUNCH_MODE.FOLLOW || invincible)
 		{
 			return;
 		}
 		TutoManager.Instance.StartTuto("TutoFirstHit");
 		bool hadHp = hp > 0;
-		hp -= obstacle.HpLossOnTick();
+		AddHP(-Mathf.Max(obstacle.HpLossOnTick(), 0));
 		shieldActive = false;
 
 		if (hadHp && hp <= 0)
@@ -172,6 +180,16 @@ public class Ball : MonoBehaviour
 			--currentHeartCount;
 			--currentHeartCountUI;
 		}
+	}
+
+	public void AddHP(float value)
+	{
+		hp = Mathf.Clamp(hp + value, 0, Player.Instance.GetEnergy());
+	}
+
+	public float GetHp()
+	{
+		return hp;
 	}
 
 	private void HeartIncreaseApply()

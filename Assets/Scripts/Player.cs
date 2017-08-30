@@ -11,6 +11,7 @@ public enum BUYABLE
 	VIEW,
 	PU_HEARTS,
 	PU_ENERGY,
+	PU_ROCKET,
 	ENERGY
 };
 
@@ -174,6 +175,11 @@ public class Player : MonoBehaviour
 	public float GetPUEnergyChances()
 	{
 		return GetBuyableLevel(BUYABLE.PU_ENERGY) * 7.0f;
+	}
+
+	public float GetPURocketChances()
+	{
+		return GetBuyableLevel(BUYABLE.PU_ROCKET) * 7.0f;
 	}
 
 	public int GetShieldLevel()

@@ -121,7 +121,7 @@ public class InfiniteLevel : MonoBehaviour
 
 	public void GoalPassed(InfiniteLevelGoal goal)
 	{
-		if (levelNumber == InfiniteLevelsManager.Instance.nextFreeHeartLevel)
+		if (levelNumber == InfiniteLevelsManager.Instance.nextFreeHeartLevel - 1)
 		{
 			InfiniteLevelsManager.Instance.freeHeartLevelUI.SetActive(false);
 			Ball.Instance.HeartIncrease(1, true);

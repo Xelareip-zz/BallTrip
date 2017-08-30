@@ -11,13 +11,13 @@ public class PickupEnergy : PickupBase
 	{
 		if (coll.gameObject == Ball.Instance.gameObject)
 		{
-			Ball.Instance.hp += value;
+			Ball.Instance.AddHP(value);
 			Destroy(gameObject);
 		}
 	}
 
 	public override float GetDropWeight()
 	{
-		return Player.Instance.GetPUHeartsChances();
+		return Player.Instance.GetPUEnergyChances();
 	}
 }

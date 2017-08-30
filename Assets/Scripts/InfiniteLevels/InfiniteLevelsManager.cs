@@ -43,7 +43,8 @@ public class InfiniteLevelsManager : MonoBehaviour
 		newLevel.transform.position = Vector3.zero;
 		newLevel.GetComponent<InfiniteLevel>().CloseLevel();
 		currentLevel = 0;
-		nextFreeHeartLevel = InfiniteGameManager.Instance.GetFreeHeartDistance();
+		nextFreeHeartLevel = InfiniteGameManager.Instance.GetFreeHeartDistance(GetFirstLevelNumber());
+		SetNextHeartLevel();
 		FillToDepth();
 	}
 
@@ -231,7 +232,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 
 	public void FillToDepth()
 	{
-		while (DepthFilled() < Player.Instance.GetViewRange())
+		while (DepthFilled() < Mathf.Max(Player.Instance.GetViewRange(), InfiniteGameManager.Instance.GetFreeHeartDistance(GetFirstLevelNumber())))
 		{
 			SpawnLevel();
 		}
@@ -258,7 +259,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 
 	public int GetFirstLevelNumber()
 	{
-		return currentLevel - levels.Count;
+		return currentLevel - levels.Count + 1;
 	}
 
 	public InfiniteLevel GetLevel(int levelNumber)
@@ -277,7 +278,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 	{
 		if (nextFreeHeartLevel < GetFirstLevelNumber() + 1)
 		{
-			nextFreeHeartLevel = GetFirstLevelNumber() + InfiniteGameManager.Instance.GetFreeHeartDistance();
+			nextFreeHeartLevel = GetFirstLevelNumber() + InfiniteGameManager.Instance.GetFreeHeartDistance(GetFirstLevelNumber());
 			SetFreeHeartLevelPosition();
 		}
 	}
@@ -287,7 +288,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 		InfiniteLevel levelCandidate = GetLevel(nextFreeHeartLevel);
 		if (levelCandidate)
 		{
-			freeHeartLevelUI.transform.position = new Vector3(levelCandidate.ends[0].transform.position.x, levelCandidate.ends[0].transform.position.y, freeHeartLevelUI.transform.position.z);
+			freeHeartLevelUI.transform.position = new Vector3(levelCandidate.start.transform.position.x, levelCandidate.start.transform.position.y, freeHeartLevelUI.transform.position.z);
 			freeHeartLevelUI.SetActive(true);
 		}
     }

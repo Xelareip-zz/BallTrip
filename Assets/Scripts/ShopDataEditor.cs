@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -18,6 +19,11 @@ public class ShopDataEditor : Editor
 	{
 		data = (ShopData)target;
 		EditorApplication.update += Update;
+	}
+
+	void OnDisable()
+	{
+		EditorApplication.update -= Update;
 	}
 
 	void Update()
@@ -102,3 +108,4 @@ public class ShopDataEditor : Editor
 		}
 	}
 }
+#endif
