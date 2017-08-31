@@ -292,4 +292,30 @@ public class InfiniteLevelsManager : MonoBehaviour
 			freeHeartLevelUI.SetActive(true);
 		}
     }
+
+	public Bounds GetGlobalBounds()
+	{
+		float xMin = float.MaxValue;
+		float xMax = float.MinValue;
+		float yMin = float.MaxValue;
+		float yMax = float.MinValue;
+		for (int levelIdx = 0; levelIdx < levels.Count; ++levelIdx)
+		{
+			Bounds currentBounds = levels[levelIdx].GetCurrentBounds();
+			xMin = Mathf.Min(xMin, currentBounds.min.x);
+			xMax = Mathf.Max(xMax, currentBounds.max.x);
+            yMin = Mathf.Min(yMin, currentBounds.min.y);
+			yMax = Mathf.Max(yMax, currentBounds.max.y);
+		}
+
+		return new Bounds(new Vector3((xMin + xMax) / 2.0f, (yMin + yMax) / 2.0f), new Vector3((xMax - xMin), (yMax - yMin)));
+	}
+
+
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.red;
+		Bounds globalBounds = GetGlobalBounds();
+		Gizmos.DrawWireCube(globalBounds.center, globalBounds.size);
+	}
 }

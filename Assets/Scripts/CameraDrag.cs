@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class CameraDrag : MonoBehaviour
 {
+	public Vector2 margins = new Vector2(3, 2);
+
 	public int touchId = -1;
 	public Vector3 dragOrigin;
 	public Vector3 currentDrag;
+
+	public float pinchPreviousDist;
 
 	public Vector3 nullVect = new Vector3(-10000, -10000);
 
@@ -25,6 +29,32 @@ public class CameraDrag : MonoBehaviour
             dragOrigin = nullVect;
             return;
 		}
+	
+		if (Input.touchCount > 1)
+		{
+			touchId = -1;
+			dragOrigin = nullVect;
+        }
+
+		if (Input.GetAxis("Mouse ScrollWheel") != 0)
+		{
+			Camera.main.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * 5;
+		}
+        if (Input.touchCount == 2)
+		{
+			float pinchDist = (Input.GetTouch(0).position - Input.GetTouch(1).position).magnitude;
+            if (pinchPreviousDist > 0)
+			{
+				Camera.main.orthographicSize -= (pinchDist - pinchPreviousDist) * 0.5f;
+			}
+			pinchPreviousDist = pinchDist;
+		}
+		else
+		{
+			pinchPreviousDist = -1;
+		}
+
+		KeepCameraInBounds();
 
 		Vector3 position = nullVect;
 		if (touchId == -1)
@@ -42,6 +72,11 @@ public class CameraDrag : MonoBehaviour
 			{
 				touchId = 0;
 				position = Input.mousePosition;
+			}
+			else if (Input.GetMouseButtonUp(0))
+			{
+				touchId = 0;
+				position = nullVect;
 			}
 
 			dragOrigin = position;
@@ -77,21 +112,38 @@ public class CameraDrag : MonoBehaviour
 		Vector3 newPos = transform.position + drag;
 		dragOrigin = currentDrag;
 
-		Vector3[] possiblePos = new Vector3[] { newPos, new Vector3(newPos.x, transform.position.y, newPos.z), new Vector3(transform.position.x, newPos.y, newPos.z) };
-		
-        for (int idx = 0; idx < possiblePos.Length; ++idx)
-		{
-			for (int levelIdx = 0; levelIdx < InfiniteLevelsManager.Instance.levels.Count; ++levelIdx)
-			{
-				Vector3 targetPoint = new Vector3(possiblePos[idx].x, possiblePos[idx].y, InfiniteLevelsManager.Instance.levels[levelIdx].transform.position.z);
-				Bounds currentBounds = InfiniteLevelsManager.Instance.levels[levelIdx].GetCurrentBounds();
-				if (currentBounds.Contains(targetPoint))
-				{
-					transform.position = possiblePos[idx];
-					return;
-				}
-				continue;
-			}
-		}
+		transform.position = newPos;
+		KeepCameraInBounds();
+	}
+
+	void KeepCameraInBounds()
+	{
+
+		Bounds globalBounds = InfiniteLevelsManager.Instance.GetGlobalBounds();
+		Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, 40, globalBounds.extents.y + margins.y);
+
+		globalBounds.Expand(new Vector3(2.0f * (margins.x - Camera.main.orthographicSize * Camera.main.aspect),
+										2.0f * (margins.y - Camera.main.orthographicSize)));
+		globalBounds.extents = new Vector3(Mathf.Max(0, globalBounds.extents.x), Mathf.Max(0, globalBounds.extents.y));
+		Vector3 camPos = globalBounds.ClosestPoint(transform.position);
+		camPos.z = transform.position.z;
+
+
+		transform.position += (camPos - transform.position) * Time.deltaTime * 0.8f;
+        //transform.position = new Vector3(camPos.x, camPos.y, transform.position.z);
+
+
+
+    }
+
+	float GetMaxCameraHeight()
+	{
+		Bounds firstLevelBounds = InfiniteLevelsManager.Instance.GetLevel(InfiniteLevelsManager.Instance.GetFirstLevelNumber()).GetCurrentBounds();
+		Bounds lastLevelBounds = InfiniteLevelsManager.Instance.GetLevel(InfiniteLevelsManager.Instance.currentLevel).GetCurrentBounds();
+
+		float yMin = firstLevelBounds.center.y - firstLevelBounds.extents.y;
+		float yMax = lastLevelBounds.center.y + lastLevelBounds.extents.y;
+
+		return yMax - yMin;
 	}
 }
