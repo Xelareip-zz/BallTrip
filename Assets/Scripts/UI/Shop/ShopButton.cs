@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class ShopButton : MonoBehaviour, IPointerDownHandler
 {
 	public BUYABLE buyable;
+	public string description;
+
 	public string levelMethodSet;
 	public string levelMethodGet;
 	public int startLevel;
@@ -46,6 +48,7 @@ public class ShopButton : MonoBehaviour, IPointerDownHandler
 		}
 		notifUI.SetActive(Player.Instance.BuyableUnlocked(buyable) && CanBuy());
 	}
+
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		if (Player.Instance.BuyableUnlocked(buyable) == false)

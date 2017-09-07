@@ -63,6 +63,7 @@ public class Obstacle : MonoBehaviour, IObstacle
 		if (coll.gameObject == Ball.Instance.gameObject)
 		{
 			Ball.Instance.Hit(this);
+			Destroy(gameObject);
 		}
 	}
 

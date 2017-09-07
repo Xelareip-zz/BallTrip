@@ -2459,9 +2459,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 800728f5721d1dd4eb7df3e0fca1fa0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  margins: {x: 3, y: 2}
   touchId: -1
   dragOrigin: {x: 0, y: 0, z: 0}
   currentDrag: {x: 0, y: 0, z: 0}
+  pinchPreviousDist: 0
   nullVect: {x: -10000, y: -10000, z: 0}
   ballTransform: {fileID: 1708688303}
 --- !u!114 &766120373
@@ -2490,7 +2492,7 @@ MonoBehaviour:
   levelsObj: []
   walls: []
   specialLevels:
-    _keys: 020000000100000003000000040000000500000006000000070000000f00000028000000
+    _keys: 020000000100000003000000040000000500000006000000070000000f000000280000004b000000
     _values:
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
@@ -2501,6 +2503,7 @@ MonoBehaviour:
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
     - {fileID: 1327467120988234, guid: 8d8b087f6545d994daaf62390df77a4e, type: 2}
     - {fileID: 1327467120988234, guid: fb23ee09527c5cc43a58bad976788859, type: 2}
+    - {fileID: 1327467120988234, guid: ea15c97d73fc5c34d863917e9acba88c, type: 2}
   levelsRoot: {fileID: 1534835381}
   depth: 3
   currentLevel: 0
@@ -5609,7 +5612,7 @@ MonoBehaviour:
   currentHeartCount: 0
   currentHeartCountUI: 0
   endDrag: 0.58
-  launchSpeed: 20
+  launchSpeed: 30
   slowSpeed: 15
   launchDirection: {x: 0, y: 0, z: 0}
   oldVelocity: {x: 0, y: 0, z: 0}

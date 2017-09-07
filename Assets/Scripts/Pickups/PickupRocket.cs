@@ -35,6 +35,14 @@ public class PickupRocket : PickupBase
 			ballCollider = Ball.Instance.GetComponent<Collider>();
 			ballCollider.isTrigger = true;
 			triggered = true;
+			foreach (var rend in GetComponentsInChildren<Renderer>())
+			{
+				rend.enabled = false;
+			}
+			foreach (var canvas in GetComponentsInChildren<Canvas>())
+			{
+				canvas.gameObject.SetActive(false);
+			}
 		}
 	}
 	
@@ -57,8 +65,6 @@ public class PickupRocket : PickupBase
 			return;
 		}
 		Vector3 newVelocity = InfiniteLevelsManager.Instance.GetLevel(InfiniteLevelsManager.Instance.GetFirstLevelNumber() + 1).start.transform.position + Vector3.up - Ball.Instance.transform.position;
-		Debug.Log("First level " + InfiniteLevelsManager.Instance.GetFirstLevelNumber());
-		Debug.Log(newVelocity.ToString());
 		newVelocity = newVelocity.normalized * Ball.Instance.launchSpeed * 1.5f;
 		ballRigidbody.velocity = newVelocity;
 	}

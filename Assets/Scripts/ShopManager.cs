@@ -23,6 +23,8 @@ public class ShopManager : MonoBehaviour
 	public Text bouncesText;
 	public Text priceText;
 
+	public Text descriptionText;
+
 	public Text launchesPriceText;
 	public Text viewPriceText;
 	public Text bouncesPriceText;
@@ -50,10 +52,10 @@ public class ShopManager : MonoBehaviour
 				SelectButton(button);
 			}
 		}
-		//if (selectedButton == null)
-		//{
-		//	SelectButton(shopButtons[0]);
-		//}
+		if (selectedButton == null)
+		{
+			SelectButton(null);
+		}
 	}
 
 	void Update()
@@ -87,6 +89,11 @@ public class ShopManager : MonoBehaviour
 		if (button != null)
 		{
 			button.Select();
+			descriptionText.text = button.description;
+		}
+		else
+		{
+			descriptionText.text = "";
 		}
 		selectedButton = button;
 	}

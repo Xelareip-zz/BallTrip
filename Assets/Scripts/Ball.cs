@@ -138,7 +138,7 @@ public class Ball : MonoBehaviour
 		heartUi.SetActive(true);
 	}
 
-	void OnDrawGizmos()
+	void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.yellow;
 		Gizmos.DrawLine(transform.position, transform.position + launchDirection * launchSpeed);

@@ -342,6 +342,8 @@ public class Player : MonoBehaviour
 				return GetLevelBeaten(BOSS_TYPE.HEART);
 			case BUYABLE.PU_ENERGY:
 				return GetLevelBeaten(BOSS_TYPE.ENERGY);
+            case BUYABLE.PU_ROCKET:
+				return GetLevelBeaten(BOSS_TYPE.ROCKET);
 		}
 		return false;
 	}
