@@ -48,7 +48,7 @@ public class PickupRocket : PickupBase
 	
 	public override float GetDropWeight()
 	{
-		return (1.0f - InfiniteLevelsManager.Instance.currentLevel / Player.Instance.GetBestLevel()) * Player.Instance.GetPURocketChances();
+		return (1.0f - InfiniteLevelsManager.Instance.currentLevel / Mathf.Max(Player.Instance.GetBestLevel(), 1)) * Player.Instance.GetPURocketChances();
 	}
 
 	void Update()
