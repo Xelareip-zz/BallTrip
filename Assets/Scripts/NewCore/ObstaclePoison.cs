@@ -29,7 +29,7 @@ public class ObstaclePoison : MonoBehaviour, IObstacle
 
 	void Awake()
 	{
-		foreach (CollisionTrigger trigger in GetComponentsInChildren<CollisionTrigger>())
+		foreach (TriggerSignal trigger in GetComponentsInChildren<TriggerSignal>())
 		{
 			trigger.collisionStay += Signal_collisionStay;
 		}
@@ -42,7 +42,7 @@ public class ObstaclePoison : MonoBehaviour, IObstacle
 		meshRenderer.material = Resources.Load<Material>("ObstaclePoisonMaterial");
 	}
 
-	private void Signal_collisionStay(CollisionTrigger trigger, Collider coll)
+	private void Signal_collisionStay(TriggerSignal trigger, Collider coll)
 	{
 		OnTriggerStay(coll);
 	}

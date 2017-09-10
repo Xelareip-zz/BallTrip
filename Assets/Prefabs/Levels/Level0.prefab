@@ -2758,6 +2758,7 @@ MonoBehaviour:
   GUID: 33ade801-0185-4f0f-aae4-0468e7062bf6
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114059881826459648
@@ -2847,6 +2848,7 @@ MonoBehaviour:
   GUID: 6fa2de28-38d7-4d53-90c4-44fde1fe54fc
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114198333099324264
@@ -2863,6 +2865,7 @@ MonoBehaviour:
   GUID: 19544232-fbb7-4861-a393-be97db948e4c
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114206125468426654
@@ -2879,6 +2882,7 @@ MonoBehaviour:
   GUID: 404151ea-05fd-4a98-a24a-6908ad8b92bb
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114216553090552680
@@ -2895,6 +2899,7 @@ MonoBehaviour:
   GUID: 46e26f39-b52d-4c09-b5cb-2af32ac55326
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114253252508071094
@@ -2911,6 +2916,7 @@ MonoBehaviour:
   GUID: 07b2afeb-0e87-4e39-9d00-f70032627e6b
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114297784766182214
@@ -2927,6 +2933,7 @@ MonoBehaviour:
   GUID: 582be946-d752-4eea-b2e5-9169e77f3cdc
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114301803069247384
@@ -2943,6 +2950,7 @@ MonoBehaviour:
   GUID: 3705d2c5-2352-428e-a564-73ab16654e36
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114302786997998706
@@ -2987,6 +2995,7 @@ MonoBehaviour:
   GUID: 0ed4d5ce-8c3d-4114-9d24-91b095a7f062
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114492563947835484
@@ -3003,6 +3012,7 @@ MonoBehaviour:
   GUID: b0d64645-47fb-4dff-842d-c673decbe83e
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114508234932895860
@@ -3019,6 +3029,7 @@ MonoBehaviour:
   GUID: f308a257-9137-4e3b-90f4-0b9bdfef1e8a
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114512743116578258
@@ -3035,6 +3046,7 @@ MonoBehaviour:
   GUID: 1e1f7ae3-6903-479e-a646-158b1474554b
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114514355179836320
@@ -3051,6 +3063,7 @@ MonoBehaviour:
   GUID: 3ae378bb-c10c-461a-b35c-e42ea918b933
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114518389831009938
@@ -3067,6 +3080,7 @@ MonoBehaviour:
   GUID: cf2e76ec-6c6f-4a82-8c4f-0c3bef648aa5
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114530751489680260
@@ -3098,6 +3112,7 @@ MonoBehaviour:
   GUID: ca8b305c-4880-4d36-bfd1-eac0089d4aa0
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114564919542516030
@@ -3114,6 +3129,7 @@ MonoBehaviour:
   GUID: 2dab1fc8-a6f9-4c57-b300-5c767f4f6ed4
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114659986713201704
@@ -3145,6 +3161,7 @@ MonoBehaviour:
   GUID: 983fad6a-34d4-4973-a469-8ce2a8ba54ce
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114735417709140418
@@ -3161,6 +3178,7 @@ MonoBehaviour:
   GUID: f266563e-fdc0-436c-9527-730785ca0fca
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114852130933307074
@@ -3254,6 +3272,7 @@ MonoBehaviour:
   GUID: 080c41d0-feb6-40d3-80f9-21280dfcaf28
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114910494475877674
@@ -3281,6 +3300,7 @@ MonoBehaviour:
   GUID: 9c0a2a70-d1d6-4fa9-8bcd-88d81b6a91b3
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 1
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114938407880622456

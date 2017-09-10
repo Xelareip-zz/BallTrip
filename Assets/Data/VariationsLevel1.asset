@@ -13,4 +13,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkedPrefab: {fileID: 1327467120988234, guid: 596c0da93486d50429a0d3707e13a968,
     type: 2}
-  variationsLevels: []
+  layerLevels:
+  - mode: 1
+    value: 50
+  - mode: 1
+    value: 35
+  - mode: 1
+    value: 35
+  variationsLevels:
+  - content:
+    - content:
+      - cec5edde-5b30-4264-82a1-12e869dfa5ef
+    - content:
+      - 33be4665-2a9a-4237-91ac-c172518cdaae
+  - content:
+    - content:
+      - 918bb20a-c700-4dd7-92be-591ef187947d
+      - 33be4665-2a9a-4237-91ac-c172518cdaae
+    - content:
+      - 33be4665-2a9a-4237-91ac-c172518cdaae
+      - 918bb20a-c700-4dd7-92be-591ef187947d
+  - content:
+    - content:
+      - 918bb20a-c700-4dd7-92be-591ef187947d
+      - 33be4665-2a9a-4237-91ac-c172518cdaae
+      - d1e7eb06-abd5-4ebf-9a90-38a9ad779b0e
+    - content:
+      - 33be4665-2a9a-4237-91ac-c172518cdaae
+      - d1e7eb06-abd5-4ebf-9a90-38a9ad779b0e
+      - cec5edde-5b30-4264-82a1-12e869dfa5ef

@@ -106,8 +106,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 1
-  value: 3
+  value: 8
   endLevel: 0
+  triggered: 0
   ballVelocity: {x: 0, y: 0, z: 0}
   ballCollider: {fileID: 0}
   ballRigidbody: {fileID: 0}

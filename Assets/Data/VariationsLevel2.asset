@@ -16,7 +16,23 @@ MonoBehaviour:
   layerLevels:
   - mode: 1
     value: 5
+  - mode: 1
+    value: 20
+  - mode: 1
+    value: 20
   variationsLevels:
+  - content:
+    - content:
+      - bcd58490-1a09-4ee6-886c-2af2ce54fc17
+    - content:
+      - c7995061-8edd-45cf-8467-34bf59c2fb8f
+  - content:
+    - content:
+      - ff9f0651-d811-4755-b875-66322dd68b4e
+      - c7995061-8edd-45cf-8467-34bf59c2fb8f
+    - content:
+      - bcd58490-1a09-4ee6-886c-2af2ce54fc17
+      - 553d6521-30ed-4479-90ab-c9065e4192f0
   - content:
     - content:
       - bcd58490-1a09-4ee6-886c-2af2ce54fc17

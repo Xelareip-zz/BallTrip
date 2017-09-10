@@ -20,6 +20,12 @@ public class EndLevelScreenScript : MonoBehaviour
 
 	void OnEnable ()
 	{
+		AnalyticsSender.Instance.Send("end_screen", new Dictionary<string, object>()
+		{
+			{ "level_reached",  InfiniteLevelsManager.Instance.currentLevel - InfiniteLevelsManager.Instance.levels.Count},
+			{ "initial_best", InfiniteLevelsManager.Instance.initialBestLevel},
+			{ "coins", InfiniteGameManager.Instance.currentCoins}
+		});
 		levelText.text = (InfiniteLevelsManager.Instance.currentLevel - InfiniteLevelsManager.Instance.levels.Count).ToString();
 		bestLevelText.text = Player.Instance.GetBestLevel().ToString();
 		coinsText.text = InfiniteGameManager.Instance.currentCoins.ToString();

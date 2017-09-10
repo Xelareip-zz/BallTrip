@@ -4,7 +4,7 @@ using System;
 
 public class InfiniteLevelGoal : MonoBehaviour
 {
-	public List<CollisionTrigger> collisionTriggers;
+	public List<TriggerSignal> collisionTriggers;
 	public Action<InfiniteLevelGoal> goalHit;
 
 	public InfiniteLevel level;
@@ -12,7 +12,7 @@ public class InfiniteLevelGoal : MonoBehaviour
 
 	void Awake()
 	{
-		foreach (CollisionTrigger trigger in collisionTriggers)
+		foreach (TriggerSignal trigger in collisionTriggers)
 		{
 			trigger.collisionExit += GoalExited;
 		}

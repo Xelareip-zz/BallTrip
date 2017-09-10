@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System;
 
-public class CollisionTrigger : MonoBehaviour
+public class TriggerSignal : MonoBehaviour
 {
-	public event Action<CollisionTrigger, Collider> collisionStay;
+	public event Action<TriggerSignal, Collider> collisionStay;
 	public event Action<Collider> collisionEnter;
 	public event Action<Collider> collisionExit;
 

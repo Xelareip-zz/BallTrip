@@ -27,6 +27,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 	public Transform levelsRoot;
 
 	public int depth;
+	public int initialBestLevel;
 	public int currentLevel;
 
 	public float totalSpawnWeights = 0;
@@ -36,6 +37,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 
 	void Awake()
 	{
+		initialBestLevel = Player.Instance.GetBestLevel();
 		levelsCurrentSpawnRatios = new Dictionary<string, int>();
 		instance = this;
 		GameObject newLevel = Instantiate(possibleLevels[0]);

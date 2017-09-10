@@ -6,7 +6,7 @@ public class Goal : MonoBehaviour
 {
 	void Awake()
 	{
-		foreach (CollisionTrigger trigger in GetComponentsInChildren<CollisionTrigger>())
+		foreach (TriggerSignal trigger in GetComponentsInChildren<TriggerSignal>())
 		{
 			trigger.collisionEnter += OnTriggerEnter;
 		}

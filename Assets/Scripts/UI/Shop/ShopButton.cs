@@ -5,6 +5,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
 
 public class ShopButton : MonoBehaviour, IPointerDownHandler
 {
@@ -86,6 +87,12 @@ public class ShopButton : MonoBehaviour, IPointerDownHandler
 	{
 		if (CanBuy())
 		{
+			AnalyticsSender.Instance.Send("upgrade_bought", new Dictionary<string, object>
+			  {
+				{ "buyable", buyable.ToString() },
+				{ "level", Player.Instance.GetBuyableLevel(buyable) + 1 },
+				{ "coins_spent", ShopManager.Instance.GetPrice(buyable) }
+			  });
             Player.Instance.AddCoins(-ShopManager.Instance.GetPrice(buyable));
 			Player.Instance.SetBuyableLevel(buyable, Player.Instance.GetBuyableLevel(buyable) + 1);
 			return true;
