@@ -169,7 +169,7 @@ public class Player : MonoBehaviour
 
 	public float GetPUHeartsChances()
 	{
-		return GetBuyableLevel(BUYABLE.PU_HEARTS) * 3.0f;
+		return GetBuyableLevel(BUYABLE.PU_HEARTS) * 1.0f;
 	}
 
 	public float GetPUEnergyChances()

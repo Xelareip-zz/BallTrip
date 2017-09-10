@@ -25,7 +25,6 @@ public class InfiniteLevel : MonoBehaviour
 	public InfiniteLevelDoor door;
 	public int reward;
 
-	public List<Vector3> pickupSpots;
 	public List<Text> levelTexts;
 	public int levelNumber;
 
@@ -38,6 +37,7 @@ public class InfiniteLevel : MonoBehaviour
 		}
 		start.level = this;
 		InfiniteLevelsManager.Instance.RegisterLevel(this);
+		/*
 		foreach (Vector3 pickupSpot in pickupSpots)
 		{
 			GameObject newPickup = PickupManager.Instance.GetRandomPickup();
@@ -47,7 +47,7 @@ public class InfiniteLevel : MonoBehaviour
 				newInstance.transform.SetParent(transform);
 				newInstance.transform.localPosition = pickupSpot;
 			}
-        }
+        }*/
 	}
 
 	public void ApplyVariation(ListString obstacles)
@@ -199,12 +199,12 @@ public class InfiniteLevel : MonoBehaviour
 			Bounds currentBounds = GetCurrentBounds();
 			Gizmos.DrawWireCube(currentBounds.center, currentBounds.size);
 		}
-
+		/*
 		Gizmos.color = Color.blue;
 		foreach (Vector3 pickupSpot in pickupSpots)
 		{
 			Gizmos.DrawSphere(transform.TransformPoint(pickupSpot), 0.3f);
-		}
+		}*/
 	}
 #endif
 }
