@@ -110,19 +110,27 @@ public class Ball : MonoBehaviour
 		{
 			++lastLevelHitCount;
 		}
-
+		/*
 		Vector3 normal = Vector3.zero;
 
 		foreach (var contact in coll.contacts)
 		{
 			normal += contact.normal;
 		}
-		normal.Normalize();
-
-		Vector3 bouncedPart = normal * Vector3.Dot(oldVelocity, normal);
-		Vector3 newVelocity = oldVelocity - 2 * bouncedPart;
-		ballRigidbody.velocity = newVelocity;
 		
+		normal /= coll.contacts.Length;
+		
+		
+		if (Vector3.Dot(oldVelocity, normal) == 0)
+		{
+			float dot = Vector3.Dot(normal, oldVelocity);
+			Vector3 bouncedPart = normal * dot;
+			Vector3 newVelocity = oldVelocity - 2 * bouncedPart;
+			ballRigidbody.velocity = newVelocity;
+		}
+		normal.Normalize();
+		*/
+
 		float stressIncrease = (1.0f - Vector3.Dot(coll.contacts[0].normal, oldVelocity)) / launchSpeed;
 		//InfiniteGameManager.Instance.cameraShaker.stressLevel += stressIncrease;
     }
