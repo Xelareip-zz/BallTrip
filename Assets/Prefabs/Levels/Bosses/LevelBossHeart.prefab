@@ -13112,7 +13112,7 @@ MonoBehaviour:
   bossType: 1
   deadVersion: {fileID: 0}
   endLevelDoor: {fileID: 1101333817877488}
-  hp: 5
+  hp: 2
   level: {fileID: 114852130933307074}
   hpText: {fileID: 114451388099568726}
   shaker: {fileID: 114285646952726810}
@@ -14022,7 +14022,7 @@ MonoBehaviour:
   bossType: 1
   deadVersion: {fileID: 0}
   endLevelDoor: {fileID: 1994257242056754}
-  hp: 5
+  hp: 2
   level: {fileID: 114852130933307074}
   hpText: {fileID: 114773427495954112}
   shaker: {fileID: 114634704026865564}
@@ -14040,7 +14040,7 @@ MonoBehaviour:
   bossType: 1
   deadVersion: {fileID: 0}
   endLevelDoor: {fileID: 1434868187297766}
-  hp: 5
+  hp: 2
   level: {fileID: 114852130933307074}
   hpText: {fileID: 114610255383012830}
   shaker: {fileID: 114479410006849212}
@@ -14142,7 +14142,7 @@ MonoBehaviour:
   bossType: 1
   deadVersion: {fileID: 0}
   endLevelDoor: {fileID: 1172098703496464}
-  hp: 5
+  hp: 2
   level: {fileID: 114852130933307074}
   hpText: {fileID: 114656751848296582}
   shaker: {fileID: 114800024016406326}
