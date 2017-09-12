@@ -13,4 +13,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkedPrefab: {fileID: 1589650703576266, guid: 2fba60c428053e74a871bf268ebe6fc2,
     type: 2}
-  variationsLevels: []
+  layerLevels:
+  - mode: 1
+    value: 70
+  - mode: 1
+    value: 40
+  - mode: 1
+    value: 40
+  variationsLevels:
+  - content:
+    - content:
+      - 5c9679d6-e6bf-4d98-ab83-fb09872aba8b
+    - content:
+      - 60f58996-4ddc-4be5-9cb0-917aac1ffa6f
+    - content:
+      - 1c01bbee-2412-4110-bf55-33d053076eaa
+      - d5a76973-ab47-4eff-9f64-07d8321584a6
+  - content:
+    - content:
+      - 2f312904-d79a-44f6-8506-b1cce2b00ab0
+      - 23993c45-622b-4969-9f73-340a292293a0
+      - c88b3dab-d550-4bf5-8360-d8a39e582e21
+    - content:
+      - ce7cd03e-bbcc-4bc8-b6fd-c779131b7281
+      - c88b3dab-d550-4bf5-8360-d8a39e582e21
+      - 7ffa35bd-79dc-4450-802e-8235bfd606ea
+      - 60107e82-f412-4eed-a17e-97b5884c66d6
+    - content:
+      - b40ccf63-d5c8-4d05-85c6-7b554088b8f1
+      - 35054a95-6984-4b15-8af5-7fae39ad2661
+      - 2f312904-d79a-44f6-8506-b1cce2b00ab0
+      - 5c9679d6-e6bf-4d98-ab83-fb09872aba8b
+  - content:
+    - content:
+      - 60f58996-4ddc-4be5-9cb0-917aac1ffa6f
+      - 5c9679d6-e6bf-4d98-ab83-fb09872aba8b
+      - b40ccf63-d5c8-4d05-85c6-7b554088b8f1
+      - 35054a95-6984-4b15-8af5-7fae39ad2661
+      - 60107e82-f412-4eed-a17e-97b5884c66d6
+    - content:
+      - 2f312904-d79a-44f6-8506-b1cce2b00ab0
+      - 1c01bbee-2412-4110-bf55-33d053076eaa
+      - d5a76973-ab47-4eff-9f64-07d8321584a6
+      - a4840a20-2bd7-4ef4-85fb-36dcbf97694a
+      - c88b3dab-d550-4bf5-8360-d8a39e582e21
+      - 7ffa35bd-79dc-4450-802e-8235bfd606ea
+      - 60107e82-f412-4eed-a17e-97b5884c66d6
+      - b40ccf63-d5c8-4d05-85c6-7b554088b8f1
+    - content:
+      - 60f58996-4ddc-4be5-9cb0-917aac1ffa6f
+      - d5a76973-ab47-4eff-9f64-07d8321584a6
+      - 2f312904-d79a-44f6-8506-b1cce2b00ab0
+      - ce7cd03e-bbcc-4bc8-b6fd-c779131b7281
+      - a4840a20-2bd7-4ef4-85fb-36dcbf97694a
+      - c88b3dab-d550-4bf5-8360-d8a39e582e21
+      - b40ccf63-d5c8-4d05-85c6-7b554088b8f1

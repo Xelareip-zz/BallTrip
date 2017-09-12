@@ -29,6 +29,7 @@ public class VariationsWindow : EditorWindow
 	private float width;
 	private float height;
 	private float maxHeight;
+	private float variationsHeight;
 
 	[MenuItem("BallTrip/Variations %#v")]
 	static void Init()
@@ -221,7 +222,6 @@ public class VariationsWindow : EditorWindow
 			Update();
 			lazyUpdate = false;
 		}
-		SetScroll("Main", GUI.BeginScrollView(new Rect(0, 0, position.width, position.height), GetScroll("Main"), new Rect(0, 0, position.width - 17, Mathf.Max(height, position.height))));
 		height = 2;
 		maxHeight = 0;
 		width = 0;
@@ -236,7 +236,6 @@ public class VariationsWindow : EditorWindow
 		}
 		if (tempActive == false)
 		{
-			GUI.EndScrollView();
 			return;
 		}
 		UpdateVisualizers();
@@ -272,7 +271,6 @@ public class VariationsWindow : EditorWindow
 		}
 		if (currentLevel == null)
 		{
-			GUI.EndScrollView();
 			return;
 		}
 		EditorGUI.BeginChangeCheck();
@@ -280,17 +278,18 @@ public class VariationsWindow : EditorWindow
 		{
 			currentData.variationsLevels.Add(new ListListString());
 			EditorUtility.SetDirty(currentLevelObject);
-			GUI.EndScrollView();
 			return;
 		}
 		if (GUI.Button(MakeRect(200, 50, true), "Force Update"))
 		{
 			UpdateVisualizers();
 			Update();
-			GUI.EndScrollView();
 			return;
 		}
+		SetScroll("Main", GUI.BeginScrollView(new Rect(0, height, position.width, position.height - height - 17), GetScroll("Main"), new Rect(0, 0, position.width - 17, variationsHeight)));
 		int count = 0;
+		height = 0;
+		maxHeight = 0;
 		for (int layerIdx = 0; layerIdx < currentData.variationsLevels.Count; ++layerIdx)
 		{
 			width = 0;
@@ -325,8 +324,8 @@ public class VariationsWindow : EditorWindow
 				return;
 			}
 			currentData.AdaptLayerLevelsSize();
-			currentData.layerLevels[layerIdx].mode = (LAYER_LEVEL_MODE) EditorGUI.EnumPopup(MakeRect(150, 17), currentData.layerLevels[layerIdx].mode);
-			int potentialSecond = EditorGUI.IntField(MakeRect(150, 17), currentData.layerLevels[layerIdx].value);
+			currentData.layerLevels[layerIdx].mode = (LAYER_LEVEL_MODE) EditorGUI.EnumPopup(MakeRect(150, 20), currentData.layerLevels[layerIdx].mode);
+			int potentialSecond = EditorGUI.IntField(MakeRect(150, 20), currentData.layerLevels[layerIdx].value);
 			if (currentData.layerLevels[layerIdx].value != potentialSecond)
 			{
 				if (layerIdx == 0 ||
@@ -342,6 +341,7 @@ public class VariationsWindow : EditorWindow
 			DrawLayer(layerIdx);
 			++count;
 		}
+		variationsHeight = height;
 		GUI.EndScrollView();
 		if (EditorGUI.EndChangeCheck())
 		{

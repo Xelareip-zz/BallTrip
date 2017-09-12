@@ -2359,7 +2359,7 @@ MonoBehaviour:
   cameraShaker: {fileID: 766120374}
   themeColors:
   - {r: 0.6453333, g: 0.21119997, b: 0.704, a: 1}
-  - {r: 0.7294118, g: 0.15294118, b: 0.2901961, a: 1}
+  - {r: 0.30781177, g: 0.43283796, b: 0.7294118, a: 1}
   - {r: 0.94117653, g: 0.6509804, b: 0.79215693, a: 1}
   - {r: 0.6117647, g: 0.5372549, b: 0.72156864, a: 1}
   - {r: 0.7607844, g: 0.73333335, b: 0.94117653, a: 1}
@@ -2488,12 +2488,13 @@ MonoBehaviour:
   - {fileID: 1327467120988234, guid: 7baba0f9e7a2f9f4fab9a135f421f53a, type: 2}
   - {fileID: 1327467120988234, guid: 596c0da93486d50429a0d3707e13a968, type: 2}
   - {fileID: 1327467120988234, guid: 7484d6a1da9e59443a5924be75d2ed76, type: 2}
+  - {fileID: 1589650703576266, guid: 2fba60c428053e74a871bf268ebe6fc2, type: 2}
   spawnableLevels: []
   levels: []
   levelsObj: []
   walls: []
   specialLevels:
-    _keys: 020000000100000003000000040000000500000006000000070000000f000000280000004b000000
+    _keys: 020000000100000003000000040000000500000006000000070000000f0000004b00000032000000
     _values:
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
@@ -2503,10 +2504,11 @@ MonoBehaviour:
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
     - {fileID: 1327467120988234, guid: 8d8b087f6545d994daaf62390df77a4e, type: 2}
-    - {fileID: 1327467120988234, guid: fb23ee09527c5cc43a58bad976788859, type: 2}
     - {fileID: 1327467120988234, guid: ea15c97d73fc5c34d863917e9acba88c, type: 2}
+    - {fileID: 1327467120988234, guid: fb23ee09527c5cc43a58bad976788859, type: 2}
   levelsRoot: {fileID: 1534835381}
   depth: 3
+  initialBestLevel: 0
   currentLevel: 0
   totalSpawnWeights: 0
   freeHeartLevelUI: {fileID: 1366092823}

@@ -36,11 +36,11 @@ public class BossHeart : BossBase
 		if (coll.gameObject == Ball.Instance.gameObject)
 		{
 			shaker.stressLevel += 0.5f;
-			//FreeHeart(1);
 			--hp;
 			hp = Mathf.Max(hp, 0);
 			if (hp == 0)
 			{
+				FreeHeart(1);
 				Destroy(endLevelDoor);
 				Destroy(gameObject);
 			}

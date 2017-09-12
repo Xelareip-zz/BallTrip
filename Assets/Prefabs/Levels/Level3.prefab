@@ -832,9 +832,6 @@ MonoBehaviour:
   - {fileID: 114530751489680260}
   door: {fileID: 114910494475877674}
   reward: 0
-  pickupSpots:
-  - {x: -5, y: 0, z: 0}
-  - {x: 5, y: 0, z: 0}
   levelTexts:
   - {fileID: 114209004104442562}
   levelNumber: 0

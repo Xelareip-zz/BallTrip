@@ -13,4 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkedPrefab: {fileID: 1327467120988234, guid: 596c0da93486d50429a0d3707e13a968,
     type: 2}
-  variationsLevels: []
+  layerLevels:
+  - mode: 1
+    value: 1
+  variationsLevels:
+  - content:
+    - content: []
