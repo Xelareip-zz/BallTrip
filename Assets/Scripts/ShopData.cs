@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -7,7 +10,7 @@ public class ShopData : ScriptableObject, ISerializationCallbackReceiver
 	public Dictionary<BUYABLE, List<int>> prices = new Dictionary<BUYABLE, List<int>>();
 
 	[SerializeField, HideInInspector]
-	public List<BUYABLE> _keys;
+	public List<string> _keys;
 	[SerializeField, HideInInspector]
 	public List<string> _values;
 
@@ -30,7 +33,7 @@ public class ShopData : ScriptableObject, ISerializationCallbackReceiver
 				endString = endString.Remove(0, 1);
 			}
 
-			_keys.Add(kvp.Key);
+			_keys.Add(kvp.Key.ToString());
 			_values.Add(endString);
 		}
 	}
@@ -54,7 +57,7 @@ public class ShopData : ScriptableObject, ISerializationCallbackReceiver
 				}
 			}
 
-			prices.Add(_keys[i], pricesList);
+			prices.Add((BUYABLE)Enum.Parse(typeof(BUYABLE), _keys[i]), pricesList);
 		}
 	}
 

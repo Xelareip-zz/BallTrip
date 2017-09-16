@@ -1,10 +1,19 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
-
+using System.IO;
 
 public class ManagementWindow : EditorWindow
 {
+	private static ManagementWindow instance;
+	public static ManagementWindow Instance
+	{
+		get
+		{
+			return instance;
+		}
+	}
+
 	[SerializeField]
 	public string lastScene;
 	[SerializeField]
@@ -13,16 +22,23 @@ public class ManagementWindow : EditorWindow
 	public bool followBall;
 	public GUISkin skin;
 
+	public bool shouldUpdateShopData;
+
 	[MenuItem("BallTrip/Management")]
 	static void Init()
 	{
 		// Get existing open window or if none, make a new one:
 		ManagementWindow window = (ManagementWindow)GetWindow(typeof(ManagementWindow));
 		window.Show();
+
 	}
 
 	private void InitSkin()
 	{
+		if (instance == null)
+		{
+			instance = this;
+		}
 		if (skin == null)
 		{
 			skin = AssetDatabase.LoadAssetAtPath<GUISkin>("Assets/EditorSkin/XelareipSkin.guiskin");
@@ -99,6 +115,13 @@ public class ManagementWindow : EditorWindow
 			EditorSceneManager.OpenScene(lastScene);
 		}
 		wasPlaying = EditorApplication.isPlaying;
+		
+		if (shouldUpdateShopData)
+		{
+			shouldUpdateShopData = false;
+            Debug.Log("Update shop data!!");
+			UpdateShopData();
+		}
 
 		if (followBall)
 		{
@@ -204,5 +227,16 @@ public class ManagementWindow : EditorWindow
 	private void DeleteSave()
 	{
 		FileUtil.DeleteFileOrDirectory(Player.GetPath());
+	}
+
+	public void UpdateShopData()
+	{
+		ShopData data = AssetDatabase.LoadAssetAtPath<ShopData>("Assets/Data/ShopData.asset");
+		string path = "Assets/Data/ShopData.json";
+		AssetDatabase.ImportAsset(path);
+		TextAsset text = AssetDatabase.LoadAssetAtPath<TextAsset>(path);
+		JsonUtility.FromJsonOverwrite(text.text, data);
+		AssetDatabase.SaveAssets();
+
 	}
 }

@@ -21,7 +21,6 @@ public class VariationsWindow : EditorWindow
 	private LevelVariationsContainer currentData;
 	private Texture2D tex;
 	private Vector2 selectedVariation;
-	private bool lazyVisUpdate;
 	private bool lazyUpdate;
 
 	private bool active;
@@ -391,7 +390,6 @@ public class VariationsWindow : EditorWindow
 				if (GUI.Button(new Rect(currentOffset, 2, 20, 20), "-"))
 				{
 					variations.RemoveAt(variationIdx);
-					lazyVisUpdate = true;
 					return;
 				}
 				IGUIDIdentified[] guids = currentLevelObject.GetComponentsInChildren<IGUIDIdentified>(true);
