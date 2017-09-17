@@ -234,7 +234,7 @@ public class InfiniteLevelsManager : MonoBehaviour
 
 	public void FillToDepth()
 	{
-		while (DepthFilled() < Mathf.Max(Player.Instance.GetViewRange(), InfiniteGameManager.Instance.GetFreeHeartDistance(GetFirstLevelNumber())))
+		while (DepthFilled() < Player.Instance.GetViewRange())//Mathf.Max(Player.Instance.GetViewRange(), InfiniteGameManager.Instance.GetFreeHeartDistance(GetFirstLevelNumber())))
 		{
 			SpawnLevel();
 		}
@@ -245,7 +245,8 @@ public class InfiniteLevelsManager : MonoBehaviour
 		levels.Remove(level);
 		level.RemoveReferences();
         levelsObj.Remove(level.gameObject);
-		Destroy(level.gameObject);
+		level.gameObject.SetActiveRecursively(false);
+		Destroy(level.gameObject, 0.2f);
 		levels[0].CloseLevel();
 
 		FillToDepth();

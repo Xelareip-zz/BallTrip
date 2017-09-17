@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Ball : MonoBehaviour
 	}
 
 	public Rigidbody ballRigidbody;
+	public Collider ballCollider;
 	public LaunchDirection launchDirectionScript;
 	public GameObject shieldVisual;
 	public GameObject uiFreeCollisions;
@@ -35,37 +37,50 @@ public class Ball : MonoBehaviour
 	public int lastLevelHit;
 	public int lastLevelHitCount;
 
-	public bool invincible;
+	public List<IBallModifier> modifiers;
 
 	void Awake()
 	{
 		instance = this;
+		modifiers = new List<IBallModifier>();
 		currentHeartCount = Player.Instance.GetHearts();
 		currentHeartCountUI = currentHeartCount;
 		shieldActive = false;
 		lastLevelHit = -1;
-		invincible = false;
         hp = Player.Instance.GetEnergy();
 	}
 
 	void FixedUpdate()
 	{
-		if (invincible)
-		{
-			return;
-		}
+		UpdateTriggerState();
+
+		Vector3 newVelocity = ballRigidbody.velocity;
 		if (hp <= 0 && shieldActive == false)
 		{
-			ballRigidbody.velocity = ballRigidbody.velocity.normalized * Mathf.Max(0.0f, ballRigidbody.velocity.magnitude - slowSpeed * Time.fixedDeltaTime);
+			newVelocity = ballRigidbody.velocity.normalized * Mathf.Max(0.0f, ballRigidbody.velocity.magnitude - slowSpeed * Time.fixedDeltaTime);
 		}
 		else if (ballRigidbody.velocity.magnitude != 0)
 		{
-			ballRigidbody.velocity *= launchSpeed / ballRigidbody.velocity.magnitude;
+			newVelocity = ballRigidbody.velocity * launchSpeed / ballRigidbody.velocity.magnitude;
         }
+
+		for (int modIdx = 0; modIdx < modifiers.Count; ++modIdx)
+		{
+			if (modifiers[modIdx].VelocityUpdate(ref newVelocity))
+			{
+				break;
+			}
+		}
+		ballRigidbody.velocity = newVelocity;
 	}
 
 	void Update()
 	{
+		for (int modIdx = 0; modIdx < modifiers.Count; ++modIdx)
+		{
+			modifiers[modIdx].Update();
+		}
+
 		if (ballRigidbody.velocity.magnitude == 0 && oldVelocity.magnitude != 0)
 		{
 			if (Player.Instance.GetShieldLevel() > 0)
@@ -98,6 +113,17 @@ public class Ball : MonoBehaviour
 		ballRigidbody.velocity = launchDirection.normalized * launchSpeed;
 		launchDirection = Vector3.zero;
     }
+
+	void OnTriggerEnter(Collider coll)
+	{
+		for (int modIdx = 0; modIdx < modifiers.Count; ++modIdx)
+		{
+			if (modifiers[modIdx].OnBallTriggered(coll))
+			{
+				break;
+			}
+		}
+	}
 
 	void OnCollisionEnter(Collision coll)
 	{
@@ -174,13 +200,24 @@ public class Ball : MonoBehaviour
 
 	public void Hit(IObstacle obstacle)
 	{
-		if (InfiniteGameManager.Instance.GetMode() != LAUNCH_MODE.FOLLOW || invincible)
+		if (InfiniteGameManager.Instance.GetMode() != LAUNCH_MODE.FOLLOW)
 		{
 			return;
 		}
 		TutoManager.Instance.StartTuto("TutoFirstHit");
 		bool hadHp = hp > 0;
-		AddHP(-Mathf.Max(obstacle.HpLossOnTick(), 0));
+
+		float hpToAdd = -Mathf.Max(obstacle.HpLossOnTick(), 0);
+
+		for (int modIdx = 0; modIdx < modifiers.Count; ++modIdx)
+		{
+			if (modifiers[modIdx].OnDamageReceived(ref hpToAdd))
+			{
+				break;
+			}
+		}
+
+		AddHP(hpToAdd);
 		shieldActive = false;
 
 		if (hadHp && hp <= 0)
@@ -203,5 +240,38 @@ public class Ball : MonoBehaviour
 	private void HeartIncreaseApply()
 	{
 		++currentHeartCountUI;
+	}
+
+	public void AddModifier(IBallModifier modifier)
+	{
+		if (modifiers.Contains(modifier) == false)
+		{
+			modifiers.Add(modifier);
+		}
+		UpdateTriggerState();
+	}
+
+	public void RemoveModifier(IBallModifier modifier)
+	{
+		while (modifiers.Contains(modifier))
+		{
+			modifiers.Remove(modifier);
+		}
+		UpdateTriggerState();
+    }
+
+	private void UpdateTriggerState()
+	{
+		bool found = false;
+		for (int modIdx = 0; modIdx < modifiers.Count; ++modIdx)
+		{
+			if (modifiers[modIdx].BallTriggerMode())
+			{
+				found = true;
+				break;
+			}
+		}
+
+		ballCollider.isTrigger = found;
 	}
 }

@@ -102,6 +102,10 @@ public class ShopDataEditor : Editor
 			ForceSerialize();
 		}*/
 		data = (ShopData)target;
+		if (GUILayout.Button("Update data"))
+		{
+			ManagementWindow.Instance.UpdateShopData();
+		}
 		GUILayoutOption[] options = { GUILayout.MaxWidth(50.0f), GUILayout.MinWidth(50.0f) };
 		//SetScroll("Main", EditorGUILayout.BeginScrollView(GetScroll("Main")));
 		foreach (var price in data.prices)

@@ -60,7 +60,6 @@ GameObject:
   - component: {fileID: 4240536313970784}
   - component: {fileID: 33526396698832198}
   - component: {fileID: 23479013519517748}
-  - component: {fileID: 114644888117235902}
   - component: {fileID: 114799339215795786}
   - component: {fileID: 114094604169181180}
   - component: {fileID: 64169743794895736}
@@ -321,7 +320,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1327467120988234}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4240536313970784}
@@ -772,17 +771,6 @@ MonoBehaviour:
   - {fileID: 114082901094087884}
   level: {fileID: 0}
   boundStart: {fileID: 0}
---- !u!114 &114644888117235902
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1258434687178562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e610e264cd5aba438d4ac5243337beb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114799339215795786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -795,7 +783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionTriggers:
-  - {fileID: 114644888117235902}
+  - {fileID: 0}
   level: {fileID: 0}
   boundStart: {fileID: 0}
 --- !u!114 &114815168862342874
@@ -836,9 +824,6 @@ MonoBehaviour:
   - {fileID: 114799339215795786}
   door: {fileID: 114910494475877674}
   reward: 0
-  pickupSpots:
-  - {x: -5, y: 0, z: 0}
-  - {x: 5, y: 0, z: 0}
   levelTexts:
   - {fileID: 0}
   levelNumber: 0

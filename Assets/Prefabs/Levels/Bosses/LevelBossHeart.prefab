@@ -890,7 +890,6 @@ GameObject:
   - component: {fileID: 4240536313970784}
   - component: {fileID: 33526396698832198}
   - component: {fileID: 23479013519517748}
-  - component: {fileID: 114644888117235902}
   - component: {fileID: 114799339215795786}
   - component: {fileID: 114094604169181180}
   - component: {fileID: 64169743794895736}
@@ -15027,17 +15026,6 @@ MonoBehaviour:
   destroyOnHit: 0
   isTrigger: 0
   meshRenderer: {fileID: 0}
---- !u!114 &114644888117235902
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1258434687178562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e610e264cd5aba438d4ac5243337beb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114647572592584050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15358,7 +15346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionTriggers:
-  - {fileID: 114644888117235902}
+  - {fileID: 0}
   level: {fileID: 114852130933307074}
   boundStart: {fileID: 0}
 --- !u!114 &114800024016406326

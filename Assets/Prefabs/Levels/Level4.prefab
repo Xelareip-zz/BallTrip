@@ -131,7 +131,6 @@ GameObject:
   - component: {fileID: 4067982412531666}
   - component: {fileID: 33520492453128404}
   - component: {fileID: 23378167182572046}
-  - component: {fileID: 114995116110049960}
   - component: {fileID: 114608400646943648}
   - component: {fileID: 114981065052770676}
   - component: {fileID: 64764448743695740}
@@ -2033,7 +2032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionTriggers:
-  - {fileID: 114995116110049960}
+  - {fileID: 0}
   level: {fileID: 0}
   boundStart: {fileID: 0}
 --- !u!114 &114608896089188454
@@ -2235,17 +2234,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03adae61d724cbe4da2023e13c9302b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114995116110049960
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1281091084198828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e610e264cd5aba438d4ac5243337beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!222 &222035825629861464

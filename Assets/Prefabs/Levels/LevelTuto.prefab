@@ -76,7 +76,6 @@ GameObject:
   - component: {fileID: 4267492254831364}
   - component: {fileID: 33964441850341440}
   - component: {fileID: 23136446703483886}
-  - component: {fileID: 114082901094087884}
   - component: {fileID: 114530751489680260}
   - component: {fileID: 114064481289452938}
   - component: {fileID: 64913388602470592}
@@ -1143,17 +1142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03adae61d724cbe4da2023e13c9302b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114082901094087884
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1101333817877488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e610e264cd5aba438d4ac5243337beb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114253252508071094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1168,6 +1156,7 @@ MonoBehaviour:
   GUID: 56921364-42e1-4976-9091-eaecd07a4ff0
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 0
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114294658137757858
@@ -1184,6 +1173,7 @@ MonoBehaviour:
   GUID: 36db70b6-158f-480f-8c2b-5c856042870b
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 0
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114337958335843348
@@ -1213,6 +1203,7 @@ MonoBehaviour:
   GUID: 6ad0bdd0-e488-4556-9f30-d4b06818950e
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 0
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114530751489680260
@@ -1227,7 +1218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionTriggers:
-  - {fileID: 114082901094087884}
+  - {fileID: 0}
   level: {fileID: 0}
   boundStart: {fileID: 0}
 --- !u!114 &114548873631958732
@@ -1244,6 +1235,7 @@ MonoBehaviour:
   GUID: c98299e8-afeb-43b3-9810-c423a549da45
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 0
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114772391097699548
@@ -1272,6 +1264,7 @@ MonoBehaviour:
   GUID: 7e287c9b-29ef-4787-ac23-b859ef6de064
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 0
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114852130933307074
@@ -1296,9 +1289,6 @@ MonoBehaviour:
   - {fileID: 114530751489680260}
   door: {fileID: 114910494475877674}
   reward: 5
-  pickupSpots:
-  - {x: -5, y: 0, z: 0}
-  - {x: 5, y: 0, z: 0}
   levelTexts:
   - {fileID: 114901282308439876}
   levelNumber: 0
@@ -1376,6 +1366,7 @@ MonoBehaviour:
   GUID: a80cc26b-10d3-43ce-aa74-b5d5799eef8e
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 0
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!114 &114938207349978974
@@ -1392,6 +1383,7 @@ MonoBehaviour:
   GUID: 5b4f882f-7162-4521-a932-ce0cac12332b
   hpCost: 10
   offset: {x: 0, y: 0, z: 0, w: 0}
+  destroyOnHit: 0
   isTrigger: 0
   meshRenderer: {fileID: 0}
 --- !u!222 &222929689688656586

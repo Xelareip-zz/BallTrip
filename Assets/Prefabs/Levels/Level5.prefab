@@ -55,7 +55,6 @@ GameObject:
   - component: {fileID: 4442358749700378}
   - component: {fileID: 33247867475803656}
   - component: {fileID: 23850065168772292}
-  - component: {fileID: 114920896137732486}
   - component: {fileID: 114376056167211800}
   - component: {fileID: 114956101857324026}
   - component: {fileID: 64937123830703390}
@@ -246,7 +245,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1747305802974908}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 35, y: 250, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4442358749700378}
@@ -638,7 +637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionTriggers:
-  - {fileID: 114920896137732486}
+  - {fileID: 0}
   level: {fileID: 0}
   boundStart: {fileID: 0}
 --- !u!114 &114423676878317006
@@ -673,17 +672,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 30
---- !u!114 &114920896137732486
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1205876723740156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e610e264cd5aba438d4ac5243337beb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114942799550014858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -706,9 +694,6 @@ MonoBehaviour:
   - {fileID: 114376056167211800}
   door: {fileID: 114423676878317006}
   reward: 15
-  pickupSpots:
-  - {x: 4, y: 5, z: 0}
-  - {x: 4, y: -5, z: 0}
   levelTexts:
   - {fileID: 114044447381861314}
   levelNumber: 0

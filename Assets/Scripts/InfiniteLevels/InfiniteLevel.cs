@@ -30,10 +30,10 @@ public class InfiniteLevel : MonoBehaviour
 
 	void Awake()
 	{
-		foreach (InfiniteLevelGoal endLevel in ends)
+		for (int endLevelIdx = 0; endLevelIdx < ends.Count; ++endLevelIdx)
 		{
-			endLevel.level = this;
-			endLevel.goalHit += GoalPassed;
+			ends[endLevelIdx].level = this;
+			ends[endLevelIdx].goalHit += GoalPassed;
 		}
 		start.level = this;
 		InfiniteLevelsManager.Instance.RegisterLevel(this);
@@ -54,9 +54,9 @@ public class InfiniteLevel : MonoBehaviour
 	{
 
 		IGUIDIdentified[] guids = GetComponentsInChildren<IGUIDIdentified>(true);
-		foreach (IGUIDIdentified guidObj in guids)
+		for (int guidIdx = 0; guidIdx < guids.Length; ++guidIdx)
 		{
-			(guidObj as MonoBehaviour).gameObject.SetActive(obstacles.Contains(guidObj.GetGUID()));
+			(guids[guidIdx] as MonoBehaviour).gameObject.SetActive(obstacles.Contains(guids[guidIdx].GetGUID()));
 		}
 	}
 
@@ -78,9 +78,10 @@ public class InfiniteLevel : MonoBehaviour
 
 	public virtual bool CanSpawn()
 	{
-		foreach (ICanSpawn canSpawner in GetComponentsInChildren<ICanSpawn>())
+		ICanSpawn[] canSpawners = GetComponentsInChildren<ICanSpawn>();
+        for (int canSpawnIdx = 0; canSpawnIdx < canSpawners.Length; ++canSpawnIdx)
 		{
-			if (canSpawner.CanSpawn() == false)
+			if (canSpawners[canSpawnIdx].CanSpawn() == false)
 			{
 				return false;
 			}

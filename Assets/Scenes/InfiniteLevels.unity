@@ -2494,7 +2494,7 @@ MonoBehaviour:
   levelsObj: []
   walls: []
   specialLevels:
-    _keys: 020000000100000003000000040000000500000006000000070000000f0000004b00000032000000
+    _keys: 020000000100000003000000040000000500000006000000070000000f000000320000004b000000
     _values:
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
@@ -2504,8 +2504,8 @@ MonoBehaviour:
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
     - {fileID: 1327467120988234, guid: 8d8b087f6545d994daaf62390df77a4e, type: 2}
-    - {fileID: 1327467120988234, guid: ea15c97d73fc5c34d863917e9acba88c, type: 2}
     - {fileID: 1327467120988234, guid: fb23ee09527c5cc43a58bad976788859, type: 2}
+    - {fileID: 1327467120988234, guid: ea15c97d73fc5c34d863917e9acba88c, type: 2}
   levelsRoot: {fileID: 1534835381}
   depth: 3
   initialBestLevel: 0
@@ -5607,6 +5607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballRigidbody: {fileID: 1708688306}
+  ballCollider: {fileID: 1708688308}
   launchDirectionScript: {fileID: 1286825222}
   shieldVisual: {fileID: 1004801459}
   uiFreeCollisions: {fileID: 483970629}
@@ -5622,7 +5623,6 @@ MonoBehaviour:
   hp: 0
   lastLevelHit: 0
   lastLevelHitCount: 0
-  invincible: 0
 --- !u!54 &1708688306
 Rigidbody:
   m_ObjectHideFlags: 0

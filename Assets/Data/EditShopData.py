@@ -107,6 +107,7 @@ read_thread.should_stop = True
 
 
 os.remove(target_file)
+input()
 
 
 

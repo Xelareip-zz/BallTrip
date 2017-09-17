@@ -107,7 +107,6 @@ GameObject:
   - component: {fileID: 4281085246377642}
   - component: {fileID: 33541261583484188}
   - component: {fileID: 23669882761464672}
-  - component: {fileID: 114740181438600526}
   - component: {fileID: 114202556232089632}
   - component: {fileID: 114955837993780550}
   - component: {fileID: 64109367530470250}
@@ -286,7 +285,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1727167241816896}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 70, y: 250, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4281085246377642}
@@ -586,9 +585,6 @@ MonoBehaviour:
   - {fileID: 114202556232089632}
   door: {fileID: 114084556938222476}
   reward: 20
-  pickupSpots:
-  - {x: -5, y: 0, z: 0}
-  - {x: 5, y: 0, z: 0}
   levelTexts:
   - {fileID: 114030914709406732}
   levelNumber: 0
@@ -669,7 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionTriggers:
-  - {fileID: 114740181438600526}
+  - {fileID: 0}
   level: {fileID: 0}
   boundStart: {fileID: 0}
 --- !u!114 &114455306629913064
@@ -701,17 +697,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114740181438600526
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1618189739365700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e610e264cd5aba438d4ac5243337beb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114955837993780550
 MonoBehaviour:
   m_ObjectHideFlags: 1
