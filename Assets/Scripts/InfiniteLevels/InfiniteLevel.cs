@@ -24,8 +24,8 @@ public class InfiniteLevel : MonoBehaviour
 	public List<InfiniteLevelGoal> ends;
 	public InfiniteLevelDoor door;
 	public int reward;
-
-	public List<Text> levelTexts;
+	
+	public List<TextMesh> levelTextsNew;
 	public int levelNumber;
 
 	void Awake()
@@ -37,17 +37,6 @@ public class InfiniteLevel : MonoBehaviour
 		}
 		start.level = this;
 		InfiniteLevelsManager.Instance.RegisterLevel(this);
-		/*
-		foreach (Vector3 pickupSpot in pickupSpots)
-		{
-			GameObject newPickup = PickupManager.Instance.GetRandomPickup();
-			if (newPickup != null)
-			{
-				GameObject newInstance = Instantiate<GameObject>(newPickup);
-				newInstance.transform.SetParent(transform);
-				newInstance.transform.localPosition = pickupSpot;
-			}
-        }*/
 	}
 
 	public void ApplyVariation(ListString obstacles)
@@ -65,14 +54,14 @@ public class InfiniteLevel : MonoBehaviour
 		int layer = variationsData.GetLayerForLevel(levelNumber);
 
 		ApplyVariation(variationsData.variationsLevels[layer][Random.Range(0, variationsData.variationsLevels[layer].Count)]);
-		
-		for (int textIdx = 0; textIdx < levelTexts.Count; ++textIdx)
+
+		for (int textIdx = 0; textIdx < levelTextsNew.Count; ++textIdx)
 		{
-			if (levelTexts[textIdx].transform.lossyScale.x < 0)
+			if (levelTextsNew[textIdx].transform.lossyScale.x < 0)
 			{
-				levelTexts[textIdx].transform.localScale = new Vector3(-levelTexts[textIdx].transform.localScale.x, levelTexts[textIdx].transform.localScale.y, levelTexts[textIdx].transform.localScale.z);
-            }
-            levelTexts[textIdx].text = levelNumber.ToString();
+				levelTextsNew[textIdx].transform.localScale = new Vector3(-levelTextsNew[textIdx].transform.localScale.x, levelTextsNew[textIdx].transform.localScale.y, levelTextsNew[textIdx].transform.localScale.z);
+			}
+			levelTextsNew[textIdx].text = levelNumber.ToString();
 		}
 	}
 
@@ -128,19 +117,14 @@ public class InfiniteLevel : MonoBehaviour
 			Ball.Instance.HeartIncrease(1, true);
 			TutoManager.Instance.StartTuto("TutoFirstFreeHeart");
 		}
-		if (Ball.Instance.shieldActive)
+		/*if (Ball.Instance.shieldActive)
 		{
 			TutoManager.Instance.StartTuto("TutoFirstLaunchGauge");
 			InfiniteGameManager.Instance.FreeLaunchIncrease();
 		}
-		else
+		else*/
 		{
 			TutoManager.Instance.StartTuto("TutoFirstCoin");
-		}
-		if (Player.Instance.GetShieldLevel() > 0)
-		{
-			Ball.Instance.shieldActive = true;
-			TutoManager.Instance.StartTuto("TutoShieldPortal");
 		}
 		Player.Instance.SetBestLevel(levelNumber);
 		InfiniteGameManager.Instance.AddCoins(reward);

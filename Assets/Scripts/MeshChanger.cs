@@ -25,8 +25,7 @@ public class MeshChanger : MonoBehaviour
 		filter.mesh = mesh;
 		collider.sharedMesh = filter.mesh;
 	}
-
-	// Update is called once per frame
+	
 	void Update ()
 	{
 		List<Vector3> vertices = new List<Vector3>();

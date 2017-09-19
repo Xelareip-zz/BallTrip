@@ -12,6 +12,7 @@ public enum BUYABLE
 	PU_HEARTS,
 	PU_ENERGY,
 	PU_ROCKET,
+	PU_SHIELD,
 	ENERGY
 };
 
@@ -182,9 +183,9 @@ public class Player : MonoBehaviour
 		return GetBuyableLevel(BUYABLE.PU_ROCKET) * 7.0f;
 	}
 
-	public int GetShieldLevel()
+	public float GetPUShieldChances()
 	{
-		return _shieldLevel;
+		return GetBuyableLevel(BUYABLE.PU_SHIELD) * 7.0f;
 	}
 
 	public bool GetLevelBeaten(int level)
@@ -344,6 +345,8 @@ public class Player : MonoBehaviour
 				return GetLevelBeaten(BOSS_TYPE.ENERGY);
             case BUYABLE.PU_ROCKET:
 				return GetLevelBeaten(BOSS_TYPE.ROCKET);
+			case BUYABLE.PU_SHIELD:
+				return GetLevelBeaten(BOSS_TYPE.SHIELD);
 		}
 		return false;
 	}

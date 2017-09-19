@@ -19,7 +19,7 @@ public class Ball : MonoBehaviour
 	public GameObject uiFreeCollisions;
 	public GameObject uiHeartLost;
 
-	public bool shieldActive;
+	//public bool shieldActive;
 	public int currentHeartCount;
 	public int currentHeartCountUI;
 	public float endDrag;
@@ -45,7 +45,7 @@ public class Ball : MonoBehaviour
 		modifiers = new List<IBallModifier>();
 		currentHeartCount = Player.Instance.GetHearts();
 		currentHeartCountUI = currentHeartCount;
-		shieldActive = false;
+		//shieldActive = false;
 		lastLevelHit = -1;
         hp = Player.Instance.GetEnergy();
 	}
@@ -55,7 +55,7 @@ public class Ball : MonoBehaviour
 		UpdateTriggerState();
 
 		Vector3 newVelocity = ballRigidbody.velocity;
-		if (hp <= 0 && shieldActive == false)
+		if (hp <= 0)// && shieldActive == false)
 		{
 			newVelocity = ballRigidbody.velocity.normalized * Mathf.Max(0.0f, ballRigidbody.velocity.magnitude - slowSpeed * Time.fixedDeltaTime);
 		}
@@ -83,10 +83,6 @@ public class Ball : MonoBehaviour
 
 		if (ballRigidbody.velocity.magnitude == 0 && oldVelocity.magnitude != 0)
 		{
-			if (Player.Instance.GetShieldLevel() > 0)
-			{
-				shieldActive = true;
-			}
 			hp = Player.Instance.GetEnergy();
 
 			InfiniteLevelsManager.Instance.SetNextHeartLevel();
@@ -102,7 +98,7 @@ public class Ball : MonoBehaviour
 		}
 		oldVelocity = ballRigidbody.velocity;
 
-		shieldVisual.SetActive(shieldActive);
+		//shieldVisual.SetActive(shieldActive);
 
 		Debug.DrawLine(transform.position, transform.position + launchDirection * 10.0f, Color.green, 0.0f);
 	}
@@ -218,7 +214,7 @@ public class Ball : MonoBehaviour
 		}
 
 		AddHP(hpToAdd);
-		shieldActive = false;
+		//shieldActive = false;
 
 		if (hadHp && hp <= 0)
 		{

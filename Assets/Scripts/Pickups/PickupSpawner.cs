@@ -17,7 +17,7 @@ public class PickupSpawner : MonoBehaviour
 			if (Random.Range(0, 100) < pu.GetDropWeight())
 			{
 				Transform parent = transform.GetChild(Random.Range(0, transform.childCount));
-                Instantiate(pickups[idx], parent, false);
+                Instantiate(pickups[idx], parent.transform.position, Quaternion.identity, parent);
 				break;
 			}
 		}

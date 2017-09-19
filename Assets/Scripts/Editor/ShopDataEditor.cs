@@ -106,6 +106,10 @@ public class ShopDataEditor : Editor
 		{
 			ManagementWindow.Instance.UpdateShopData();
 		}
+		if (GUILayout.Button("Update json"))
+		{
+			ForceSerialize();
+		}
 		GUILayoutOption[] options = { GUILayout.MaxWidth(50.0f), GUILayout.MinWidth(50.0f) };
 		//SetScroll("Main", EditorGUILayout.BeginScrollView(GetScroll("Main")));
 		foreach (var price in data.prices)
@@ -134,7 +138,6 @@ public class ShopDataEditor : Editor
 
 	void ForceSerialize()
 	{
-		return;
 		FileSystemWatcher watcher = FileWatchersManager.Instance.GetWatcher("ShopData.json");
 		watcher.EnableRaisingEvents = false;
 

@@ -8,7 +8,7 @@ public class BossEnergy : BossBase
 
 	public InfiniteLevel level;
 
-	public Text hpText;
+	public TextMesh hpText;
 
 	public CameraShaker shaker;
 

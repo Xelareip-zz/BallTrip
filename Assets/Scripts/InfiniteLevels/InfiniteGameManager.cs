@@ -47,9 +47,10 @@ public class InfiniteGameManager : MonoBehaviour
 	public EndLevelScreenScript endLevelScreen;
 
 	public GameObject uiCoinsWon;
+	public GameObject dynamicCoinPrefab;
 
 	public int currentCoins;
-	private int currentCoinsUI;
+	public int currentCoinsUI;
 
 	public int launchesLeft;
 
@@ -172,16 +173,17 @@ public class InfiniteGameManager : MonoBehaviour
 		currentCoins += coinsToAdd;
 		if (animation)
 		{
-			GameObject newUI = Instantiate<GameObject>(uiCoinsWon);
-			newUI.transform.SetParent(Camera.main.transform);
-			newUI.transform.position = Ball.Instance.transform.position + Vector3.back;
-			newUI.GetComponent<GoTo>().finished += () => AddCoinsApply(coinsToAdd);
-			newUI.SetActive(true);
+			for (int coinIdx = 0; coinIdx < coinsToAdd; ++coinIdx)
+			{
+				GameObject newCoin = Instantiate<GameObject>(dynamicCoinPrefab, Ball.Instance.transform.position, Quaternion.identity, InfiniteLevelsManager.Instance.levelsObj[1].transform);
+			}
+			//GameObject newUI = Instantiate<GameObject>(uiCoinsWon);
+			//newUI.transform.SetParent(Camera.main.transform);
+			//newUI.transform.position = Ball.Instance.transform.position + Vector3.back;
+			//newUI.GetComponent<GoTo>().finished += () => AddCoinsApply(coinsToAdd);
+			//newUI.SetActive(true);
 		}
-		else
-		{
-			AddCoinsApply(coinsToAdd);
-        }
+		AddCoinsApply(coinsToAdd);
 	}
 
 	private void AddCoinsApply(int coins)

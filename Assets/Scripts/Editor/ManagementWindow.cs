@@ -236,7 +236,7 @@ public class ManagementWindow : EditorWindow
 		AssetDatabase.ImportAsset(path);
 		TextAsset text = AssetDatabase.LoadAssetAtPath<TextAsset>(path);
 		JsonUtility.FromJsonOverwrite(text.text, data);
+		EditorUtility.SetDirty(data);
 		AssetDatabase.SaveAssets();
-
 	}
 }

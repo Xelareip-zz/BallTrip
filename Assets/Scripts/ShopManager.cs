@@ -18,16 +18,9 @@ public class ShopManager : MonoBehaviour
 	public ShopData data;
 
 	public Text coinsText;
-	public Text launchesText;
-	public Text viewText;
-	public Text bouncesText;
 	public Text priceText;
-
 	public Text descriptionText;
-
-	public Text launchesPriceText;
-	public Text viewPriceText;
-	public Text bouncesPriceText;
+	
 
 	public List<int> pricesLaunches;
 	public List<int> pricesBounces;
@@ -70,14 +63,6 @@ public class ShopManager : MonoBehaviour
 		}
 
 		coinsText.text = "" + Player.Instance.GetCoins();
-		launchesText.text = "" + Player.Instance.GetBuyableLevel(BUYABLE.LAUNCH);
-		viewText.text = "" + Player.Instance.GetViewRange();
-		bouncesText.text = "" + Player.Instance.GetHearts();
-
-		
-		launchesPriceText.text = "" + GetFriendlyPrice(GetLaunchPrice());
-		viewPriceText.text = "" + GetFriendlyPrice(GetViewPrice());
-		bouncesPriceText.text = "" + GetFriendlyPrice(GetBouncePrice());
 	}
 
 	public void SelectButton(ShopButton button)

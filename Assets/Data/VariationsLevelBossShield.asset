@@ -13,8 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkedPrefab: {fileID: 1327467120988234, guid: 9f08e2de7fb10ef43a450af2b8836a54,
     type: 2}
+  layerLevels:
+  - mode: 1
+    value: 1
   variationsLevels:
   - content:
-    - content: []
-  baseObstaclesCountLevel: 10
-  levelsToAllObstacles: 0
+    - content:
+      - f6b1f13e-4fc8-49cd-b717-7c6c556385a7
+      - b1fa498f-ec78-45f2-800d-6c08a5372c12
