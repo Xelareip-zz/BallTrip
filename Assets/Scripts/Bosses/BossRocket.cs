@@ -21,6 +21,6 @@ public class BossRocket: BossBase
 
 	public override bool CanSpawn()
 	{
-		return true;// GetIsAlive();
+		return GetIsAlive();
 	}
 }
