@@ -776,8 +776,6 @@ MonoBehaviour:
   - {fileID: 114530751489680260}
   door: {fileID: 114910494475877674}
   reward: 5
-  levelTexts:
-  - {fileID: 114901282308439876}
   levelTextsNew: []
   levelNumber: 0
 --- !u!114 &114879767112162260

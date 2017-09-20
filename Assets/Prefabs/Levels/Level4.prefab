@@ -2099,7 +2099,7 @@ MonoBehaviour:
   ends:
   - {fileID: 114608400646943648}
   door: {fileID: 114586578841228750}
-  reward: 18
+  reward: 5
   levelTextsNew:
   - {fileID: 102750426162079332}
   levelNumber: 0

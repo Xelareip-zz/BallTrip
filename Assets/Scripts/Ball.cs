@@ -80,8 +80,8 @@ public class Ball : MonoBehaviour
 		{
 			modifiers[modIdx].Update();
 		}
-
-		if (ballRigidbody.velocity.magnitude == 0 && oldVelocity.magnitude != 0)
+		float threshold = 0f;
+        if (ballRigidbody.velocity.magnitude <= threshold && oldVelocity.magnitude > threshold)
 		{
 			hp = Player.Instance.GetEnergy();
 

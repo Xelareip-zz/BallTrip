@@ -19,7 +19,7 @@ public class DictionaryIntGameobjectDrawer : PropertyDrawer
 		CheckInitialize(property, label);
 		if (_foldout == false)
 			return 17f;
-		return _dict.Count * 18f + 77f;
+		return _dict.Count * 18f + 94f;
 	}
 
 	public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
@@ -39,6 +39,11 @@ public class DictionaryIntGameobjectDrawer : PropertyDrawer
 
 		if (_foldout)
 		{
+			if (GUI.Button(new Rect(new Vector2(position.position.x, position.position.y + yPos), new Vector2(position.size.x, 17f)), "Reorder"))
+			{
+				_orderedKeys.Sort();
+			}
+			yPos += 17f;
 			EditorGUI.LabelField(new Rect(new Vector2(position.position.x, position.position.y + yPos), new Vector2(position.size.x, 17f)), "Count: " + _dict.Count);
 			yPos += 17f;
 			EditorGUI.BeginChangeCheck();
