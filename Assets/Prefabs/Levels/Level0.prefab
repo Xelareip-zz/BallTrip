@@ -1571,7 +1571,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4d17e6057da902043befee39cdf79640, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2019,7 +2019,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4d17e6057da902043befee39cdf79640, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2051,7 +2051,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4d17e6057da902043befee39cdf79640, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2115,7 +2115,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4d17e6057da902043befee39cdf79640, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2147,7 +2147,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4d17e6057da902043befee39cdf79640, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2339,7 +2339,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4d17e6057da902043befee39cdf79640, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3197,11 +3197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5cdbb79b4b7204f98af98ce08ac611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickups:
-  - {fileID: 1889039214329970, guid: d0808c9ea76055c41bb09382737e5207, type: 2}
-  - {fileID: 1889039214329970, guid: 63f856b56cf55fb4dab2023cf2027c48, type: 2}
-  - {fileID: 1889039214329970, guid: dd592369463b06443aeaca4dc1c73c90, type: 2}
-  - {fileID: 1889039214329970, guid: a0a0e5c396e8c974a8dfbcf447c6e72e, type: 2}
   pickupSpots:
   - {x: 5, y: 5, z: 0}
   - {x: 5, y: 0, z: 0}

@@ -9,11 +9,12 @@ public enum BUYABLE
 	LAUNCH,
 	HEARTS,
 	VIEW,
-	PU_HEARTS,
+    PU_HEARTS,
 	PU_ENERGY,
 	PU_ROCKET,
 	PU_SHIELD,
-	ENERGY
+	ENERGY,
+	PU_COINS
 };
 
 public class Player : MonoBehaviour
@@ -184,6 +185,11 @@ public class Player : MonoBehaviour
 	}
 
 	public float GetPUShieldChances()
+	{
+		return GetBuyableLevel(BUYABLE.PU_SHIELD) * 7.0f;
+	}
+
+	public float GetPUCoinsChances()
 	{
 		return GetBuyableLevel(BUYABLE.PU_SHIELD) * 7.0f;
 	}

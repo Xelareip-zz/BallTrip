@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class PickupSpawner : MonoBehaviour
 {
-	public List<GameObject> pickups;
-
 	public List<Vector3> pickupSpots;
 
 	void Awake()
 	{
-		for (int idx = 0; idx < pickups.Count; ++idx)
+		for (int idx = 0; idx < PickupManager.Instance.possiblePickups.Count; ++idx)
 		{
-			PickupBase pu = pickups[idx].GetComponentInChildren<PickupBase>();
+			PickupBase pu = PickupManager.Instance.possiblePickups[idx];
 
 			if (Random.Range(0, 100) < pu.GetDropWeight())
 			{
 				Transform parent = transform.GetChild(Random.Range(0, transform.childCount));
-                Instantiate(pickups[idx], parent.transform.position, Quaternion.identity, parent);
+                Instantiate(pu.gameObject, parent.transform.position, Quaternion.identity, parent);
 				break;
 			}
 		}

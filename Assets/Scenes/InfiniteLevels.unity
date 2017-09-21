@@ -839,9 +839,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possiblePickups:
+  - {fileID: 114906643759576824, guid: fd92c92651d53ee40be55c209192238e, type: 2}
   - {fileID: 114835791364611054, guid: 63f856b56cf55fb4dab2023cf2027c48, type: 2}
   - {fileID: 114370303137908742, guid: a0a0e5c396e8c974a8dfbcf447c6e72e, type: 2}
-  - {fileID: 114830049137292030, guid: 6440a74ac1393e64282bb223999021ce, type: 2}
   - {fileID: 114282280127958844, guid: d0808c9ea76055c41bb09382737e5207, type: 2}
   - {fileID: 114841240001881692, guid: dd592369463b06443aeaca4dc1c73c90, type: 2}
 --- !u!114 &227643353

@@ -225,7 +225,7 @@ public class Ball : MonoBehaviour
 
 	public void AddHP(float value)
 	{
-		hp = Mathf.Clamp(hp + value, 0, Player.Instance.GetEnergy());
+		hp = Mathf.Clamp(hp + value, 0, float.MaxValue);// Player.Instance.GetEnergy());
 		if (value < 0)
 		{
 			RedCurtainManager.Instance.stressLevel += 1.0f;
