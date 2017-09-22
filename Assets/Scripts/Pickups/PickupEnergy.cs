@@ -9,7 +9,7 @@ public class PickupEnergy : PickupBase
 	{
 		if (coll.gameObject == Ball.Instance.gameObject)
 		{
-			Ball.Instance.AddHP(InfiniteGameManager.Instance.GetObstacleDamage());
+			Ball.Instance.AddHP(Mathf.FloorToInt(InfiniteGameManager.Instance.GetObstacleDamage() * 0.7f));
 			Destroy(gameObject);
 		}
 	}
