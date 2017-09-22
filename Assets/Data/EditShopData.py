@@ -42,6 +42,8 @@ class AsyncReader(threading.Thread):
         self.should_stop = False
 
     def read(self):
+        if not os.path.exists(target_file):
+            return
         if self.change_date == os.path.getmtime(target_file):
             return
         print('Updating!')

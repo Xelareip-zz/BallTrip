@@ -891,7 +891,7 @@ MonoBehaviour:
   levelsObj: []
   walls: []
   specialLevels:
-    _keys: 020000000100000003000000040000000500000006000000070000000f000000320000006400000096000000
+    _keys: 020000000100000003000000040000000500000006000000070000000f0000007800000032000000960000005a000000
     _values:
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
@@ -901,9 +901,10 @@ MonoBehaviour:
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
     - {fileID: 1327467120988234, guid: af2f2f7e657e6824c83688ec1298f243, type: 2}
     - {fileID: 1327467120988234, guid: 8d8b087f6545d994daaf62390df77a4e, type: 2}
-    - {fileID: 1327467120988234, guid: 9f08e2de7fb10ef43a450af2b8836a54, type: 2}
     - {fileID: 1327467120988234, guid: ea15c97d73fc5c34d863917e9acba88c, type: 2}
+    - {fileID: 1327467120988234, guid: 9f08e2de7fb10ef43a450af2b8836a54, type: 2}
     - {fileID: 1327467120988234, guid: fb23ee09527c5cc43a58bad976788859, type: 2}
+    - {fileID: 1327467120988234, guid: 3510a9b00f5d58543b1889e0431542a7, type: 2}
   levelsRoot: {fileID: 1534835381}
   depth: 3
   initialBestLevel: 0
@@ -2964,6 +2965,7 @@ MonoBehaviour:
   currentCoins: 0
   currentCoinsUI: 0
   launchesLeft: 0
+  levelIncreaseSpeed: 20
 --- !u!1 &774543585
 GameObject:
   m_ObjectHideFlags: 0
@@ -6135,7 +6137,7 @@ SphereCollider:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1773994138}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 940affbf41a0cbf4da636908f35dbc15, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

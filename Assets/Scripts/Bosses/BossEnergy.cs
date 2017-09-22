@@ -36,7 +36,7 @@ public class BossEnergy : BossBase
 		if (coll.gameObject == Ball.Instance.gameObject)
 		{
 			shaker.stressLevel += 0.5f;
-			Ball.Instance.AddHP(15);
+			Ball.Instance.AddHP(InfiniteGameManager.Instance.GetObstacleDamage());
 			--hp;
 			hp = Mathf.Max(hp, 0);
 			if (hp == 0)
@@ -45,11 +45,6 @@ public class BossEnergy : BossBase
 				Destroy(gameObject);
 			}
 		}
-	}
-
-	private void FreeHeart(int number)
-	{
-		Ball.Instance.HeartIncrease(number, true);
 	}
 
 	public override bool CanSpawn()

@@ -4,9 +4,8 @@ using UnityEngine;
 public class BossCoinsPU : BossBase
 {
 	public InfiniteLevel level;
-
-	public CameraShaker shaker;
-	public List<GameObject> shields;
+	
+	public List<GameObject> pickups;
 
 	void Start()
 	{
@@ -28,12 +27,12 @@ public class BossCoinsPU : BossBase
 
 	void Update()
 	{
-		while(shields.Contains(null))
+		while(pickups.Contains(null))
 		{
-			shields.Remove(null);
+			pickups.Remove(null);
 		}
 
-		if (shields.Count == 0 && endLevelDoor != null)
+		if (pickups.Count == 0 && endLevelDoor != null)
 		{
 			Destroy(endLevelDoor);
 		}

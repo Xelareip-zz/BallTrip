@@ -5,13 +5,11 @@ using UnityEngine;
 
 public class PickupEnergy : PickupBase
 {
-	public int value;
-
 	void OnTriggerEnter(Collider coll)
 	{
 		if (coll.gameObject == Ball.Instance.gameObject)
 		{
-			Ball.Instance.AddHP(value);
+			Ball.Instance.AddHP(InfiniteGameManager.Instance.GetObstacleDamage());
 			Destroy(gameObject);
 		}
 	}

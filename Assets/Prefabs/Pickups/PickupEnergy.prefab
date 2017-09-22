@@ -124,7 +124,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 1
-  value: 7
 --- !u!135 &135548243508691754
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -89,13 +89,6 @@ public class Obstacle : MonoBehaviour, IObstacle
 
 	public float HpLossOnTick()
 	{
-		return hpCost;
-	}
-
-	void Update()
-	{
-		//offset = new Vector4(0.5f - (transform.position.x / transform.localScale.x) % 1, 0.5f - (transform.position.y / transform.localScale.y) % 1, 0.0f, 0.0f);
-		//meshRenderer.material.SetFloat("repeatsX", Mathf.RoundToInt(transform.localScale.x));
-		//meshRenderer.material.SetFloat("repeatsY", Mathf.RoundToInt(transform.localScale.y));
+		return InfiniteGameManager.Instance.GetObstacleDamage();
 	}
 }

@@ -6,7 +6,7 @@ public enum BOSS_TYPE
 	HEART,
 	ENERGY,
 	ROCKET,
-	COINS_PU
+	PU_COINS
 }
 
 public class BossBase : MonoBehaviour, ICanSpawn

@@ -53,6 +53,7 @@ public class InfiniteGameManager : MonoBehaviour
 	public int currentCoinsUI;
 
 	public int launchesLeft;
+	public int levelIncreaseSpeed;
 
 	void Awake ()
 	{
@@ -175,7 +176,7 @@ public class InfiniteGameManager : MonoBehaviour
 		{
 			for (int coinIdx = 0; coinIdx < coinsToAdd; ++coinIdx)
 			{
-				GameObject newCoin = Instantiate<GameObject>(dynamicCoinPrefab, Ball.Instance.transform.position, Quaternion.identity, InfiniteLevelsManager.Instance.levelsObj[1].transform);
+				GameObject newCoin = Instantiate<GameObject>(dynamicCoinPrefab, Ball.Instance.transform.position, Quaternion.identity, InfiniteLevelsManager.Instance.levelsObj[0].transform);
 			}
 			//GameObject newUI = Instantiate<GameObject>(uiCoinsWon);
 			//newUI.transform.SetParent(Camera.main.transform);
@@ -279,6 +280,16 @@ public class InfiniteGameManager : MonoBehaviour
 
 	public int GetFreeHeartDistance(int currentLevel)
 	{
-		return Mathf.FloorToInt(currentLevel / 20.0f) + 2;
+		return Mathf.FloorToInt(currentLevel / levelIncreaseSpeed) + 2;
+	}
+
+	public int GetLevelReward()
+	{
+		return Mathf.FloorToInt(InfiniteLevelsManager.Instance.GetFirstLevelNumber() / levelIncreaseSpeed) + 5;
+	}
+
+	public int GetObstacleDamage()
+	{
+		return Mathf.FloorToInt(InfiniteLevelsManager.Instance.GetFirstLevelNumber() / levelIncreaseSpeed) + 10;
 	}
 }

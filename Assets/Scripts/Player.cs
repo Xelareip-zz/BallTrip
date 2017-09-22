@@ -191,7 +191,7 @@ public class Player : MonoBehaviour
 
 	public float GetPUCoinsChances()
 	{
-		return GetBuyableLevel(BUYABLE.PU_SHIELD) * 7.0f;
+		return GetBuyableLevel(BUYABLE.PU_COINS) * 5.0f;
 	}
 
 	public bool GetLevelBeaten(int level)
@@ -353,6 +353,8 @@ public class Player : MonoBehaviour
 				return GetLevelBeaten(BOSS_TYPE.ROCKET);
 			case BUYABLE.PU_SHIELD:
 				return GetLevelBeaten(BOSS_TYPE.SHIELD);
+			case BUYABLE.PU_COINS:
+				return GetLevelBeaten(BOSS_TYPE.PU_COINS);
 		}
 		return false;
 	}

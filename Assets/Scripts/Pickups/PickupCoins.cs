@@ -9,7 +9,7 @@ public class PickupCoins : PickupBase
 
 	public override float GetDropWeight()
 	{
-		return 50.0f;// Player.Instance.GetPUCoinsChances();
+		return Player.Instance.GetPUCoinsChances();
 	}
 
 	void Update()

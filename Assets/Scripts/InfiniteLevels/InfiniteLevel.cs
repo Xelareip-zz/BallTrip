@@ -127,9 +127,9 @@ public class InfiniteLevel : MonoBehaviour
 			TutoManager.Instance.StartTuto("TutoFirstCoin");
 		}
 		Player.Instance.SetBestLevel(levelNumber);
-		InfiniteGameManager.Instance.AddCoins(reward);
 		InfiniteGameManager.Instance.currentColorCursor += 0.1f;
 		InfiniteLevelsManager.Instance.RemoveLevel(this, goal.boundStart.level);
+		InfiniteGameManager.Instance.AddCoins(InfiniteGameManager.Instance.GetLevelReward());
 	}
 
 	public void CloseLevel()
