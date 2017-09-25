@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraDrag : MonoBehaviour
+public class CameraPinch : MonoBehaviour
 {
 	public Vector2 margins = new Vector2(3, 2);
 
 	public int touchId = -1;
 	public Vector3 dragOrigin;
 	public Vector3 currentDrag;
+
+	public float pinchPreviousDist;
 
 	public Vector3 nullVect = new Vector3(-10000, -10000);
 
@@ -20,13 +22,6 @@ public class CameraDrag : MonoBehaviour
 		{
 			return;
 		}
-
-		if (Ball.Instance.ballRigidbody.velocity.magnitude != 0.0f || InfiniteGameManager.Instance.GetMode() != LAUNCH_MODE.LOOK)
-		{
-			touchId = -1;
-            dragOrigin = nullVect;
-            return;
-		}
 	
 		if (Input.touchCount > 1)
 		{
@@ -34,65 +29,24 @@ public class CameraDrag : MonoBehaviour
 			dragOrigin = nullVect;
         }
 
-		KeepCameraInBounds();
-
-		Vector3 position = nullVect;
-		if (touchId == -1)
+		if (Input.GetAxis("Mouse ScrollWheel") != 0)
 		{
-			if (Input.touchCount != 0)
+			Camera.main.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * 5;
+		}
+        if (Input.touchCount == 2)
+		{
+			float pinchDist = (Input.GetTouch(0).position - Input.GetTouch(1).position).magnitude;
+            if (pinchPreviousDist > 0)
 			{
-				Touch touch = Input.GetTouch(0);
-				if (touch.phase == TouchPhase.Began)
-				{
-					touchId = touch.fingerId;
-					position = touch.position;
-				}
+				Camera.main.orthographicSize -= (pinchDist - pinchPreviousDist) * 0.5f;
 			}
-			else if (Input.GetMouseButtonDown(0))
-			{
-				touchId = 0;
-				position = Input.mousePosition;
-			}
-			else if (Input.GetMouseButtonUp(0))
-			{
-				touchId = 0;
-				position = nullVect;
-			}
-
-			dragOrigin = position;
+			pinchPreviousDist = pinchDist;
 		}
-		if (dragOrigin == nullVect)
-		{
-			return;
-		}
-
-
-		if (Input.touchCount != 0)
-		{
-			Touch touch = Input.GetTouch(touchId);
-			currentDrag = touch.position;
-		}
-		else if (Input.GetMouseButton(0))
-		{
-			currentDrag = Input.mousePosition;
-		}
-		else if (Input.GetMouseButtonUp(0))
-		{
-			currentDrag = Input.mousePosition;
-		}
-		// Touch cancelled, loss of focus, etc...
 		else
 		{
-			Ball.Instance.launchDirection = Vector3.zero;
-			touchId = -1;
-			return;
+			pinchPreviousDist = -1;
 		}
 
-		Vector3 drag = (dragOrigin - currentDrag) * XUtils.ScreenCamRatio();
-		Vector3 newPos = transform.position + drag;
-		dragOrigin = currentDrag;
-
-		transform.position = newPos;
 		KeepCameraInBounds();
 	}
 
@@ -110,10 +64,6 @@ public class CameraDrag : MonoBehaviour
 
 
 		transform.position += (camPos - transform.position) * Time.deltaTime * 0.8f;
-        //transform.position = new Vector3(camPos.x, camPos.y, transform.position.z);
-
-
-
     }
 
 	float GetMaxCameraHeight()

@@ -804,6 +804,7 @@ GameObject:
   - component: {fileID: 227643354}
   - component: {fileID: 227643353}
   - component: {fileID: 227643352}
+  - component: {fileID: 227643358}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: MainCamera
@@ -860,7 +861,6 @@ MonoBehaviour:
   touchId: -1
   dragOrigin: {x: 0, y: 0, z: 0}
   currentDrag: {x: 0, y: 0, z: 0}
-  pinchPreviousDist: 0
   nullVect: {x: -10000, y: -10000, z: 0}
   ballTransform: {fileID: 1773994139}
 --- !u!114 &227643354
@@ -965,6 +965,24 @@ MonoBehaviour:
   canShootColor: {r: 0.06509514, g: 0.63235295, b: 0.092479914, a: 1}
   cannotShootColor: {r: 0.7058823, g: 0.11418682, b: 0.11418682, a: 1}
   startDragUI: {fileID: 1527184133}
+--- !u!114 &227643358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 227643350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 526c8a7db53ab7c479ffb30deee87914, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  margins: {x: 3, y: 2}
+  touchId: -1
+  dragOrigin: {x: 0, y: 0, z: 0}
+  currentDrag: {x: 0, y: 0, z: 0}
+  pinchPreviousDist: 0
+  nullVect: {x: -10000, y: -10000, z: 0}
+  ballTransform: {fileID: 1773994139}
 --- !u!1 &235386359
 GameObject:
   m_ObjectHideFlags: 0
