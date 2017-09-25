@@ -29,6 +29,7 @@ public class InfiniteGameManager : MonoBehaviour
 	public Text coinsText;
 	public Text heartsText;
 	public Text launchesText;
+	public ComboAnimation comboAnimation;
 
 	public CameraShaker cameraShaker;
 
@@ -54,7 +55,7 @@ public class InfiniteGameManager : MonoBehaviour
 
 	public int launchesLeft;
 	public int levelIncreaseSpeed;
-
+	
 	void Awake ()
 	{
 		instance = this;
@@ -283,13 +284,18 @@ public class InfiniteGameManager : MonoBehaviour
 		return Mathf.FloorToInt(currentLevel / levelIncreaseSpeed) + 2;
 	}
 
+	public int GetDifficultyLevel()
+	{
+		return Mathf.FloorToInt(InfiniteLevelsManager.Instance.GetFirstLevelNumber() / levelIncreaseSpeed);
+    }
+
 	public int GetLevelReward()
 	{
-		return Mathf.FloorToInt(InfiniteLevelsManager.Instance.GetFirstLevelNumber() / levelIncreaseSpeed) + 5;
+		return GetDifficultyLevel() + 5;
 	}
 
 	public int GetObstacleDamage()
 	{
-		return Mathf.FloorToInt(InfiniteLevelsManager.Instance.GetFirstLevelNumber() / levelIncreaseSpeed) + 10;
+		return GetDifficultyLevel() + 10;
 	}
 }

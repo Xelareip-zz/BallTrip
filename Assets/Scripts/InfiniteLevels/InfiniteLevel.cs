@@ -111,6 +111,7 @@ public class InfiniteLevel : MonoBehaviour
 
 	public void GoalPassed(InfiniteLevelGoal goal)
 	{
+		Ball.Instance.LevelPassed();
 		if (levelNumber == InfiniteLevelsManager.Instance.nextFreeHeartLevel - 1)
 		{
 			InfiniteLevelsManager.Instance.freeHeartLevelUI.SetActive(false);
@@ -130,6 +131,12 @@ public class InfiniteLevel : MonoBehaviour
 		InfiniteGameManager.Instance.currentColorCursor += 0.1f;
 		InfiniteLevelsManager.Instance.RemoveLevel(this, goal.boundStart.level);
 		InfiniteGameManager.Instance.AddCoins(InfiniteGameManager.Instance.GetLevelReward());
+		int comboReward = Mathf.Max(Ball.Instance.GetCoinsFromCombo(), 0);
+		if (comboReward > 0)
+		{
+			InfiniteGameManager.Instance.comboAnimation.Show();
+            InfiniteGameManager.Instance.AddCoins(comboReward);
+		}
 	}
 
 	public void CloseLevel()

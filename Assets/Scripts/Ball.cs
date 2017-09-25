@@ -39,9 +39,12 @@ public class Ball : MonoBehaviour
 
 	public List<IBallModifier> modifiers;
 
+	public int combo;
+
 	void Awake()
 	{
 		instance = this;
+		combo = 0;
 		modifiers = new List<IBallModifier>();
 		currentHeartCount = Player.Instance.GetHearts();
 		currentHeartCountUI = currentHeartCount;
@@ -105,6 +108,7 @@ public class Ball : MonoBehaviour
 
 	public void Launch()
 	{
+		combo = 0;
 		InfiniteGameManager.Instance.SetLaunchMode(LAUNCH_MODE.FOLLOW);
 		ballRigidbody.velocity = launchDirection.normalized * launchSpeed;
 		launchDirection = Vector3.zero;
@@ -273,5 +277,15 @@ public class Ball : MonoBehaviour
 		}
 
 		ballCollider.isTrigger = found;
+	}
+
+	public void LevelPassed()
+	{
+		++combo;
+	}
+
+	public int GetCoinsFromCombo()
+	{
+		return Mathf.FloorToInt((combo - 4.0f) / 5) + 1;
 	}
 }
