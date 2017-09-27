@@ -852,7 +852,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 227643350}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 800728f5721d1dd4eb7df3e0fca1fa0d, type: 3}
   m_Name: 
@@ -938,7 +938,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 227643350}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccd04a083b1649349825c990026ccf2d, type: 3}
   m_Name: 
@@ -977,12 +977,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   margins: {x: 3, y: 2}
-  touchId: -1
-  dragOrigin: {x: 0, y: 0, z: 0}
-  currentDrag: {x: 0, y: 0, z: 0}
   pinchPreviousDist: 0
   nullVect: {x: -10000, y: -10000, z: 0}
   ballTransform: {fileID: 1773994139}
+  scrollSpeed: 1
+  minSize: 40
+  pinchSpeed: 0.0015
+  zoomLevel: 1
+  targetZoom: 1
+  zoomSpeed: 1
+  targetBallPosition: 0.15
+  snapSpeed: 1
 --- !u!1 &235386359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,11 +1065,11 @@ RectTransform:
   m_Father: {fileID: 1408460215}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 420}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 190}
-  m_Pivot: {x: 0.5, y: 0}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &290837541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3043,7 +3048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca88daa2d882274cabf6e08c0cde1f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  launchMode: 2
+  launchMode: 0
   lookModeUI: {fileID: 1654431282}
   coinsText: {fileID: 1644169562}
   heartsText: {fileID: 774543586}
@@ -5705,7 +5710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1654431283
 RectTransform:
   m_ObjectHideFlags: 0

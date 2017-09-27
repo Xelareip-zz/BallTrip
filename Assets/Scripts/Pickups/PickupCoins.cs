@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickupCoins : PickupBase
+public class PickupCoins : PickupBase, ITriggerActivatorReceiver
 {
 	public float rotationSpeed;
 
@@ -21,8 +21,18 @@ public class PickupCoins : PickupBase
 	{
 		if (coll.gameObject == Ball.Instance.gameObject)
 		{
-			InfiniteGameManager.Instance.AddCoins(5, true);
-			Destroy(gameObject);
+			PickedUp();
 		}
+	}
+
+	void PickedUp()
+	{
+		InfiniteGameManager.Instance.AddCoins(5, true);
+		Destroy(gameObject);
+	}
+
+	public void Activated()
+	{
+		PickedUp();
 	}
 }

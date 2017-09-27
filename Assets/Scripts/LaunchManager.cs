@@ -86,15 +86,15 @@ public class LaunchManager : MonoBehaviour
 			return;
 		}
 
-		Vector3 drag = (dragOrigin - currentDrag) * XUtils.ScreenCamRatio();
+		Vector3 drag = (dragOrigin - currentDrag);// * XUtils.ScreenCamRatio();
 		float angle = Quaternion.FromToRotation(Vector3.up, drag).eulerAngles.z;
 		float newAngle = TutoManager.Instance.GetAngleModifier(angle);
 		Ball.Instance.launchDirection = Quaternion.AngleAxis(newAngle, Vector3.forward) * Vector3.up;
 		canShoot = TutoManager.Instance.GetCanShootAngle(newAngle);
-		readyToShoot = drag.magnitude >= 2.5f;
+		readyToShoot = drag.magnitude >= 100.0f;
 		canShoot &= readyToShoot;
 		Ball.Instance.launchDirectionScript.transform.rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
-
+		ZoomManager.Instance.targetZoom = 1.0f - Mathf.Clamp01((drag.magnitude - 100.0f) / 500.0f);
 		if (shouldLaunch && canShoot)
 		{
 			readyToShoot = false;

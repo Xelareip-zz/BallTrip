@@ -56,7 +56,7 @@ public class EndLevelScreenScript : MonoBehaviour
 			//InfiniteGameManager.Instance.launchesLeft = Mathf.FloorToInt(Player.Instance.GetLaunches() / 2.0f) + 1;
 			Ball.Instance.HeartIncrease(Mathf.FloorToInt(Player.Instance.GetHearts() / 2.0f) + 1);
 			InfiniteGameManager.Instance.gameIsOver = false;
-			InfiniteGameManager.Instance.SetLaunchMode(LAUNCH_MODE.LOOK);
+			InfiniteGameManager.Instance.SetLaunchMode(LAUNCH_MODE.LAUNCH);
 			gameObject.SetActive(false);
 		}
 	}

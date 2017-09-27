@@ -23,7 +23,7 @@ public class InfiniteGameManager : MonoBehaviour
 		}
 	}
 
-	public LAUNCH_MODE launchMode = LAUNCH_MODE.LOOK;
+	public LAUNCH_MODE launchMode = LAUNCH_MODE.LAUNCH;
 
 	public GameObject lookModeUI;
 	public Text coinsText;
@@ -115,7 +115,7 @@ public class InfiniteGameManager : MonoBehaviour
 
 	public void SetLaunchMode(LAUNCH_MODE mode)
 	{
-		if (mode == LAUNCH_MODE.LOOK && Ball.Instance.currentHeartCount == 0)
+		if (mode == LAUNCH_MODE.LAUNCH && Ball.Instance.currentHeartCount == 0)
 		{
 			EndGame();
 		}

@@ -90,14 +90,19 @@ public class Ball : MonoBehaviour
 
 			InfiniteLevelsManager.Instance.SetNextHeartLevel();
 
-			if (TutoManager.Instance.StartTuto("TutoSecondSling"))
+			//if (TutoManager.Instance.StartTuto("TutoSecondSling"))
 			{
+				ZoomManager.Instance.targetZoom = 1.0f;
 				InfiniteGameManager.Instance.SetLaunchMode(LAUNCH_MODE.LAUNCH);
 			}
-			else
-			{
-				InfiniteGameManager.Instance.SetLaunchMode(LAUNCH_MODE.LOOK);
-			}
+			//else
+			//{
+			//	InfiniteGameManager.Instance.SetLaunchMode(LAUNCH_MODE.LOOK);
+			//}
+		}
+		if (ballRigidbody.velocity.magnitude > threshold)
+		{
+			ZoomManager.Instance.targetZoom = 1.0f - Mathf.Abs(ballRigidbody.velocity.y / launchSpeed);
 		}
 		oldVelocity = ballRigidbody.velocity;
 
