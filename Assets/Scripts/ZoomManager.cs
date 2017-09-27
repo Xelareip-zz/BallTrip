@@ -12,23 +12,23 @@ public class ZoomManager : MonoBehaviour
 			return instance;
 		}
 	}
-	public Vector2 margins = new Vector2(3, 2);
-	
-	public float pinchPreviousDist;
-
-	public Vector3 nullVect = new Vector3(-10000, -10000);
 
 	public Transform ballTransform;
-
-	public float scrollSpeed;
 	public float minSize;
-	public float pinchSpeed;
 	public float zoomLevel;
 	public float targetZoom;
 	public float zoomSpeed;
 
 	public float targetBallPosition;
 	public float snapSpeed;
+
+	public Vector2 margins = new Vector2(3, 2);
+
+	public float pinchPreviousDist;
+
+	public Vector3 nullVect = new Vector3(-10000, -10000);
+	public float scrollSpeed;
+	public float pinchSpeed;
 
 	void Awake()
 	{
@@ -43,11 +43,12 @@ public class ZoomManager : MonoBehaviour
 			tempSpeed /= 4.0f;
 		}
 		zoomLevel += (targetZoom - zoomLevel) * tempSpeed * Time.deltaTime;
-		if (ballTransform == null || TutoManager.Instance.GetCanDragCamera() == false || InfiniteGameManager.Instance.gameIsOver)
+
+		if (ballTransform == null /*|| TutoManager.Instance.GetCanDragCamera() == false*/ || InfiniteGameManager.Instance.gameIsOver)
 		{
 			return;
 		}
-		
+		/*
 		if (Input.GetAxis("Mouse ScrollWheel") != 0)
 		{
 			targetZoom += Input.GetAxis("Mouse ScrollWheel") * scrollSpeed;
@@ -64,9 +65,14 @@ public class ZoomManager : MonoBehaviour
 		else
 		{
 			pinchPreviousDist = -1;
-		}
+		}*/
 		targetZoom = Mathf.Clamp01(targetZoom);
 		Camera.main.orthographicSize = minSize + (1.0f - zoomLevel) * (GetMaxCameraHeight() - minSize);
+		//KeepCameraCentered();
+	}
+
+	void FixedUpdate()
+	{
 		KeepCameraCentered();
 	}
 
@@ -80,14 +86,15 @@ public class ZoomManager : MonoBehaviour
 
 		//float speed = (targetPos - transform.position).magnitude * snapSpeed * Time.deltaTime;
 
-        //targetPos.y = Mathf.Min(targetPos.y, minY + Camera.main.orthographicSize);
+		//targetPos.y = Mathf.Min(targetPos.y, minY + Camera.main.orthographicSize);
 		/*
 		float targetSpeed = ((targetPos - transform.position) * maxSpeed).magnitude;
 		snapSpeed += (targetSpeed - snapSpeed) * snapAcceleration * Time.deltaTime;
 		*/
-        transform.position += (targetPos - transform.position) * snapSpeed * Time.deltaTime;
+		Vector3 dir = (targetPos - transform.position);
+        transform.position += dir * Mathf.Clamp01(snapSpeed * Time.fixedDeltaTime);
     }
-
+	/*
 	void KeepCameraInBounds()
 	{
 		Bounds globalBounds = InfiniteLevelsManager.Instance.GetGlobalBounds();
@@ -101,18 +108,18 @@ public class ZoomManager : MonoBehaviour
 
 
 		transform.position += (camPos - transform.position) * Time.deltaTime * 0.8f;
-    }
+    }*/
 
 	float GetMaxCameraHeight()
 	{
 		Bounds globalBounds = InfiniteLevelsManager.Instance.GetGlobalBounds();
 		return globalBounds.extents.y + margins.y;
-		Bounds firstLevelBounds = InfiniteLevelsManager.Instance.GetLevel(InfiniteLevelsManager.Instance.GetFirstLevelNumber()).GetCurrentBounds();
+		/*Bounds firstLevelBounds = InfiniteLevelsManager.Instance.GetLevel(InfiniteLevelsManager.Instance.GetFirstLevelNumber()).GetCurrentBounds();
 		Bounds lastLevelBounds = InfiniteLevelsManager.Instance.GetLevel(InfiniteLevelsManager.Instance.currentLevel).GetCurrentBounds();
 
 		float yMin = firstLevelBounds.center.y - firstLevelBounds.extents.y;
 		float yMax = lastLevelBounds.center.y + lastLevelBounds.extents.y;
 
-		return yMax - yMin;
+		return yMax - yMin;*/
 	}
 }

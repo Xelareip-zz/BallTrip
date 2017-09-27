@@ -798,11 +798,9 @@ GameObject:
   m_Component:
   - component: {fileID: 227643351}
   - component: {fileID: 227643357}
-  - component: {fileID: 227643356}
   - component: {fileID: 227643355}
   - component: {fileID: 766120367}
   - component: {fileID: 227643354}
-  - component: {fileID: 227643353}
   - component: {fileID: 227643352}
   - component: {fileID: 227643358}
   m_Layer: 0
@@ -845,24 +843,6 @@ MonoBehaviour:
   - {fileID: 114370303137908742, guid: a0a0e5c396e8c974a8dfbcf447c6e72e, type: 2}
   - {fileID: 114282280127958844, guid: d0808c9ea76055c41bb09382737e5207, type: 2}
   - {fileID: 114841240001881692, guid: dd592369463b06443aeaca4dc1c73c90, type: 2}
---- !u!114 &227643353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114150273127725838, guid: d8c1f58f771e65d4ea8aac8c734f2edf,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 227643350}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 800728f5721d1dd4eb7df3e0fca1fa0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  margins: {x: 3, y: 2}
-  touchId: -1
-  dragOrigin: {x: 0, y: 0, z: 0}
-  currentDrag: {x: 0, y: 0, z: 0}
-  nullVect: {x: -10000, y: -10000, z: 0}
-  ballTransform: {fileID: 1773994139}
 --- !u!114 &227643354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -919,7 +899,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 227643350}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9f216dc61aaead4cbd24638e02429fa, type: 3}
   m_Name: 
@@ -931,19 +911,6 @@ MonoBehaviour:
   stressRecovery: 0
   minStressRecovery: 1
   meshRenderer: {fileID: 1909195309}
---- !u!114 &227643356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114176386867333494, guid: d8c1f58f771e65d4ea8aac8c734f2edf,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 227643350}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccd04a083b1649349825c990026ccf2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ballTransform: {fileID: 1773994139}
 --- !u!114 &227643357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -976,18 +943,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526c8a7db53ab7c479ffb30deee87914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  margins: {x: 3, y: 2}
-  pinchPreviousDist: 0
-  nullVect: {x: -10000, y: -10000, z: 0}
   ballTransform: {fileID: 1773994139}
-  scrollSpeed: 1
   minSize: 40
-  pinchSpeed: 0.0015
   zoomLevel: 1
   targetZoom: 1
   zoomSpeed: 1
   targetBallPosition: 0.15
   snapSpeed: 1
+  margins: {x: 3, y: 2}
+  pinchPreviousDist: 0
+  nullVect: {x: -10000, y: -10000, z: 0}
+  scrollSpeed: 1
+  pinchSpeed: 0.0015
 --- !u!1 &235386359
 GameObject:
   m_ObjectHideFlags: 0
@@ -5328,7 +5295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7091bb81fce436a4fad0118b25d48ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialRatio: 0
+  distanceFromRoot: 0
   mainMaterial: {fileID: 2100000, guid: c45a9f52291a34947b1e88cc3130c11f, type: 2}
   mainRenderer: {fileID: 952260086}
 --- !u!1 &1589279334
